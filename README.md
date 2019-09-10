@@ -1,1 +1,0 @@
-**Bu Proje Semih Yani Ben Tarafından Kodlanmıştır.**

