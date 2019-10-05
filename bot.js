@@ -125,7 +125,7 @@ client.login(ayarlar.token);
 //
 client.on("guildMemberAdd", (member) => {
         try {
-            member.guild.setName(`ATOM | CYBORG 》${member.guild.memberCount}《`);
+            member.guild.setName(`ATOM 》${member.guild.memberCount}《`);
         
         }
         catch (e) {
@@ -135,7 +135,7 @@ client.on("guildMemberAdd", (member) => {
 
 client.on("guildMemberRemove", (member) => {
         try {
-            member.guild.setName(`ATOM | CYBORG 》${member.guild.memberCount}《`);
+            member.guild.setName(`ATOM 》${member.guild.memberCount}《`);
 
         
         }
