@@ -40,7 +40,8 @@
     "randomstring": "^1.1.5",
     "weather-js": "^2.0.0",
     "gifencoder": "^2.0.1",
-    "google": "^2.1.0"
+    "google": "^2.1.0",
+    "dblapi.js": "^2.3.0"
   },
   "engines": {
     "node": "8.x"
