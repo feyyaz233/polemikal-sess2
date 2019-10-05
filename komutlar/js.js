@@ -8,7 +8,7 @@ exports.run = (client, message, params) => {
   dbl.hasVoted(message.author.id).then(voted => {
     if(voted) {
       
-      var role = message.guild.roles.find(role => role.id === "629965884672311297");
+      var role = message.guild.roles.find(role => role.id === "629989277215883264");
   if (message.member.roles.has(role.id)) return message.channel.send("Zaten rolü almışsın!")
   message.member.addRole(role);
   message.channel.send(`JavaScript rolü başarıyla verildi!`);
