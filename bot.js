@@ -10,6 +10,10 @@ http.createServer(function (req, res) {
   res.end();
 }).listen(8080);
 // -------------------------------------------------------------
+
+
+
+//
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const ayarlar = require('./ayarlar.json');
@@ -115,3 +119,26 @@ client.on('error', e => {
 });
 
 client.login(ayarlar.token);
+
+//
+
+client.on("guildMemberAdd", (member) => {
+        try {
+            member.guild.setName(`ATOM | CYBORG 》${member.guild.memberCount}《`);
+        
+        }
+        catch (e) {
+        console.log(e);
+        }
+  });
+
+client.on("guildMemberRemove", (member) => {
+        try {
+            member.guild.setName(`ATOM | CYBORG 》${member.guild.memberCount}《`);
+
+        
+        }
+        catch (e) {
+        console.log(e);
+        }
+});
