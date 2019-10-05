@@ -19,6 +19,7 @@ dependencies:
   moment: 2.24.0
   moment-duration-format: 2.3.2
   node-opus: 0.3.2
+  node-superfetch: 0.1.9
   path: 0.12.7
   quick-db: 1.0.5
   quick.db: 6.3.2
@@ -2821,6 +2822,15 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-TwWAOZb0j7e9eGaf9esRx3ZcLaE5tQ2lvYy1pb5IAaG1a2e2Kv5Lms1Y4hpj+ciXJRofIxxlt5haeQ/2ANeE0Q==
+  /node-superfetch/0.1.9:
+    dependencies:
+      form-data: 2.5.1
+      node-fetch: 2.6.0
+    dev: false
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-59rrdbpPmVIbizlRFRKTtzuvenG0Qnp48wUff4yXqTHKvKhYU7G7nxUVE/a1A/iva1MWLEQ+/ots3oM4JpEQIA==
   /nopt/4.0.1:
     dependencies:
       abbrev: 1.1.1
@@ -4323,6 +4333,7 @@ specifiers:
   moment: ^2.24.0
   moment-duration-format: ^2.2.2
   node-opus: ^0.3.2
+  node-superfetch: ^0.1.9
   path: ^0.12.7
   quick-db: ^1.0.5
   quick.db: ^6.3.2

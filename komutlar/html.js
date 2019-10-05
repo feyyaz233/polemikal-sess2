@@ -13,7 +13,7 @@ exports.run = (client, message, params) => {
   message.member.addRole(role);
   message.channel.send(`Html rolü başarıyla verildi!`);
     } else {
-      message.channel.send("Bu komutu kullanabilmek için 12 saatte bir oy vermelisiniz!\nSite: https://discordbots.org/bot/623917155376824320/vote\nNot: Eğer oy verdiyseniz sisteme düşmesini bekleyiniz.")
+      message.channel.send("Bu komutu kullanabilmek için 12 saatte bir oy vermelisiniz!\nSite: https://discordbots.org/bot/619970522754580482/vote\nNot: Eğer oy verdiyseniz sisteme düşmesini bekleyiniz.")
     }
   })
 };
