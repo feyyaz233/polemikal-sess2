@@ -3,13 +3,13 @@ const client = new Discord.Client();
 
 exports.run = (client, message, params) => {
   const DBL = require('dblapi.js')
-  const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTk3MDUyMjc1NDU4MDQ4MiIsImJvdCI6dHJ1ZSwiaWF0IjoxNTY5NzY1MTczfQ.vy67x9KwSolL5vWeVBoa_NpsFQ8nFal6dtio9MD-Ocw', client) 
+  const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTk3MDUyMjc1NDU4MDQ4MiIsImJvdCI6dHJ1ZSwiaWF0IjoxNTcwMjY4MjIwfQ.C7_N2M5vy1-sc5htQRclYr8IBDR8K_xSgZ-eBlNFms4', client) 
   
   dbl.hasVoted(message.author.id).then(voted => {
     if(voted) {
       
-      var role = message.guild.roles.find(role => role.id === "629965884672311297"); // verilecek rol ismi (isterseniz "role.name" yerine "role.id" yapıp "ROL" yazan yere rol id de yazabilirsiniz.
-  if (message.member.roles.has(role.id)) return message.channel.send("Bu Role Sahipsin!")
+      var role = message.guild.roles.find(role => role.id === "629965884672311297");
+  if (message.member.roles.has(role.id)) return message.channel.send("Zaten rolü almışsın!")
   message.member.addRole(role);
   message.channel.send(`JavaScript rolü başarıyla verildi!`);
     } else {
