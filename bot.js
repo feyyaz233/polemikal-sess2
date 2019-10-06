@@ -99,9 +99,7 @@ client.unload = command => {
 };
 
 //
-setInterval(() => {
-  client.channels.get("629990680055382016").send('Botumuza oy vermek isterseniz eğer: https://top.gg/bot/619970522754580482/vote\nOy verenler canımdır <3')
-}, 600000)
+
 
 client.elevation = message => {
   if(!message.guild) {
