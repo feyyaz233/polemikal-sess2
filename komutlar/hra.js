@@ -25,7 +25,7 @@ exports.conf = {
 }
 
 exports.help = {
-    name: 'herkestenrolal',
+    name: 'herkesten-rol-al',
     description: 'Herkesten rol alır.',
-    usage: 'herkestenrolal @rol / rol-ismi'
+    usage: 'herkesten-rol-al @rol / rol-ismi'
 }
