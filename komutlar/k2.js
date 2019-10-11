@@ -21,14 +21,14 @@ exports.run = (client, message, args) => {
   }
 
   const embed = new Discord.RichEmbed()
-    .setDescription(`Artık hafızamda` + isim + `olarak kodlanacak!`)
+    .setDescription(`Artık hafızamda ` + isim + ` olarak kodlanacak!`)
     .setColor("BLACK");
 
   message.channel.send(embed);
   db.set(`isim_${message.guild.id}`, isim);
 };
 exports.conf = {
-  enabled: true,
+  enabled: false,
   guildOnly: true,
   aliases: ["isim-sistemi"],
   permLevel: 2,

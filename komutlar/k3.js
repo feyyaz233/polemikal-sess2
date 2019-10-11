@@ -19,14 +19,14 @@ exports.run = async (client, message, args) => {
       .then(mesaj => mesaj.delete(5000));
     return;
   }
-  //CODEMİNG / Yasin..
+
   let isim2 = args[0];
   let yaş = args[1];
 
   if (isim.includes("-uye-") && !isim.includes("-yas-")) {
     if (!isim2)
       return message.channel.send(
-        "Seni Kayıt Etmem İçin Bir İsim Girmelisin : `c!kayıt Mahmut`"
+        "Lütfen bir isim girin! örnek: `a!kayıt Mahir 18`"
       );
     if (kanallog) {
       client.channels
@@ -34,7 +34,7 @@ exports.run = async (client, message, args) => {
         .send(
           ":scroll: " +
             message.author +
-            " İçin Kayıt İşlemi Başarı İle Tamamlandı.:clipboard:"
+            " Kayıt işlemi başarılı!"
         );
       var isimm = await db
         .fetch(`isim_${message.guild.id}`)
@@ -59,19 +59,19 @@ exports.run = async (client, message, args) => {
     // bu ne? yaş varsa isim yoksa ne la
     if (!isim2)
       return message.channel.send(
-        "Seni Kayıt Etmem İçin Bir İsim Girmelisin : `c!kayıt Mahmut 18`"
+        "Seni Kayıt Etmem İçin Bir İsim Girmelisin : `a!kayıt Mahir 18`"
       );
     if (!yaş)
       return message.channel.send(
-        "Yaş İçin En Az 1 Basamak Belirtebilirsin. Örnek: `!kayıt Mahmut 18`"
+        "10 yaş altı kabul edilmiyor, yani hatalı kullanım! örnek: `a!kayıt Mahir 18`"
       );
     if (yaş.length < 2)
       return message.channel.send(
-        "Yaş İçin En Fazla 2 Basamak Belirtebilirsin. Örnek: `c!kayıt Mahmut 18`"
+        "Yaşıyor olduğuna inanamam, hatalı kullanım! örnek: `a!kayıt Mahir 18`"
       );
     if (isNaN(args[1]))
       return message.channel.send(
-        "Yaş İçin Sayı Girmelisin. Örnek: `c!kayıt Mahmut 18`"
+        "Dünyada isen bir yaş belirt! örnek: `a!kayıt Mahir 18`"
       );
     if (kanallog) {
       client.channels
@@ -79,7 +79,7 @@ exports.run = async (client, message, args) => {
         .send(
           ":scroll: " +
             message.author +
-            " İçin Kayıt İşlemi Başarı İle Tamamlandı.:clipboard:"
+            " Kayıt işlemi başarılı!"
         );
       var isimm = await db
         .fetch(`isim_${message.guild.id}`)
@@ -102,7 +102,7 @@ exports.run = async (client, message, args) => {
 };
 
 exports.conf = {
-  enabled: true,
+  enabled: false,
   guildOnly: true,
   aliases: [],
   permLevel: 2,

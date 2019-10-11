@@ -29,7 +29,7 @@ exports.run = (client, message, args) => {
   if (kanallog) db.delete(`kanalLog_${message.guild.id}`);
 };
 exports.conf = {
-  enabled: true,
+  enabled: false,
   guildOnly: true,
   aliases: [],
   permLevel: 2,
