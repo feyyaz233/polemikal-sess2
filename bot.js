@@ -1,42 +1,41 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const keep_alive = require('./keep_alive.js') //index.js Const Kısımlarına
+const keep_alive = require("./keep_alive.js"); //index.js Const Kısımlarına
 
+var http = require("http");
 
-var http = require('http');
-
-http.createServer(function (req, res) {
-  res.write("Dünyalı!");
-  res.end();
-}).listen(8080);
+http
+  .createServer(function(req, res) {
+    res.write("Dünyalı!");
+    res.end();
+  })
+  .listen(8080);
 // -------------------------------------------------------------
 
-
-
 //
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 const client = new Discord.Client();
-const ayarlar = require('./ayarlar.json');
-const chalk = require('chalk');
-const fs = require('fs');
-const moment = require('moment');
-const Jimp = require('jimp');
-const db = require('quick.db');
-require('./util/eventLoader')(client);
+const ayarlar = require("./ayarlar.json");
+const chalk = require("chalk");
+const fs = require("fs");
+const moment = require("moment");
+const Jimp = require("jimp");
+const db = require("quick.db");
+require("./util/eventLoader")(client);
 
 var prefix = ayarlar.prefix;
 
 const log = message => {
-  console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`);
+  console.log(`[${moment().format("YYYY-MM-DD HH:mm:ss")}] ${message}`);
 };
 
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
-fs.readdir('./komutlar/', (err, files) => {
+fs.readdir("./komutlar/", (err, files) => {
   if (err) console.error(err);
   log(`${files.length} komut yüklenecek.`);
   files.forEach(f => {
-let props = require(`./komutlar/${f}`);
+    let props = require(`./komutlar/${f}`);
     log(`Yüklenen komut: ${props.help.name}.`);
     client.commands.set(props.help.name, props);
     props.conf.aliases.forEach(alias => {
@@ -59,7 +58,7 @@ client.reload = command => {
         client.aliases.set(alias, cmd.help.name);
       });
       resolve();
-    } catch (e){
+    } catch (e) {
       reject(e);
     }
   });
@@ -74,13 +73,11 @@ client.load = command => {
         client.aliases.set(alias, cmd.help.name);
       });
       resolve();
-    } catch (e){
+    } catch (e) {
       reject(e);
     }
   });
 };
-
-
 
 client.unload = command => {
   return new Promise((resolve, reject) => {
@@ -92,7 +89,7 @@ client.unload = command => {
         if (cmd === command) client.aliases.delete(alias);
       });
       resolve();
-    } catch (e){
+    } catch (e) {
       reject(e);
     }
   });
@@ -100,10 +97,10 @@ client.unload = command => {
 
 //
 
-
 client.elevation = message => {
-  if(!message.guild) {
-	return; }
+  if (!message.guild) {
+    return;
+  }
   let permlvl = 0;
   if (message.member.hasPermission("BAN_MEMBERS")) permlvl = 2;
   if (message.member.hasPermission("ADMINISTRATOR")) permlvl = 3;
@@ -113,12 +110,12 @@ client.elevation = message => {
 
 var regToken = /[\w\d]{24}\.[\w\d]{6}\.[\w\d-_]{27}/g;
 
-client.on('warn', e => {
-  console.log(chalk.bgYellow(e.replace(regToken, 'that was redacted')));
+client.on("warn", e => {
+  console.log(chalk.bgYellow(e.replace(regToken, "that was redacted")));
 });
 
-client.on('error', e => {
-  console.log(chalk.bgRed(e.replace(regToken, 'that was redacted')));
+client.on("error", e => {
+  console.log(chalk.bgRed(e.replace(regToken, "that was redacted")));
 });
 
 client.login(ayarlar.token);
@@ -126,23 +123,39 @@ client.login(ayarlar.token);
 //
 
 //
-client.on("guildMemberAdd", (member) => {
-        try {
-            member.guild.setName(`ATOM 》${member.guild.memberCount}《`);
-        
-        }
-        catch (e) {
-        console.log(e);
-        }
+client.on("message", async msg => {
+  const DBL = require("dblapi.js");
+  const dbl = new DBL(
+    "DBL TOKEN",
+    client
+  );
+
+  dbl.hasVoted(msg.author.id).then(voted => {
+    if (voted) {
+      var role = msg.guild.roles.find(role => role.id === "629989277215883264");
+      msg.member.addRole(role);
+      msg.channel.send(`JavaScript rolü başarıyla verildi!`);
+      client.channels
+        .get("KanalId")
+        .send(`@${msg.author.tag} adlı şahıs **JavaScript** adlı rolü aldı!`);
+    }
+    else{
+      return;
+    }
   });
+});
+client.on("guildMemberAdd", member => {
+  try {
+    member.guild.setName(`ATOM 》${member.guild.memberCount}《`);
+  } catch (e) {
+    console.log(e);
+  }
+});
 
-client.on("guildMemberRemove", (member) => {
-        try {
-            member.guild.setName(`ATOM 》${member.guild.memberCount}《`);
-
-        
-        }
-        catch (e) {
-        console.log(e);
-        }
+client.on("guildMemberRemove", member => {
+  try {
+    member.guild.setName(`ATOM 》${member.guild.memberCount}《`);
+  } catch (e) {
+    console.log(e);
+  }
 });
