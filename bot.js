@@ -133,8 +133,4 @@ client.on("guildMemberAdd", member => {
 
 client.on("guildMemberRemove", member => {
   try {
-    member.guild.setName(`Revaque 》${member.guild.memberCount}《`);
-  } catch (e) {
-    console.log(e);
-  }
-});
+    member.guild.setName
