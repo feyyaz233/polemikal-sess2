@@ -104,7 +104,7 @@ client.elevation = message => {
   let permlvl = 0;
   if (message.member.hasPermission("BAN_MEMBERS")) permlvl = 2;
   if (message.member.hasPermission("ADMINISTRATOR")) permlvl = 3;
-  if (message.author.id === ayarlar.sahip) permlvl = 4;
+  if (message.author.id === ayarlar.sahip && ayarlar.sahip2) permlvl = 4;
   return permlvl;
 };
 
@@ -133,4 +133,8 @@ client.on("guildMemberAdd", member => {
 
 client.on("guildMemberRemove", member => {
   try {
-    member.guild.setName
+    member.guild.setName(`Revaque 》${member.guild.memberCount}《`);
+  } catch (e) {
+    console.log(e);
+  }
+});
