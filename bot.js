@@ -123,30 +123,9 @@ client.login(ayarlar.token);
 //
 
 //
-client.on("message", async msg => {
-  const DBL = require("dblapi.js");
-  const dbl = new DBL(
-    "DBL TOKEN",
-    client
-  );
-
-  dbl.hasVoted(msg.author.id).then(voted => {
-    if (voted) {
-      var role = msg.guild.roles.find(role => role.id === "629989277215883264");
-      msg.member.addRole(role);
-      msg.channel.send(`JavaScript rolü başarıyla verildi!`);
-      client.channels
-        .get("KanalId")
-        .send(`@${msg.author.tag} adlı şahıs **JavaScript** adlı rolü aldı!`);
-    }
-    else{
-      return;
-    }
-  });
-});
 client.on("guildMemberAdd", member => {
   try {
-    member.guild.setName(`ATOM 》${member.guild.memberCount}《`);
+    member.guild.setName(`Revaque 》${member.guild.memberCount}《`);
   } catch (e) {
     console.log(e);
   }
@@ -154,7 +133,7 @@ client.on("guildMemberAdd", member => {
 
 client.on("guildMemberRemove", member => {
   try {
-    member.guild.setName(`ATOM 》${member.guild.memberCount}《`);
+    member.guild.setName(`Revaque 》${member.guild.memberCount}《`);
   } catch (e) {
     console.log(e);
   }
