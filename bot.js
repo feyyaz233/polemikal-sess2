@@ -121,7 +121,19 @@ client.on("error", e => {
 client.login(ayarlar.token);
 
 //
-
+client.on("roleCreate", async (role, member, message) => {
+  const rolkoruma = await db.fetch(`rolk_${role.guild.id}`);
+  if (rolkoruma == "acik") {
+    role.delete();
+    const embed = new Discord.RichEmbed()
+      .setDescription("Test Mesajı!")
+      .setColor("BLACK");
+    role.guild.owner.send(embed);
+  }
+  else{
+    return
+  }
+});
 //
 client.on("guildMemberAdd", member => {
   try {
