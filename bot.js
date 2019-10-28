@@ -121,16 +121,18 @@ client.on("error", e => {
 client.login(ayarlar.token);
 
 //mantıklı la ama başarısız
-client.on("roleCreate", async (role, member) => {
-  let rolkoruma = await db.fetch(`rolk_${role.guild.id}`);
+client.on("roleCreate", async (rolee, member) => {
+  let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
   if (rolkoruma == "acik") {
-        if(role.member == client.user) return;
-    if (role.hasPermission("BAN_MEMBERS")) return;
-      role.delete();
+    
+        if(rolee.member == client.user) return;
+    if (rolee.member.hasPermission("BAN_MEMBERS")) return;
+
+      rolee.delete();
       const embed = new Discord.RichEmbed()
         .setDescription("Sunucunuzda yeni bir rol oluşturuludu! fakat geri silindi! (Rol Koruma Sistemi)")
         .setColor("BLACK");
-      role.guild.owner.send(embed);
+      rolee.guild.owner.send(embed);
  
   if (rolkoruma == null) {
     return;
@@ -138,6 +140,7 @@ client.on("roleCreate", async (role, member) => {
   }
 });
 //amaç ne la
+//amk olmuyor çıldırcam
 client.on("roleDelete", async (rolee, member) => {
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
   if (rolkoruma == "acik") {
