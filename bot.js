@@ -121,12 +121,12 @@ client.on("error", e => {
 client.login(ayarlar.token);
 
 //mantıklı la ama başarısız
-client.on("roleCreate", async (rolee, member) => {
+client.on("roleCreate", async (rolee, member, guild) => {
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
   if (rolkoruma == "acik") {
     
         if(rolee.member == client.user) return;
-    if (rolee.member.hasPermission("BAN_MEMBERS")) return;
+    if (rolee.hasPermission("BAN_MEMBERS")) return;
 
       rolee.delete();
       const embed = new Discord.RichEmbed()
@@ -139,16 +139,56 @@ client.on("roleCreate", async (rolee, member) => {
   }
   }
 });
-//amaç ne la
-//amk olmuyor çıldırcam
-client.on("roleDelete", async (rolee, member) => {
+
+
+
+client.on("roleCreate", async (rolee, member, guild) => {
+  let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
+  if (rolkoruma == "acik") {
+    
+        if(rolee.member == client.user) return;
+    if (rolee.hasPermission("BAN_MEMBERS")) return;
+
+      rolee.delete();
+      const embed = new Discord.RichEmbed()
+        .setDescription("Sunucunuzda yeni bir rol oluşturuludu! fakat geri silindi! (Rol Koruma Sistemi)")
+        .setColor("BLACK");
+      rolee.guild.owner.send(embed);
+ 
+  if (rolkoruma == null) {
+    return;
+  }
+  }
+});
+//nasıl iş bu ameka
+//silindiği için adını alamıyo o yüzden açamıyor? o zaman loga selam verirdi
+//true 7
+client.on("roleDelete", async (rolee, member, guild) => {
+  let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
+  if (rolkoruma == "acik") {
+    
+        if(rolee.member == client.user) return;
+    if (rolee.hasPermission("BAN_MEMBERS")) return;
+
+     rolee.createRole({name: rolee.name})
+      const embed = new Discord.RichEmbed()
+        .setDescription("Sunucunuzda bir rol silindi! fakat geri oluşturuldu! (Rol Koruma Sistemi)")
+        .setColor("BLACK");
+      rolee.guild.owner.send(embed);
+ 
+  if (rolkoruma == null) {
+    return;
+  }
+  }
+});
+/*client.on("roleDelete", async (rolee, member, guild) => {
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
   if (rolkoruma == "acik") {
     if(rolee.member == client.user) return;
 //bisi deniyom
     if (rolee.hasPermission("BAN_MEMBERS")) return;
     
-    rolee.guild.createRole({name: rolee.name})
+    member.guild.createRole({name: rolee.name})
       const embed = new Discord.RichEmbed()
         .setDescription("Sunucunuzda bir rol silindi! fakat geri oluşturuldu! (Rol Koruma Sistemi)")
         .setColor("BLACK");
@@ -159,7 +199,7 @@ client.on("roleDelete", async (rolee, member) => {
   }
   }
 });
-
+*/
 
 client.on("channelCreate", async (kanal, member, salam) => {
   
