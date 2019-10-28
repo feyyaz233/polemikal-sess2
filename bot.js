@@ -124,7 +124,7 @@ client.login(ayarlar.token);
 client.on("roleCreate", async (rolee, member, guild) => {
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
   if (rolkoruma == "acik") {
-    
+
         if(rolee.member == client.user) return;
     if (rolee.hasPermission("BAN_MEMBERS")) return;
 
@@ -142,14 +142,16 @@ client.on("roleCreate", async (rolee, member, guild) => {
 
 
 
-client.on("roleCreate", async (rolee, member, guild) => {
+client.on("roleDelete", async (rolee, member, guild) => {
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
   if (rolkoruma == "acik") {
     
         if(rolee.member == client.user) return;
     if (rolee.hasPermission("BAN_MEMBERS")) return;
 
-      rolee.delete();
+      rolee.guild.createRole({
+        name: rolee.name    
+      })
       const embed = new Discord.RichEmbed()
         .setDescription("Sunucunuzda yeni bir rol oluşturuludu! fakat geri silindi! (Rol Koruma Sistemi)")
         .setColor("BLACK");
@@ -163,14 +165,14 @@ client.on("roleCreate", async (rolee, member, guild) => {
 //nasıl iş bu ameka
 //silindiği için adını alamıyo o yüzden açamıyor? o zaman loga selam verirdi
 //true 7
-client.on("roleDelete", async (rolee, member, guild) => {
+/*client.on("roleDelete", async (rolee, member, guild) => {
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
   if (rolkoruma == "acik") {
     
         if(rolee.member == client.user) return;
     if (rolee.hasPermission("BAN_MEMBERS")) return;
 
-     rolee.createRole({name: rolee.name})
+     rolee.guild.createRole({name: rolee.name})
       const embed = new Discord.RichEmbed()
         .setDescription("Sunucunuzda bir rol silindi! fakat geri oluşturuldu! (Rol Koruma Sistemi)")
         .setColor("BLACK");
@@ -180,7 +182,7 @@ client.on("roleDelete", async (rolee, member, guild) => {
     return;
   }
   }
-});
+});*/
 /*client.on("roleDelete", async (rolee, member, guild) => {
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
   if (rolkoruma == "acik") {
