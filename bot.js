@@ -124,11 +124,12 @@ client.login(ayarlar.token);
 client.on("roleCreate", async (role, member, message) => {
   let rolkoruma = await db.fetch(`rolk_${role.guild.id}`);
   if (rolkoruma == "acik") {
+     if (!member.hasPermission("BAN_MEMBERS")){
     role.delete();
     const embed = new Discord.RichEmbed()
       .setDescription("Test Mesajı!")
       .setColor("BLACK");
-    role.guild.owner.send(embed);
+    role.guild.owner.send(embed);}
   }
   else{
     return
