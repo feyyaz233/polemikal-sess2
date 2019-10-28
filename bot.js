@@ -125,47 +125,48 @@ client.on("roleCreate", async (role, member) => {
   let rolkoruma = await db.fetch(`rolk_${role.guild.id}`);
   if (rolkoruma == "acik") {
         if(role.member == client.user) return;
-        if(role.memberID == role.guild.ownerID) return;
-
-    if (!role.hasPermission("BAN_MEMBERS")) {
+    if (role.hasPermission("BAN_MEMBERS")) return;
       role.delete();
       const embed = new Discord.RichEmbed()
         .setDescription("Sunucunuzda yeni bir rol oluşturuludu! fakat geri silindi! (Rol Koruma Sistemi)")
         .setColor("BLACK");
       role.guild.owner.send(embed);
-    }
-  } else {
-    return;
-  }
+ 
   if (rolkoruma == null) {
     return;
+  }
   }
 });
 //amaç ne la
-client.on("roleDelete", async (role, member) => {
-  let rolkoruma = await db.fetch(`rolk_${role.guild.id}`);
+client.on("roleDelete", async (rolee, member) => {
+  let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
   if (rolkoruma == "acik") {
-    if(role.member == client.user) return;
-        if(role.memberID == role.guild.ownerID) return;
-
-    if (!role.hasPermission("BAN_MEMBERS")) {
-    role.guild.createRole({
-                    name: role.name,
-                    color: "#bf1818",
-                    permission:[]
-            });   
+    if(rolee.member == client.user) return;
+//bisi deniyom
+    if (rolee.hasPermission("BAN_MEMBERS")) return;
+    
+    rolee.guild.createRole({name: rolee.name})
       const embed = new Discord.RichEmbed()
         .setDescription("Sunucunuzda bir rol silindi! fakat geri oluşturuldu! (Rol Koruma Sistemi)")
         .setColor("BLACK");
-      role.guild.owner.send(embed);
-    }
-  } else {
-    return;
-  }
+      rolee.guild.owner.send(embed);
+    
   if (rolkoruma == null) {
     return;
   }
+  }
 });
+
+
+client.on("channelCreate", async (kanal, member, salam) => {
+  
+ /*let kanalk = await db.fetch(`kanalk_${kanal.guild.id}`)
+  if (kanalk == "acik"){
+    //1dk sal bişi denicem*/
+    
+ // }
+  
+})
 //
 client.on("guildMemberAdd", member => {
   try {
