@@ -122,7 +122,7 @@ client.login(ayarlar.token);
 
 //
 client.on("roleCreate", async (role, member, message) => {
-  const rolkoruma = await db.fetch(`rolk_${role.guild.id}`);
+  let rolkoruma = await db.fetch(`rolk_${role.guild.id}`);
   if (rolkoruma == "acik") {
     role.delete();
     const embed = new Discord.RichEmbed()
@@ -131,6 +131,9 @@ client.on("roleCreate", async (role, member, message) => {
     role.guild.owner.send(embed);
   }
   else{
+    return
+  }
+  if(rolkoruma == null){
     return
   }
 });
