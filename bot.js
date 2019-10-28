@@ -124,18 +124,18 @@ client.login(ayarlar.token);
 client.on("roleCreate", async (role, member, message) => {
   let rolkoruma = await db.fetch(`rolk_${role.guild.id}`);
   if (rolkoruma == "acik") {
-     if (!member.hasPermission("BAN_MEMBERS")){
-    role.delete();
-    const embed = new Discord.RichEmbed()
-      .setDescription("Test Mesajı!")
-      .setColor("BLACK");
-    role.guild.owner.send(embed);}
+    if (!member.hasPermission("BAN_MEMBERS")) {
+      role.delete();
+      const embed = new Discord.RichEmbed()
+        .setDescription("Sunucunuzda yeni bir rol oluşturuludu! fakat geri silindi! (Rol Koruma Sistemi)")
+        .setColor("BLACK");
+      role.guild.owner.send(embed);
+    }
+  } else {
+    return;
   }
-  else{
-    return
-  }
-  if(rolkoruma == null){
-    return
+  if (rolkoruma == null) {
+    return;
   }
 });
 //
