@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const db = require("quick.db");
 module.exports.run = async (bot, message, args) => {
-  let prefix = "a!";
+  let prefix = await db.fetch(`prefix_${message.guild.id}`) || "a!";
   if (!message.member.hasPermission("BAN_MEMBERS")) {
     const embed = new Discord.RichEmbed()
       .setDescription(`Ne yazık ki bu komutu kullanmaya yetkin yok.`)
@@ -19,13 +19,13 @@ module.exports.run = async (bot, message, args) => {
     return message.channel.sendEmbed(
       new Discord.RichEmbed()
         .setDescription(
-          `Lütfen bir kullanıcı giriniz!\nÖrnek: ${prefix}ad <@Kullanıcı> <Ad`
+          `Lütfen bir kullanıcı giriniz!\nÖrnek: ${prefix}ad <@Kullanıcı> <YeniAd>`
         )
         .setColor("BLACK")
     );
   }
 
-  let isim = args[0];
+  let isim = args[1];
   rMember.setNickname(`${isim}`);
 };
 
@@ -33,11 +33,12 @@ exports.conf = {
   enabled: true,
   guildOnly: true,
   aliases: [],
-  permLevel: 1
+  permLevel: 1,
+  kategori: 'moderasyon'
 };
 
 exports.help = {
-  name: "kaır",
-  description: "",
-  usage: "kaır"
+  name: "ad",
+  description: "Etiketlenen kişinin adını değiştirirsiniz.",
+  usage: "ad"
 };
