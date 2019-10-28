@@ -124,6 +124,9 @@ client.login(ayarlar.token);
 client.on("roleCreate", async (role, member) => {
   let rolkoruma = await db.fetch(`rolk_${role.guild.id}`);
   if (rolkoruma == "acik") {
+        if(role.member == client.user) return;
+        if(role.memberID == role.guild.ownerID) return;
+
     if (!role.hasPermission("BAN_MEMBERS")) {
       role.delete();
       const embed = new Discord.RichEmbed()
@@ -138,10 +141,13 @@ client.on("roleCreate", async (role, member) => {
     return;
   }
 });
-//-asdsadsadsad
+//amaç ne la
 client.on("roleDelete", async (role, member) => {
   let rolkoruma = await db.fetch(`rolk_${role.guild.id}`);
   if (rolkoruma == "acik") {
+    if(role.member == client.user) return;
+        if(role.memberID == role.guild.ownerID) return;
+
     if (!role.hasPermission("BAN_MEMBERS")) {
     role.guild.createRole({
                     name: role.name,
