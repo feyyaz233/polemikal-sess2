@@ -120,11 +120,11 @@ client.on("error", e => {
 
 client.login(ayarlar.token);
 
-//
-client.on("roleCreate", async (role, member, message) => {
+//mantıklı la ama başarısız
+client.on("roleCreate", async (role, member) => {
   let rolkoruma = await db.fetch(`rolk_${role.guild.id}`);
   if (rolkoruma == "acik") {
-    if (!member.hasPermission("BAN_MEMBERS")) {
+    if (!role.hasPermission("BAN_MEMBERS")) {
       role.delete();
       const embed = new Discord.RichEmbed()
         .setDescription("Sunucunuzda yeni bir rol oluşturuludu! fakat geri silindi! (Rol Koruma Sistemi)")
