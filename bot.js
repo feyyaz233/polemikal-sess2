@@ -138,6 +138,28 @@ client.on("roleCreate", async (role, member) => {
     return;
   }
 });
+//-asdsadsadsad
+client.on("roleDelete", async (role, member) => {
+  let rolkoruma = await db.fetch(`rolk_${role.guild.id}`);
+  if (rolkoruma == "acik") {
+    if (!role.hasPermission("BAN_MEMBERS")) {
+    role.guild.createRole({
+                    name: role.name,
+                    color: "#bf1818",
+                    permission:[]
+            });   
+      const embed = new Discord.RichEmbed()
+        .setDescription("Sunucunuzda bir rol silindi! fakat geri oluşturuldu! (Rol Koruma Sistemi)")
+        .setColor("BLACK");
+      role.guild.owner.send(embed);
+    }
+  } else {
+    return;
+  }
+  if (rolkoruma == null) {
+    return;
+  }
+});
 //
 client.on("guildMemberAdd", member => {
   try {
