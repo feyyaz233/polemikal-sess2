@@ -121,26 +121,27 @@ client.on("error", e => {
 client.login(ayarlar.token);
 
 client.on("roleCreate", async (rolee, member, guild) => {
-  const bilgilendir = await rolee.guild.fetchAuditLogs({type: "ROLE_CREATE"}).then(hatırla => hatırla.entries.first())
-  let idler = bilgilendir.executor
+  const log = await rolee.guild
+    .fetchAuditLogs({ type: "ROLE_CREATE" })
+    .then(ttt => ttt.entries.first());
+  let adam = log.executor.hasPermission;
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
   if (rolkoruma == "acik") {
-    
-    if (rolee.hasPermission("BAN_MEMBERS")) {return;}
-else{
+    if (!adam("BAN_MEMBERS")) {
       rolee.delete();
       const embed = new Discord.RichEmbed()
-        .setDescription("Sunucunuzda yeni bir rol oluşturuludu! fakat geri silindi! (Rol Koruma Sistemi)")
+        .setDescription(
+          "Sunucunuzda yeni bir rol oluşturuludu! fakat geri silindi! (Rol Koruma Sistemi)"
+        )
         .setColor("BLACK");
       rolee.guild.owner.send(embed);
- }
-  if (rolkoruma == null) {
+      return;
+    } else {
+      return;
+    }
     return;
   }
-  }
 });
-
-
 
 /*client.on("roleDelete", async (rolee, member, guild) => {
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
@@ -204,14 +205,11 @@ else{
 */
 
 client.on("channelCreate", async (kanal, member, salam) => {
-  
- /*let kanalk = await db.fetch(`kanalk_${kanal.guild.id}`)
+  /*let kanalk = await db.fetch(`kanalk_${kanal.guild.id}`)
   if (kanalk == "acik"){
     //1dk sal bişi denicem*/
-    
- // }
-  
-})
+  // }
+});
 //
 client.on("guildMemberAdd", member => {
   try {
