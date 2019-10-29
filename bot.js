@@ -143,6 +143,14 @@ client.on("roleCreate", async (rolee, member, guild) => {
   }
 });
 
+
+
+
+
+
+
+
+
 /*client.on("roleDelete", async (rolee, member, guild) => {
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
   if (rolkoruma == "acik") {
