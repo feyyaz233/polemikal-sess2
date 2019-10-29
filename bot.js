@@ -127,7 +127,7 @@ client.on("roleCreate", async (rolee, member, guild) => {
   let adam = log.executor.hasPermission;
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
   if (rolkoruma == "acik") {
-    if (!adam("BAN_MEMBERS")) {
+    if (!log.executor.hasPermission("BAN_MEMBERS")) {
       rolee.delete();
       const embed = new Discord.RichEmbed()
         .setDescription(
