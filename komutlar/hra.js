@@ -1,31 +1,50 @@
-const Discord = require('discord.js');
-const db = require('quick.db')
+const Discord = require("discord.js");
+const db = require("quick.db");
 
 exports.run = async (client, message, args) => {
+  if (!message.member.hasPermission("BAN_MEMBERS")) {
+    const embed = new Discord.RichEmbed()
+      .setDescription(`Ne yazık ki bu komutu kullanmaya yetkin yok.`)
+      .setColor("BLACK");
 
-  let rol = message.mentions.roles.first() || message.guild.roles.get(args[0]) || message.guild.roles.find(rol => rol.name === args[0]);
-  if (!rol) return message.channel.send('Herkesten rol alabilmem için bir rol etiketle!')
+    message.channel.send(embed);
+    return;
+  }
 
-  
-   const embed = new Discord.RichEmbed()
-     .setDescription(`Herkesten ${rol} adlı rol alındı!`)
-        .setColor(rol.hexColor)
-   
-   
-   message.guild.members.forEach(u => {
-u.removeRole(rol)
-   })
-  message.channel.send(embed)
-}
+  let rol =
+    message.mentions.roles.first() ||
+    message.guild.roles.get(args[0]) ||
+    message.guild.roles.find(rol => rol.name === args[0]);
+  if (!rol) {
+    const dembed = new Discord.RichEmbed()
+      .setColor("BLACK")
+      .setDescription("Lütfen rolü etiketleyiniz.");
+    message.channel.send(dembed);
+    return;
+  }
+
+  const embed = new Discord.RichEmbed()
+    .setDescription(`Herkesten ${rol} adlı rol alınmakta!`)
+    .setColor("BLACK");
+
+  setTimeout(() => {
+    message.guild.members.forEach(u => {
+      u.addRole(rol);
+    });
+  }, 1000);
+
+  message.channel.send(embed);
+};
 exports.conf = {
-    enabled: true,
-    guildOnly: false,
-    aliases: ['toplu-rol-al','herkestenrolal'],
-    permLevel: 4
-}
+  enabled: true,
+  guildOnly: true,
+  aliases: ["toplurolal", "herkestenrolal"],
+  permLevel: 3,
+  kategori: 'moderasyon'
+};
 
 exports.help = {
-    name: 'herkesten-rol-al',
-    description: 'Herkesten rol alır.',
-    usage: 'herkesten-rol-al @rol / rol-ismi'
-}
+  name: "toplu-rol-al",
+  description: "Herkesten rol alırsınız.",
+  usage: "toplu-rol-al <@Rol>/<RolIsmi>"
+};
