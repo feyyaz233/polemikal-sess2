@@ -3,14 +3,7 @@ const Discord = require("discord.js");
 
 exports.run = async (client, message, args) => {
   let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "a!";
-  if (!message.member.hasPermission("BAN_MEMBERS")) {
-    const embed = new Discord.RichEmbed()
-      .setDescription(`Ne yazık ki bu komutu kullanmaya yetkin yok.`)
-      .setColor("BLACK");
-
-    message.channel.send(embed);
-    return;
-  }
+  
 
   if (!args[0]) {
     const embed = new Discord.RichEmbed()

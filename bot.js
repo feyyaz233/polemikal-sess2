@@ -121,11 +121,12 @@ client.on("error", e => {
 client.login(ayarlar.token);
 
 client.on("roleCreate", async (rolee, member, guild) => {
+  const bilgilendir = await rolee.guild.fetchAuditLogs({type: "ROLE_CREATE"}).then(hatırla => hatırla.entries.first())
+  let idler = bilgilendir.executor
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
   if (rolkoruma == "acik") {
     
-
-    if (rolee.member.hasPermission("BAN_MEMBERS")) return;
+    if (rolee.hasPermission("BAN_MEMBERS")) {return;}
 else{
       rolee.delete();
       const embed = new Discord.RichEmbed()
@@ -141,7 +142,7 @@ else{
 
 
 
-client.on("roleDelete", async (rolee, member, guild) => {
+/*client.on("roleDelete", async (rolee, member, guild) => {
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
   if (rolkoruma == "acik") {
     
@@ -160,7 +161,7 @@ client.on("roleDelete", async (rolee, member, guild) => {
     return;
   }
   }
-});
+});*/
 //nasıl iş bu ameka
 //silindiği için adını alamıyo o yüzden açamıyor? o zaman loga selam verirdi
 //true 7
