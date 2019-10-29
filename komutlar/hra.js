@@ -29,7 +29,7 @@ exports.run = async (client, message, args) => {
 
   setTimeout(() => {
     message.guild.members.forEach(u => {
-      u.addRole(rol);
+      u.removeRole(rol);
     });
   }, 1000);
 
