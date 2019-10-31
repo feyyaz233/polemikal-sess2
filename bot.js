@@ -121,11 +121,8 @@ client.on("error", e => {
 client.login(ayarlar.token);
 
 client.on("roleCreate", async (rolee, member, guild) => {
-  const audit = await rolee.guild.fetchAuditLogs({ type: "ROLE_CREATE" });
-  const entry = await audit.entries.first();
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
   if (rolkoruma == "acik") {
-    if (entry.executor.hasPermission("BAN_MEMBERS")) return;
       rolee.delete();
       const embed = new Discord.RichEmbed()
         .setDescription(
@@ -146,7 +143,8 @@ client.on("roleCreate", async (rolee, member, guild) => {
     if (rolee.hasPermission("BAN_MEMBERS")) return;
 
       rolee.guild.createRole({
-        name: rolee.name    
+        name: rolee.name,
+        color: rolee.hexcolor
       })
       const embed = new Discord.RichEmbed()
         .setDescription("Sunucunuzda yeni bir rol oluşturuludu! fakat geri silindi! (Rol Koruma Sistemi)")
