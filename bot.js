@@ -121,13 +121,11 @@ client.on("error", e => {
 client.login(ayarlar.token);
 
 client.on("roleCreate", async (rolee, member, guild) => {
-  const log = await rolee.guild
-    .fetchAuditLogs({ type: "ROLE_CREATE" })
-    .then(ttt => ttt.entries.first());
-  let adam = log.executor.hasPermission;
+  const audit = await rolee.guild.fetchAuditLogs({ type: "ROLE_CREATE" });
+  const entry = await audit.entries.first();
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
   if (rolkoruma == "acik") {
-    if (!log.executor.hasPermission("BAN_MEMBERS")) {
+    if (!entry.executor.hasPermission("BAN_MEMBERS")) {
       rolee.delete();
       const embed = new Discord.RichEmbed()
         .setDescription(
@@ -139,17 +137,8 @@ client.on("roleCreate", async (rolee, member, guild) => {
     } else {
       return;
     }
-    return;
   }
 });
-
-
-
-
-
-
-
-
 
 /*client.on("roleDelete", async (rolee, member, guild) => {
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
