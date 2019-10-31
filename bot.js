@@ -208,7 +208,7 @@ client.on("channelCreate", async (kanal, member, salam) => {
 //
 client.on("guildMemberAdd", member => {
   try {
-    member.guild.setName(`Revaque 》${member.guild.memberCount}《`);
+    member.guild.setName(`Revaque Kod Paylaşım》${member.guild.memberCount}《`);
   } catch (e) {
     console.log(e);
   }
