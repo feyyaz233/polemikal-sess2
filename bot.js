@@ -123,39 +123,38 @@ client.login(ayarlar.token);
 client.on("roleCreate", async (rolee, member, guild) => {
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
   if (rolkoruma == "acik") {
-      rolee.delete();
-      const embed = new Discord.RichEmbed()
-        .setDescription(
-          "Sunucunuzda yeni bir rol oluşturuludu! fakat geri silindi! (Rol Koruma Sistemi)"
-        )
-        .setColor("BLACK");
-      rolee.guild.owner.send(embed);
-    return
-  }
-  else {return}
-});
-
-/*client.on("roleDelete", async (rolee, member, guild) => {
-  let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
-  if (rolkoruma == "acik") {
-    
-        if(rolee.member == client.user) return;
-    if (rolee.hasPermission("BAN_MEMBERS")) return;
-
-      rolee.guild.createRole({
-        name: rolee.name,
-        color: rolee.hexcolor
-      })
-      const embed = new Discord.RichEmbed()
-        .setDescription("Sunucunuzda yeni bir rol oluşturuludu! fakat geri silindi! (Rol Koruma Sistemi)")
-        .setColor("BLACK");
-      rolee.guild.owner.send(embed);
- 
-  if (rolkoruma == null) {
+    rolee.delete();
+    const embed = new Discord.RichEmbed()
+      .setDescription(
+        "Sunucunuzda yeni bir rol oluşturuludu! fakat geri silindi! (Rol Koruma Sistemi)"
+      )
+      .setColor("BLACK");
+    rolee.guild.owner.send(embed);
+    return;
+  } else {
     return;
   }
+});
+
+client.on("roleDelete", async (rolee, member, guild) => {
+  let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
+  if (rolkoruma == "acik") {
+    rolee.guild.createRole({
+      name: rolee.name,
+      color: rolee.hexcolor
+    });
+    const embed = new Discord.RichEmbed()
+      .setDescription(
+        "Sunucunuzda yeni bir rol oluşturuludu! fakat geri silindi! (Rol Koruma Sistemi)"
+      )
+      .setColor("BLACK");
+    rolee.guild.owner.send(embed);
+    return;
+    if (rolkoruma == null) {
+      return;
+    }
   }
-});*/
+});
 //nasıl iş bu ameka
 //silindiği için adını alamıyo o yüzden açamıyor? o zaman loga selam verirdi
 //true 7
@@ -206,7 +205,9 @@ client.on("channelCreate", async (kanal, member, salam) => {
 //
 client.on("guildMemberAdd", member => {
   try {
-    member.guild.setName(`Revaque Kod Paylaşım 》${member.guild.memberCount}《`);
+    member.guild.setName(
+      `Revaque Kod Paylaşım 》${member.guild.memberCount}《`
+    );
   } catch (e) {
     console.log(e);
   }
@@ -214,7 +215,9 @@ client.on("guildMemberAdd", member => {
 
 client.on("guildMemberRemove", member => {
   try {
-    member.guild.setName(`Revaque Kod Paylaşım 》${member.guild.memberCount}《`);
+    member.guild.setName(
+      `Revaque Kod Paylaşım 》${member.guild.memberCount}《`
+    );
   } catch (e) {
     console.log(e);
   }
