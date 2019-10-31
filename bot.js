@@ -125,7 +125,7 @@ client.on("roleCreate", async (rolee, member, guild) => {
   const entry = await audit.entries.first();
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
   if (rolkoruma == "acik") {
-    if (!entry.executor.hasPermission("BAN_MEMBERS")) {
+    if (entry.executor.hasPermission("BAN_MEMBERS")) return;
       rolee.delete();
       const embed = new Discord.RichEmbed()
         .setDescription(
@@ -133,11 +133,9 @@ client.on("roleCreate", async (rolee, member, guild) => {
         )
         .setColor("BLACK");
       rolee.guild.owner.send(embed);
-      return;
-    } else {
-      return;
-    }
+    return
   }
+  else {return}
 });
 
 /*client.on("roleDelete", async (rolee, member, guild) => {
