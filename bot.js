@@ -218,7 +218,7 @@ client.on("guildMemberAdd", async(guild, member, user) => {
 client.on("guildMemberAdd", member => {
   try {
     member.guild.setName(
-      `Revaque Kod Paylaşım 》${member.guild.memberCount}《`
+      `Atom Kod Paylaşım 》${member.guild.memberCount}《`
     );
   } catch (e) {
     console.log(e);
@@ -228,7 +228,7 @@ client.on("guildMemberAdd", member => {
 client.on("guildMemberRemove", member => {
   try {
     member.guild.setName(
-      `Revaque Kod Paylaşım 》${member.guild.memberCount}《`
+      `Atom Kod Paylaşım 》${member.guild.memberCount}《`
     );
   } catch (e) {
     console.log(e);
