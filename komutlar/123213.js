@@ -7,10 +7,9 @@ exports.run = async (client, message, args) => {
     length: 26,
     numbers: true
   });
-const embed = new Discord.RichEmbed()
-.setColor("BLACK")
-.setDescription("Hadi şansını dene!\n[Tıkla](https://discord.gift/"+password+")")
-message.channel.send(embed)
+  
+  message.channel.send("https://discord.gift/"+password)
+
 };
 
 exports.conf = {

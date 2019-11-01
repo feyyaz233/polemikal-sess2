@@ -203,15 +203,13 @@ client.on("channelCreate", async (kanal, member, salam) => {
   // }
 });
 //
-client.on("guildMemberAdd", async(guild, member) => {
-  let tag = db.fetch(`ototag_${member.guild.id}`)
-  let isim = db.fetch(`ototag2_${member.guild.id}`)
+client.on("guildMemberAdd", async(guild, member, user) => {
+  let tag = db.fetch(`ototag_${guild.id}`)
+  let isim = db.fetch(`ototag2_${guild.id}`)
   if(!tag){
     return
   }
-  if(!isim){
-    member.setNickname(`${tag} | ${member.user.username}`)
-  }
+
   isim.replace(`-kullanıcı-`, `${member.user.username}`)
   isim.replace(`-tag-`, `${tag}`)
   member.setNickname(`${isim}`)
