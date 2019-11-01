@@ -156,20 +156,31 @@ client.on("roleDelete", async (rolee, member, guild) => {
   }
 });
 
-client.on("ready", async (guild, member, message) => {
-  const kanallar = {
-    g: "637908239215886336",
-    k: "639892909226721280",
-    k2: "639892909226721280",
-    k3: "639892909226721280"
-  };
-  setTimeout(() => {
-     if (!client.guilds.get(kanallar.g)) return;
-    client.channels.get(kanallar.k).setName(`Atom Bot`);
-    client.channels.get(kanallar.k2).setName(`Daima`);
-    client.channels.get(kanallar.k3).setName(`Hizmetinizde`);
-  }, 3000);
-});
+function kanaladı1() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            client.channels.get(`639892909226721280`).setName(`Atom Bot`);
+            kanaladı2();
+        }, 2000);
+      });
+}
+function kanaladı2() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            client.channels.get(`639892909226721280`).setName(`Daima`);
+            kanaladı3();
+        }, 2000);
+      });
+}
+function kanaladı3() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            client.channels.get(`639892909226721280`).setName(`Hizmetinizde!`);
+            kanaladı1();
+        }, 2000);
+      });
+}
+
 //nasıl iş bu ameka
 //silindiği için adını alamıyo o yüzden açamıyor? o zaman loga selam verirdi
 //true 7
