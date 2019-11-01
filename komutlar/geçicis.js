@@ -19,6 +19,12 @@ module.exports.run = async (bot, message, args) => {
     message.channel.send(embed);
     return;
   }
+  db.set(`modlog_${message.guild.id}`, message.mentions.channels.first().id)
+  const embed = new Discord.RichEmbed()
+      .setDescription(`Mod-Log <#${modlog.id}> olarak ayarlandı!`)
+      .setColor("BLACK");
+
+    message.channel.send(embed);
 };
 
 exports.conf = {
@@ -30,7 +36,7 @@ exports.conf = {
 };
 
 exports.help = {
-  name: "ad",
+  name: "mod",
   description: "Etiketlenen kişinin adını değiştirirsiniz.",
   usage: "ad"
 };

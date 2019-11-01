@@ -1,7 +1,8 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
+const db = require("quick.db");
 
-exports.run = (client, message, args) => {
+exports.run = async(client, message, args, member) => {
   if (!message.member.hasPermission("BAN_MEMBERS")) {
     const embed = new Discord.RichEmbed()
       .setDescription(`Ne yazık ki bu komutu kullanmaya yetkin yok.`)
@@ -10,7 +11,8 @@ exports.run = (client, message, args) => {
     message.channel.send(embed);
     return;
   }
-
+ let i = await db.fetch(`modlog_${message.guild.id}`)
+ let u = message.guild.channels.get(i)
   let guild = message.guild;
   let user = message.mentions.users.first();
   let reason = args.slice(1).join(" ");
@@ -31,43 +33,85 @@ exports.run = (client, message, args) => {
     message.channel.send(embed);
     return;
   }
-  if (!reason) {
-    message.guild.ban(user, 2);
+  if (!u) {
+    if (!reason) {
+      message.guild.ban(user, 2);
 
-    const embed = new Discord.RichEmbed()
-      .setColor("BLACK")
-      .setTimestamp()
-      .addField("Eylem:", "Sunucudan Yasaklama")
-      .addField(
-        "Yasaklanan Kullanıcı:",
-        `${user.username}#${user.discriminator} (${user.id})`
-      )
-      .addField(
-        "Yasaklayan Yetkili:",
-        `${message.author.username}#${message.author.discriminator}`
-      )
-      .addField("Sebep:", `Sebep yok!`)
-      .setFooter(client.user.username, client.user.avatarURL);
-    return message.channel.sendEmbed(embed);
+      const embed = new Discord.RichEmbed()
+        .setColor("BLACK")
+        .setTimestamp()
+        .addField("Eylem:", "Sunucudan Yasaklama")
+        .addField(
+          "Yasaklanan Kullanıcı:",
+          `${user.username}#${user.discriminator} (${user.id})`
+        )
+        .addField(
+          "Yasaklayan Yetkili:",
+          `${message.author.username}#${message.author.discriminator}`
+        )
+        .addField("Sebep:", `Sebep yok!`)
+        .setFooter(client.user.username, client.user.avatarURL);
+      return message.channel.send(embed);
+    }
+    if (reason) {
+      message.guild.ban(user, 2);
+
+      const embed = new Discord.RichEmbed()
+        .setColor("BLACK")
+        .setTimestamp()
+        .addField("Eylem:", "Sunucudan Yasaklama")
+        .addField(
+          "Yasaklanan Kullanıcı:",
+          `${user.username}#${user.discriminator} (${user.id})`
+        )
+        .addField(
+          "Yasaklayan Yetkili:",
+          `${message.author.username}#${message.author.discriminator}`
+        )
+        .addField("Sebep:", reason)
+        .setFooter(client.user.username, client.user.avatarURL);
+      return message.channel.send(embed);
+    }
   }
-  if (reason) {
-    message.guild.ban(user, 2);
+  if(u){
+    if (!reason) {
+      message.guild.ban(user, 2);
 
-    const embed = new Discord.RichEmbed()
-      .setColor("BLACK")
-      .setTimestamp()
-      .addField("Eylem:", "Sunucudan Yasaklama")
-      .addField(
-        "Yasaklanan Kullanıcı:",
-        `${user.username}#${user.discriminator} (${user.id})`
-      )
-      .addField(
-        "Yasaklayan Yetkili:",
-        `${message.author.username}#${message.author.discriminator}`
-      )
-      .addField("Sebep:", reason)
-      .setFooter(client.user.username, client.user.avatarURL);
-    return message.channel.sendEmbed(embed);
+      const embed = new Discord.RichEmbed()
+        .setColor("BLACK")
+        .setTimestamp()
+        .addField("Eylem:", "Sunucudan Yasaklama")
+        .addField(
+          "Yasaklanan Kullanıcı:",
+          `${user.username}#${user.discriminator} (${user.id})`
+        )
+        .addField(
+          "Yasaklayan Yetkili:",
+          `${message.author.username}#${message.author.discriminator}`
+        )
+        .addField("Sebep:", `Sebep yok!`)
+        .setFooter(client.user.username, client.user.avatarURL);
+      return client.channels.get(u).send(embed);
+    }
+    if (reason) {
+      message.guild.ban(user, 2);
+
+      const embed = new Discord.RichEmbed()
+        .setColor("BLACK")
+        .setTimestamp()
+        .addField("Eylem:", "Sunucudan Yasaklama")
+        .addField(
+          "Yasaklanan Kullanıcı:",
+          `${user.username}#${user.discriminator} (${user.id})`
+        )
+        .addField(
+          "Yasaklayan Yetkili:",
+          `${message.author.username}#${message.author.discriminator}`
+        )
+        .addField("Sebep:", reason)
+        .setFooter(client.user.username, client.user.avatarURL);
+      return client.channels.get(u).send(embed);
+    }
   }
 };
 
