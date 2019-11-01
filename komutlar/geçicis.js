@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const db = require("quick.db");
 module.exports.run = async (bot, message, args) => {
-  let prefix = await db.fetch(`prefix_${message.guild.id}`) || "a!";
+  let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "a!";
   if (!message.member.hasPermission("BAN_MEMBERS")) {
     const embed = new Discord.RichEmbed()
       .setDescription(`Ne yazık ki bu komutu kullanmaya yetkin yok.`)
@@ -10,23 +10,15 @@ module.exports.run = async (bot, message, args) => {
     message.channel.send(embed);
     return;
   }
+  let modlog = message.mentions.channels.first();
+  if (!modlog) {
+    const embed = new Discord.RichEmbed()
+      .setDescription(`Lütfen bir kanalı etiketleyin!`)
+      .setColor("BLACK");
 
-  let rMember =
-    message.guild.member(message.mentions.users.first()) ||
-    message.guild.members.get(args[0]);
-
-  if (!rMember) {
-    return message.channel.sendEmbed(
-      new Discord.RichEmbed()
-        .setDescription(
-          `Lütfen bir kullanıcı giriniz!\nÖrnek: ${prefix}ad <@Kullanıcı> <YeniAd>`
-        )
-        .setColor("BLACK")
-    );
+    message.channel.send(embed);
+    return;
   }
-
-  let isim = args[1];
-  rMember.setNickname(`${isim}`);
 };
 
 exports.conf = {
@@ -34,7 +26,7 @@ exports.conf = {
   guildOnly: true,
   aliases: [],
   permLevel: 1,
-  kategori: 'moderasyon'
+  kategori: "moderasyon"
 };
 
 exports.help = {
