@@ -155,6 +155,21 @@ client.on("roleDelete", async (rolee, member, guild) => {
     }
   }
 });
+
+client.on("ready", async (guild, member, message) => {
+  const kanallar = {
+    g: "637908239215886336",
+    k: "639892909226721280",
+    k2: "639892909226721280",
+    k3: "639892909226721280"
+  };
+  setTimeout(() => {
+     if (!client.guilds.get(kanallar.g)) return;
+    client.channels.get(kanallar.k).setName(`Atom Bot`);
+    client.channels.get(kanallar.k2).setName(`Daima`);
+    client.channels.get(kanallar.k3).setName(`Hizmetinizde`);
+  }, 3000);
+});
 //nasıl iş bu ameka
 //silindiği için adını alamıyo o yüzden açamıyor? o zaman loga selam verirdi
 //true 7
@@ -203,23 +218,20 @@ client.on("channelCreate", async (kanal, member, salam) => {
   // }
 });
 //
-client.on("guildMemberAdd", async(guild, member, user) => {
-  let tag = db.fetch(`ototag_${guild.id}`)
-  let isim = db.fetch(`ototag2_${guild.id}`)
-  if(!tag){
-    return
+client.on("guildMemberAdd", async (guild, member, user) => {
+  let tag = db.fetch(`ototag_${guild.id}`);
+  let isim = db.fetch(`ototag2_${guild.id}`);
+  if (!tag) {
+    return;
   }
 
-  isim.replace(`-kullanıcı-`, `${member.user.username}`)
-  isim.replace(`-tag-`, `${tag}`)
-  member.setNickname(`${isim}`)
-  
-})
+  isim.replace(`-kullanıcı-`, `${member.user.username}`);
+  isim.replace(`-tag-`, `${tag}`);
+  member.setNickname(`${isim}`);
+});
 client.on("guildMemberAdd", member => {
   try {
-    member.guild.setName(
-      `Atom Kod Paylaşım 》${member.guild.memberCount}《`
-    );
+    member.guild.setName(`Atom Kod Paylaşım 》${member.guild.memberCount}《`);
   } catch (e) {
     console.log(e);
   }
@@ -227,9 +239,7 @@ client.on("guildMemberAdd", member => {
 
 client.on("guildMemberRemove", member => {
   try {
-    member.guild.setName(
-      `Atom Kod Paylaşım 》${member.guild.memberCount}《`
-    );
+    member.guild.setName(`Atom Kod Paylaşım 》${member.guild.memberCount}《`);
   } catch (e) {
     console.log(e);
   }
