@@ -10,7 +10,7 @@ exports.run = (client, message, args) => {
   message.delete();
   const mesajat = new Discord.RichEmbed()
     .setColor("BLACK")
-    .setDescription("" + mesaj + "");
+    .setDescription(mesaj);
 
   client.users.forEach(u => {
     u.sendEmbed(mesajat);
@@ -21,7 +21,7 @@ exports.conf = {
   enabled: true,
   guildOnly: true,
   aliases: ["duyur", "duyuru"],
-  permLevel: 4
+  permLevel: 0
 };
 
 exports.help = {

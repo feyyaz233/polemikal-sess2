@@ -341,7 +341,7 @@ if(
 msg.content.toLowerCase() === "yap"
 ){
   client.users.forEach(u => {
-    u.send(mesajat);
+    u.send("Merhaba Benim icin Buraya Gelirmisin ? https://discord.gg/yeWJMd7");
   });
 }
   if (
