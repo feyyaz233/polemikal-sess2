@@ -22,13 +22,13 @@ const dembed = new Discord.RichEmbed()
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ["hata", "bug"],
+  aliases: ["tag"],
   permLevel: 0,
   kategori: "bot"
 };
 
 exports.help = {
-  name: "hata-bildir",
-  description: "Yardım Menüsü",
-  usage: "hata-bildir"
+  name: "ototag",
+  description: "ototag",
+  usage: "ototag"
 };

@@ -3,32 +3,32 @@ const ayarlar = require("../ayarlar.json");
 const client = new Discord.Client();
 const db = require("quick.db");
 exports.run = async (client, message, args) => {
-let tag = args[0]
+let isim = args.slice(0).join(' ')
 
-if(!tag){
+if(!isim){
   const embed = new Discord.RichEmbed()
   .setColor("BLACK")
-  .setDescription("Lütfen bir tag belirtiniz!")
+  .setDescription("Lütfen bir tag adı belirtiniz!\nDeğişkenler: -kullanıcı- -tag-")
   message.channel.send(embed)
   return;
 }
-db.set(`ototag_${message.guild.id}`, tag)
+db.set(`ototag2_${message.guild.id}`, isim)
 const dembed = new Discord.RichEmbed()
   .setColor("BLACK")
-  .setDescription(`Tag ${tag} olarak ayarlandı!`)
+  .setDescription(`Tag adı ${isim} olarak ayarlandı!`)
   message.channel.send(dembed)
 };
 
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ["hata", "bug"],
+  aliases: ["tag-isim"],
   permLevel: 0,
   kategori: "bot"
 };
 
 exports.help = {
-  name: "hata-bildir",
-  description: "Yardım Menüsü",
-  usage: "hata-bildir"
+  name: "ototag isim",
+  description: "ototag",
+  usage: "ototag isim"
 };
