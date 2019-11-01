@@ -43,7 +43,8 @@
     "google": "^2.1.0",
     "dblapi.js": "^2.3.0",
     "node-superfetch": "^0.1.9",
-    "generate-password": "^1.4.1"
+    "generate-password": "^1.4.1",
+    "parse-ms": "^2.0.0"
   },
   "engines": {
     "node": "8.x"

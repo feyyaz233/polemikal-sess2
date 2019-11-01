@@ -21,6 +21,7 @@ dependencies:
   moment-duration-format: 2.3.2
   node-opus: 0.3.2
   node-superfetch: 0.1.9
+  parse-ms: 2.1.0
   path: 0.12.7
   quick-db: 1.0.5
   quick.db: 6.3.2
@@ -3016,6 +3017,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-9ID0BDTvgHQfhGkJn43qGPVaTck=
+  /parse-ms/2.1.0:
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-kHt7kzLoS9VBZfUsiKjv43mr91ea+U05EyKkEtqp7vNbHxmaVuEqN7XxeEVnGrMtYOAxGrDElSi96K7EgO1zCA==
   /parse-passwd/1.0.0:
     dev: false
     engines:
@@ -4340,6 +4347,7 @@ specifiers:
   moment-duration-format: ^2.2.2
   node-opus: ^0.3.2
   node-superfetch: ^0.1.9
+  parse-ms: ^2.0.0
   path: ^0.12.7
   quick-db: ^1.0.5
   quick.db: ^6.3.2
