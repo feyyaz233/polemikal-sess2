@@ -28,7 +28,7 @@ exports.conf = {
 };
 
 exports.help = {
-  name: "ototag isim",
+  name: "ototag-isim",
   description: "ototag",
-  usage: "ototag isim"
+  usage: "ototag-isim"
 };
