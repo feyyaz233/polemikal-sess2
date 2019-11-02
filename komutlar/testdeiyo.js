@@ -17,9 +17,9 @@ exports.run = async (client, message, args) => {
     message.channel.send(embed);
     return;
   }
-  let küfürg = await db.fetch(`rolk_${message.guild.id}`);
+  let rol = await db.fetch(`rolk_${message.guild.id}`);
   if (args[0] == "aç") {
-    if (küfürg) {
+    if (rol) {
       const embed = new Discord.RichEmbed()
         .setColor("BLACK")
         .setTitle("Rol Koruma sistemi!")
