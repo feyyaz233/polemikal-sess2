@@ -1,10 +1,17 @@
 const { stripIndents } = require('common-tags');
+const Discord = require('discord.js')
 let oyndurum = new Set();
 const kelime = require('../kelimeler');
 
 module.exports.run = async (bot, message, args) => {
 
-        if (oyndurum.has(message.channel.id)) return message.reply('Kanal başına sadece bir adam asmaca oyunu meydana gelebilir.');
+        if (oyndurum.has(message.channel.id)) {
+        const embed = new Discord.RichEmbed()
+        .setColor("BLACK")
+        .setDescription("Bu kanalda şuan zaten oyun oynanmakta!")
+        message.channel.send(embed)
+        return
+        }
 
         try {
             const cevap = kelime[Math.floor(Math.random() * kelime.length)].toLowerCase();
@@ -15,8 +22,11 @@ module.exports.run = async (bot, message, args) => {
             const yanlış = [];
             const display = new Array(cevap.length).fill('_');
             while (cevap.length !== confirmation.length && point < 6) {
-                await message.channel.send(stripIndents`
-                    ${displayText === null ? '**RAZZ HOW Official Adam Asmaca**!' : displayText ? '**Çok iyisin!**' : '**Yanlış Harf!**'}
+              
+              const embed = new Discord.RichEmbed()
+        .setColor("BLACK")
+        .setDescription(stripIndents`
+                    ${displayText === null ? '**Adam Asmaca**!' : displayText ? '**Çok iyisin!**' : '**Yanlış Harf!**'}
                          **Kelime:**    \`${display.join(' ')}\`
                     **Yanlış Harfler:** ${yanlış.join(', ') || 'Yok'}
                     \`\`\`
@@ -27,7 +37,9 @@ module.exports.run = async (bot, message, args) => {
                     |    ${point > 4 ? '/' : ''} ${point > 5 ? '\\' : ''}
                     |
                     \`\`\`
-                `);
+                `)
+        message.channel.send(embed)
+                
                 const filter = res => {
                     const choice = res.content.toLowerCase();
                     return res.author.id === message.author.id && !confirmation.includes(choice) && !yanlış.includes(choice);
@@ -37,7 +49,10 @@ module.exports.run = async (bot, message, args) => {
                     time: 300000
                 });
                 if (!guess.size) {
-                    await message.channel.send('Zamanın doldu!');
+                    const embed = new Discord.RichEmbed()
+        .setColor("BLACK")
+        .setDescription("Zaman doldu!")
+        message.channel.send(embed)
                     break;
                 }
                 const choice = guess.first().content.toLowerCase();
@@ -59,11 +74,25 @@ module.exports.run = async (bot, message, args) => {
                 }
             }
             oyndurum.delete(message.channel.id);
-            if (cevap.length === confirmation.length || tahmin) return message.channel.send(`**Tebrikler kelimeyi buldun! **${cevap}`);
-            return message.channel.send(`Maalesef bilemedin kelime bu: **${cevap}**`);
+            if (cevap.length === confirmation.length || tahmin) {
+            const embed = new Discord.RichEmbed()
+        .setColor("BLACK")
+        .setDescription(`Doğru kelimeyi buldun! **${cevap}**`)
+        message.channel.send(embed)
+              return
+            }
+            const embed = new Discord.RichEmbed()
+        .setColor("BLACK")
+        .setDescription(`Ne yazık ki kelimeyi bulamadın! **${cevap}**`)
+        message.channel.send(embed)
+          return
         } catch (err) {
             oyndurum.delete(message.channel.id);
-            return message.reply(`Olamaz! Bir Hata Verdi: \`${err.message}\``);
+            const embed = new Discord.RichEmbed()
+        .setColor("BLACK")
+        .setDescription("Bir sorun var!")
+        message.channel.send(embed)
+          return
         }
     
 
@@ -71,12 +100,12 @@ module.exports.run = async (bot, message, args) => {
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: [],
+  aliases: ["adamasmaca"],
   permlevel: 0
 };
 
 exports.help = {
-  name: 'adamasmaca',
+  name: 'adam-asmaca',
   description: 'Adam asmaca oynarsınız.',
-  usage: 'r!adamasmaca'
+  usage: 'adamasmaca'
 };
