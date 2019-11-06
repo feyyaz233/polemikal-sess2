@@ -122,6 +122,7 @@ client.login(ayarlar.token);
 
 client.on("roleCreate", async (rolee, member, guild) => {
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
+  if (member.id == client.id) return
   if (rolkoruma == "acik") {
     rolee.delete();
     const embed = new Discord.RichEmbed()
