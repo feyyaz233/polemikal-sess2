@@ -120,6 +120,8 @@ client.on("error", e => {
 
 client.login(ayarlar.token);
 
+//////
+
 client.on("roleCreate", async (rolee, member, guild) => {
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
   if (member.id == client.id) return
@@ -137,25 +139,24 @@ client.on("roleCreate", async (rolee, member, guild) => {
   }
 });
 
-client.on("roleDelete", async (rolee, member, guild) => {
-  let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
-  if (rolkoruma == "acik") {
-    rolee.guild.createRole({
-      name: rolee.name,
-      color: rolee.hexcolor
-    });
+client.on("channelCreate", async (kanl, member, guild) => {
+  let kanal = await db.fetch(`kanalk_${kanl.guild.id}`);
+  if (member.id == client.id) return
+  if (kanal == "acik") {
+    kanl.delete();
     const embed = new Discord.RichEmbed()
       .setDescription(
         "Sunucunuzda yeni bir rol oluşturuludu! fakat geri silindi! (Rol Koruma Sistemi)"
       )
       .setColor("BLACK");
-    rolee.guild.owner.send(embed);
+    kanl.guild.owner.send(embed);
     return;
-    if (rolkoruma == null) {
-      return;
-    }
+  } else {
+    return;
   }
 });
+
+//////
 
 function kanaladı1() {
     return new Promise(resolve => {
