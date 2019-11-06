@@ -1,10 +1,8 @@
-
 const db = require("quick.db");
 const Discord = require("discord.js");
 
 exports.run = async (client, message, args) => {
   let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "a!";
-  
 
   if (!args[0]) {
     const embed = new Discord.RichEmbed()
