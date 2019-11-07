@@ -121,6 +121,22 @@ client.on("error", e => {
 client.login(ayarlar.token);
 
 //////
+client.on("banMember", async (banlayan, member, guild) => {
+  let ban = await db.fetch(`bank_${banlayan.guild.id}`);
+  if (member.id == client.id) return
+  if (ban == "acik") {
+    banlayan.guild.member(banlayan).kick();
+    const embed = new Discord.RichEmbed()
+      .setDescription(
+        "Sunucunuzda biri banlandı! fakat bot tarafından engellendi!"
+      )
+      .setColor("BLACK");
+    banlayan.guild.owner.send(embed);
+    return;
+  } else {
+    return;
+  }
+});
 
 client.on("roleCreate", async (rolee, member, guild) => {
   let rolkoruma = await db.fetch(`rolk_${rolee.guild.id}`);
