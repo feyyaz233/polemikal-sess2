@@ -258,18 +258,3 @@ client.on("guildMemberAdd", async (guild, member, user) => {
   }
   member.setNickname(isim ? isim.replace('-tag-', `\`${tag}\``).replace('-kullanıcı-',`\`${member.user.tag}\``) : ``)
 });
-client.on("guildMemberAdd", member => {
-  try {
-    member.guild.setName(`Atom Kod Paylaşım 》${member.guild.memberCount}《`);
-  } catch (e) {
-    console.log(e);
-  }
-});
-
-client.on("guildMemberRemove", member => {
-  try {
-    member.guild.setName(`Atom Kod Paylaşım 》${member.guild.memberCount}《`);
-  } catch (e) {
-    console.log(e);
-  }
-});
