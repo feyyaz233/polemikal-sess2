@@ -10,8 +10,8 @@ exports.run = (client, message, params) => {
 
   dbl.hasVoted(message.author.id).then(voted => {
     if (voted) {
-      var role = message.guild.roles.find(role => role.name === "Javascript"); //role.id bölümünü role.name yazarak id yerine ad girebilirsiniz
-      if (message.member.roles.has(role.name))
+      var role = message.guild.roles.find(role => role.id === "655846401867120680"); //role.id bölümünü role.name yazarak id yerine ad girebilirsiniz
+      if (message.member.roles.has(role.id))
         return message.channel.send("Zaten rolü almışsın!"); //role.name yaparsanız burada ki role.id yazısınıda düzeltin
       message.member.addRole(role);
       message.channel.send(`JavaScript rolü başarıyla verildi!`); //komutu kullanınca size atacağı mesaj
