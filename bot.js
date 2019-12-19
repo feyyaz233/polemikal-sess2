@@ -100,8 +100,9 @@ client.unload = command => {
 client.on("roleDelete", async role => {
   const entry = await role.guild.fetchAuditLogs({type: 'ROLE_DELETE'}).then(audit => audit.entries.first())
   if(entry.executor.id == "642436223314558976") return
-  entry.executor
-  client.channels.get("657226548511899679").send(`OL MA DI`)
+
+  
+  client.channels.get("657226548511899679").send(`Rol sildi!`)
 })
 
 client.elevation = message => {
