@@ -1,8 +1,8 @@
 const Discord = require("discord.js");
-
+const { getInviteCounts, promoteIfQualified } = require('../src/util.js');
 
 exports.run = async(client, message, params) => {
-  const invites = await invites.getOne(message.guild.id, message.author.id);
+ const invites = await getInviteCounts(message.guild.id, message.author.id);
   message.channel.send(invites)
 };
 
