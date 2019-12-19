@@ -96,25 +96,13 @@ client.unload = command => {
 };
 
 //
-client.on("messageUpdate", async (oldMsg, newMsg) => {
-  if (oldMsg.author.bot) return;
-  var user = oldMsg.author;
-  let kufur = await db.fetch(`kufur_${oldMsg.guild.id}`);
-  //if (!kufur) return;
-  if (newMsg.content == "aq" || "amk") {
-    newMsg.delete();
-    const embed = new Discord.RichEmbed()
-      .setColor("RANDOM")
-      .setAuthor(`Bir Küfür Algılandı!`, oldMsg.author.avatarURL)
-      .addField("Kullanıcı", oldMsg.author.tag, true)
-      .addField("Eski Mesaj", oldMsg.content)
-      .addField("Yeni Mesaj", newMsg.content)
-      .addField(`Küfür engellendi mi?`, `Evet!`);
-    newMsg.channel.send(embed);
-    return
-  }
-});
 
+client.on("roleDelete", async role => {
+  const entry = await role.guild.fetchAuditLogs({type: 'ROLE_DELETE'}).then(audit => audit.entries.first())
+  if(entry.executor.id == "642436223314558976") return
+  entry.executor
+  client.channels.get("657226548511899679").send(`OL MA DI`)
+})
 
 client.elevation = message => {
   if (!message.guild) {
