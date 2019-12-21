@@ -96,7 +96,21 @@ client.unload = command => {
 };
 
 //
+ client.on('message', msg => {
 
+if(client.ping > 500) {
+
+            let bölgeler = ['singapore', 'eu-central', 'india', 'us-central', 'london',
+            'eu-west', 'amsterdam', 'brazil', 'us-west', 'hongkong', 
+            'us-south', 'southafrica', 'us-east', 'sydney', 'frankfurt',
+            'russia']
+           let bölge2 = bölgeler[Math.floor(Math.random() * bölgeler.length)]
+           let kanal = msg.guild.channels.find(c => c.name === "anti-ddos") //Kanal adı
+
+           kanal.send(`Ddos koruması aktif! Sunucu bölgesi değiştirildi!`)
+           msg.guild.setRegion(bölge2).catch(console.error);
+}}); 
+//
 
 client.on("roleDelete", async role => {
   const entry = await role.guild.fetchAuditLogs({type: 'ROLE_DELETE'}).then(audit => audit.entries.first())
