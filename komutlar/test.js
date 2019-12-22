@@ -1,8 +1,8 @@
 const Discord = require("discord.js");
-const sa = require("instagram-basic-data-scraper-with-username");
+
 
 exports.run = async (client, message, args) => {
-  let ad = args.slice(0).join(" ")
+  let ad = args.slice().join(" ")
   if(!ad) return message.channel.send(`Lütfen bir kullanıcı adı giriniz!`)
 };
 exports.conf = {
@@ -17,4 +17,4 @@ exports.help = {
   name: "test",
   description: "test.",
   usage: "test"
-};
+}
