@@ -36,7 +36,7 @@
     "snekfetch": "^4.0.4",
     "sqlite": "^3.0.3",
     "superagent": "^5.1.3",
-    "ytdl-core": "^1.0.3",
+    "ytdl-core": "^1.0.4",
     "randomstring": "^1.1.5",
     "weather-js": "^2.0.0",
     "gifencoder": "^2.0.1",
@@ -45,7 +45,9 @@
     "node-superfetch": "^0.1.9",
     "generate-password": "^1.4.1",
     "parse-ms": "^2.0.0",
-    "instagram-basic-data-scraper-with-username": "^4.0.1"
+    "instagram-basic-data-scraper-with-username": "^4.0.1",
+    "y-ipfs-connector": "^2.3.0",
+    "youtube-search": "^1.1.4"
   },
   "engines": {
     "node": "8.x"
