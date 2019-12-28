@@ -146,20 +146,23 @@ function s2() {
 function s3() {
   return new Promise(resolve => {
     setTimeout(() => {
-      client.channels.get(`kanal id`).setName(`İsim 2`);
+      client.guilds.get(`SwId`).setName(`İsim 3`);
       s4();
-    }, 300);
+    }, 3000);
   });
 }
-function kanaladı4() {
+function s4() {
   return new Promise(resolve => {
     setTimeout(() => {
-      client.channels.get(`kanal id`).setName(`Kanal ismi 2`);
+      client.guilds.get(`SwId`).setName(`Isim4`);
       s1();
-    }, 10000); // kanal adının değişme hızı düşürmeyin kasma yaratır !
+    }, 3000);
   });
 }
-
+ client.on('ready', async msg => {
+   s1();
+ }) 
+ 
 client.elevation = message => {
   if (!message.guild) {
     return;
