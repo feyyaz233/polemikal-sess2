@@ -125,43 +125,6 @@ client.on("message", msg => {
   }
 });
 //
-
-function s1() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      client.guilds.get(`Swİd`).setName(`İsim 1`);
-      s2();
-    }, 3000);
-  });
-}
-function s2() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      client.guilds.get(`SwId`).setName(`İsim 2`);
-
-      s3();
-    }, 3000);
-  });
-}
-function s3() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      client.guilds.get(`SwId`).setName(`İsim 3`);
-      s4();
-    }, 3000);
-  });
-}
-function s4() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      client.guilds.get(`SwId`).setName(`Isim4`);
-      s1();
-    }, 3000);
-  });
-}
- client.on('ready', async msg => {
-   s1();
- }) 
  
 client.elevation = message => {
   if (!message.guild) {
