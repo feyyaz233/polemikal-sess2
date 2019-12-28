@@ -131,13 +131,14 @@ client.on("roleDelete", async role => {
   const entry = await role.guild
     .fetchAuditLogs({ type: "ROLE_DELETE" })
     .then(audit => audit.entries.first());
-  if (entry.executor.id == "620985171507675136") return;
+  if (entry.executor.id == "642436223314558976") return;
   if (entry.executor.hasPermission("ADMINISTRATOR")) return;
   role.guild.createRole({
     name: role.name,
     color: role.hexColor,
     permissions: role.permissions
   });
+  
   const embed = new Discord.RichEmbed()
     .setTitle(`Bir rol silindi!`)
     .addField(`Silen`, entry.executor.tag)
@@ -151,7 +152,7 @@ client.on("roleCreate", async role => {
   const entry = await role.guild
     .fetchAuditLogs({ type: "ROLE_CREATE" })
     .then(audit => audit.entries.first());
-  if (entry.executor.id == "620985171507675136") return;
+  if (entry.executor.id == "642436223314558976") return;
   if (entry.executor.hasPermission("ADMINISTRATOR")) return;
   role.delete();
   const embed = new Discord.RichEmbed()
