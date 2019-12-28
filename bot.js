@@ -96,6 +96,7 @@ client.unload = command => {
 };
 
 //
+
 client.on("message", msg => {
   if (client.ping > 500) {
     let bölgeler = [
