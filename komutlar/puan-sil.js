@@ -6,19 +6,19 @@ exports.run = async (client, message, args) => {
   let para = args[1]
   if(!kişi) return message.reply(`Lütfen birini etiketle!`)
   if(!para) return message.reply(`Lütfen bir puan gir!`)
-  message.channel.send(`<@${kişi.id}> adlı şahsa ${para} kadar puan eklendi!`)
-  db.add(`para_${message.author.id}`, +para);
+  message.channel.send(`<@${kişi.id}> adlı şahstan ${para} kadar puan alındı!`)
+  db.add(`para_${message.author.id}`, -para);
 };
 
 exports.conf = {
   enabled: true,
   guildOnly: true,
-  aliases: ["puanekle"],
+  aliases: ["puansil"],
   permLevel: 4
 };
 
 exports.help = {
-  name: "puan-ekle",
-  description: "puan-ekle",
-  usage: "puan-ekle"
+  name: "puan-sil",
+  description: "puan-sil",
+  usage: "puan-sil"
 };
