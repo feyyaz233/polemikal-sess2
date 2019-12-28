@@ -126,18 +126,23 @@ client.on("message", msg => {
 //
 
 client.on("roleDelete", async role => {
-  let kanal = await db.fetch(`rolk_${message`)
+  let kanal = await db.fetch(`rolk_${role.guild.id}`);
+  if (!kanal) return;
   const entry = await role.guild
     .fetchAuditLogs({ type: "ROLE_DELETE" })
     .then(audit => audit.entries.first());
   if (entry.executor.id == "642436223314558976") return;
-  if (entry.executor.hasPermission("ADMINISTRATOR")) return;
+  //if (entry.executor.hasPermission("ADMINISTRATOR")) return;
   role.guild.createRole({
     name: role.name,
-    color: role.hexcolor,
+    color: role.hexColor,
     permissions: role.permissions
   });
-  client.channels.get("658735941938053131").send(`Rol sildi!`);
+  const embed = new Discord.RichEmbed()
+    .setTitle(`Bir rol silindi!`)
+    .addField(`Silen`, entry.executor.tag)
+    .addField(`Silinen Rol`, role.name);
+  client.channels.get(kanal).send(embed);
 });
 
 client.elevation = message => {
