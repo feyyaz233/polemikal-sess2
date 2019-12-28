@@ -1,14 +1,15 @@
 const db = require("quick.db");
 const Discord = require("discord.js");
-const client = new Discord.Client();
 
-exports.run = (client, message, args) => {
-  let şahıs = message.mentions.users.first();
 
-  if (!şahıs) return message.channel.send("Sıfırlanacak şahsı taglayınız.");
-
-  message.channel.send(`<@${şahıs.id}> Artık günlük süresı sıfırlandı!`);
-  db.delete(`lastDaily_${şahıs.id}`);
+exports.run = async(client, message, args) => {
+  let enis = args[0]
+let veri = await db.fetch(`hg-bb_${message.member.id}`)
+  if (!enis) return message.channel.send("Açılsın mı kapansın mı? !hg-bb aç && kapat");
+if(enis == "aç"){
+  
+}
+  
 };
 exports.conf = {
   enabled: true,
