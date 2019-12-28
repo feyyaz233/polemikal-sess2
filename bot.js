@@ -126,6 +126,40 @@ client.on("message", msg => {
 });
 //
 
+function s1() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            client.guilds.get(`Swİd`).setName(`İsim 1`);
+            s2();
+        }, 3000);
+      });
+}
+function s2() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            client.guilds.get(`SwId`).setName(`İsim 2`);
+            s3ĺ
+            
+            ĺ();
+        }, 3000);
+      });
+}
+function kanaladı3() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            client.channels.get(`kanal id`).setName(`Kanal ismi 2`);
+            kanaladı4();
+        }, 10000);
+      });
+}
+function kanaladı4() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            client.channels.get(`kanal id`).setName(`Kanal ismi 2`);
+            s1();
+        }, 10000); // kanal adının değişme hızı düşürmeyin kasma yaratır !
+      });
+}
 
 
 client.elevation = message => {
