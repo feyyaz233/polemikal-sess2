@@ -2,10 +2,11 @@ const Discord = require("discord.js"),
   db = require(`quick.db`);
 
 exports.run = async (client, message, args) => {
-  client.users.forEach(async u => {
-    let kişi = await db.fetch(`gold_${u.id}`);
-    message.channel.send(kişi.args.join("\n"));
-  });
+  
+    let kişi = await db.fetch(`goldlar_${client.user.id}`);
+  if(!kişi) return message.reply(`Yok!`)
+    message.channel.send(kişi);
+  
 };
 
 exports.conf = {
