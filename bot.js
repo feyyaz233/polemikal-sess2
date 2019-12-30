@@ -182,7 +182,7 @@ client.on("guildMemberAdd", async member => {
   ctx.lineWidth = 4;
   ctx.arc(180, 46, 36, 0, 2 * Math.PI);
   ctx.clip();
-  ctx.drawImage(avatar, 143, 10, 73, 72);
+  ctx.drawImage(avatar, 151, 78, 81, 78);
   const attachment = new Discord.Attachment(canvas.toBuffer(), "güvenlik.png");
   kanal.send(attachment);
 });
