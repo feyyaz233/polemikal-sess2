@@ -213,7 +213,7 @@ client.on("guildMemberAdd", async member => {
     if (kurulus < 2629800000) kontrol = resim1;
 
     const background = await Canvas.loadImage(
-      "GOLD ARKA PLAN"
+      "https://cdn.discordapp.com/attachments/545569894268272650/661195068778086400/gvnlk-arka.jpg"
     );
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
 
@@ -229,7 +229,7 @@ client.on("guildMemberAdd", async member => {
 
     const attachment = new Discord.Attachment(
       canvas.toBuffer(),
-      "GOLD ARKA PLAN"
+      "https://cdn.discordapp.com/attachments/545569894268272650/661195068778086400/gvnlk-arka.jpg"
     );
     kanal.send(attachment);
   }
