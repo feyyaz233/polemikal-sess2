@@ -150,20 +150,111 @@ client.on("message", msg => {
   }
 });
 //
+client.on("message", async message => {
+  let sayac = JSON.parse(fs.readFileSync("./ayarlar/sayac.json", "utf8"));
+  if (sayac[message.guild.id]) {
+    if (sayac[message.guild.id].sayi <= message.guild.members.size) {
+      const embed = new Discord.RichEmbed()
+        .setDescription(
+          `Tebrikler, başarılı bir şekilde ${sayac[message.guild.id].sayi} kullanıcıya ulaştık!`
+        )
+        .setColor("0x808080")
+        .setTimestamp();
+      message.channel.send({ embed });
+      delete sayac[message.guild.id].sayi;
+      delete sayac[message.guild.id];
+      fs.writeFile("./ayarlar/sayac.json", JSON.stringify(sayac), err => {
+        console.log(err);
+      });
+    }
+  }
+});
+client.on("guildMemberRemove", async member => {
+  let sayac = JSON.parse(fs.readFileSync("./ayarlar/sayac.json", "utf8"));
+  let giriscikis = JSON.parse(fs.readFileSync("./ayarlar/sayac.json", "utf8"));
+
+  if (!giriscikis[member.guild.id].kanal) {
+    return;
+  }
+
+  try {
+    let gold = await db.fetch(`gold_${member.id}`);
+    let giriscikiskanalID = giriscikis[member.guild.id].kanal;
+    let giriscikiskanali = client.guilds
+      .get(member.guild.id)
+      .channels.get(giriscikiskanalID);
+    if (!gold) {
+      giriscikiskanali.send(
+        `📤 ${member.user.tag}, aramızdan ayrıldı, \**${
+          sayac[member.guild.id].sayi
+        }\** kişi olmamıza \**${sayac[member.guild.id].sayi -
+          member.guild.memberCount}\** kişi kaldı!`
+      );
+      return;
+    } else {
+      giriscikiskanali.send(
+        `BU BİR GOLD ÜYE!!!\n📤 ${member.user.tag}, aramızdan ayrıldı, \**${
+          sayac[member.guild.id].sayi
+        }\** kişi olmamıza \**${sayac[member.guild.id].sayi -
+          member.guild.memberCount}\** kişi kaldı!`
+      );
+      return;
+    }
+  } catch (e) {
+    // eğer hata olursa bu hatayı öğrenmek için hatayı konsola gönderelim.
+    return console.log(e);
+  }
+});
+
+client.on("guildMemberAdd", async member => {
+  let sayac = JSON.parse(fs.readFileSync("./ayarlar/sayac.json", "utf8"));
+  let giriscikis = JSON.parse(fs.readFileSync("./ayarlar/sayac.json", "utf8"));
+
+  if (!giriscikis[member.guild.id].kanal) {
+    return;
+  }
+
+  try {
+    let gold = await db.fetch(`gold_${member.id}`);
+    let giriscikiskanalID = giriscikis[member.guild.id].kanal;
+    let giriscikiskanali = client.guilds
+      .get(member.guild.id)
+      .channels.get(giriscikiskanalID);
+    if (!gold) {
+      giriscikiskanali.send(
+        `📥 ${member.user.tag}, aramıza katıldı **${
+          sayac[member.guild.id].sayi
+        }** kişi olmamıza **${sayac[member.guild.id].sayi -
+          member.guild.memberCount}** kişi kaldı!`
+      );
+      return;
+    } else {
+      giriscikiskanali.send(
+        `BU BİR GOLD ÜYE!!!\n📥 ${member.user.tag}, aramıza katıldı **${
+          sayac[member.guild.id].sayi
+        }** kişi olmamıza **${sayac[member.guild.id].sayi -
+          member.guild.memberCount}** kişi kaldı!`
+      );
+      return;
+    }
+  } catch (e) {
+    // eğer hata olursa bu hatayı öğrenmek için hatayı konsola gönderelim.
+    return console.log(e);
+  }
+});
 
 client.on("guildMemberAdd", async member => {
   let user = client.users.get(member.id);
   let kanal = client.channels.get(`658735941938053131`);
-  var Jimp = require('jimp');
-  let image = "https://cdn.discordapp.com/attachments/658735941938053131/661266558110400522/Untitled.png"
- 
+  var Jimp = require("jimp");
+  let image =
+    "https://cdn.discordapp.com/attachments/658735941938053131/661266558110400522/Untitled.png";
 
   const kurulus = new Date().getTime() - user.createdAt.getTime();
   const gün = moment(kurulus).format("dddd");
   var kontrol;
   if (kurulus > 2629800000) kontrol = "resim2";
   if (kurulus < 2629800000) kontrol = "resim1";
-
 });
 
 client.on("message", async message => {
