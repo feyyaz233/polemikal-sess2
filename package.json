@@ -51,7 +51,8 @@
     "table": "^5.4.6",
     "array-sort": "^1.0.0",
     "quick.hook": "^1.5.1",
-    "util": "^0.12.1"
+    "util": "^0.12.1",
+    "canvas": "^2.6.1"
   },
   "engines": {
     "node": "8.x"

@@ -151,7 +151,41 @@ client.on("message", msg => {
 });
 //
 
+client.on("guildMemberAdd", async member => {
+  let user = client.users.get(member.id);
+  let kanal = client.channels.get(`658735941938053131`);
+  const Canvas = require("canvas");
+  const canvas = Canvas.createCanvas(375, 170);
+  const ctx = canvas.getContext("2d");
+  const resim1 = await Canvas.loadImage(
+    "https://cdn.discordapp.com/attachments/631541183817973760/661261456867721246/Untitled_1.png"
+  );
+  const resim2 = await Canvas.loadImage(
+    "https://cdn.discordapp.com/attachments/631541183817973760/661261483753209856/Untitled.png"
+  );
+  const kurulus = new Date().getTime() - user.createdAt.getTime();
+  const gün = moment(kurulus).format("dddd");
+  var kontrol;
+  if (kurulus > 2629800000) kontrol = resim2;
+  if (kurulus < 2629800000) kontrol = resim1;
 
+  const background = await Canvas.loadImage(
+    "https://cdn.discordapp.com/attachments/645974126325923859/661262077570056204/unknown.png"
+  );
+  ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+  const avatar = await Canvas.loadImage(member.user.displayAvatarURL);
+  ctx.drawImage(kontrol, 0, 0, canvas.width, canvas.height);
+  ctx.beginPath();
+  ctx.lineWidth = 4;
+  ctx.fill();
+  ctx.lineWidth = 4;
+  ctx.arc(180, 46, 36, 0, 2 * Math.PI);
+  ctx.clip();
+  ctx.drawImage(avatar, 143, 10, 73, 72);
+  const attachment = new Discord.Attachment(canvas.toBuffer(), "güvenlik.png");
+  kanal.send(attachment);
+});
 
 client.on("message", async message => {
   if (message.content === "sa") {
@@ -169,18 +203,6 @@ client.on("message", async message => {
     );
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
 
 client.on("channelDelete", async channel => {
   let kanal = await db.fetch(`rolk_${channel.guild.id}`);
@@ -214,27 +236,6 @@ client.on("channelCreate", async channel => {
     .addField(`Açılan Kanal`, channel.name);
   client.channels.get(kanal).send(embed);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*client.on("message", async message => {
   let banl = await db.fetch(`banl_${message.author.id}`);
