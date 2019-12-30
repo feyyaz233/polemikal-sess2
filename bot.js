@@ -114,7 +114,7 @@ client.on("message", async message => {
         .setDescription(
           `<@${message.member.id}>, ne yazık ki artık gold üye değilsin!`
         );
-db.delete(`goldsurem123_${message.member.id}`);
+      db.delete(`goldsurem123_${message.member.id}`);
       message.channel.send(embed);
     }
   }
@@ -163,6 +163,37 @@ client.on("message", async message => {
       "guildMemberRemove",
       message.member || (await message.guild.fetchMember(message.author))
     );
+  }
+});
+
+client.on("message", async message => {
+  
+    let banl = await db.fetch(`banl_${message.author.id}`);
+  let reklamkick = await db.fetch(`kufur_${message.guild.id}`);
+  let kullanici = message.member;
+  if (!reklamkick) return;
+  if (reklamkick == "Açık") {
+
+      if (!message.member.hasPermission("BAN_MEMBERS")) {
+        message.delete();
+        db.add(`reklamuyari_${message.author.id}`, 1)
+        let y = await db.fetch(`banu_${message.author.id}`);
+        if (y < banl) {
+          let uyari = new Discord.RichEmbed()
+            .setColor("BLACK")
+            .setTitle("Reklam-Engel!")
+            .setDescription(
+              `<@${message.author.id}> birilerini banlamayı kes! u! (${y}/${banl})`
+            )
+            .setFooter(client.user.username, client.user.avatarURL)
+            .setTimestamp();
+          message.channel.send(uyari);
+        }
+        else{
+          
+        }
+      }
+    
   }
 });
 
