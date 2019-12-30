@@ -102,7 +102,7 @@ client.on("message", async message => {
   let dakdest = await db.fetch(`goldsurem123_${message.member.id}`);
   let timeout = 604800000; //604800000 = 1 saniye
   const ms = require("parse-ms");
-  if(!dakdest) return
+  if (!dakdest) return;
   if (gold) {
     if (timeout - (Date.now() - dakdest) > 0) {
       let time = ms(timeout - (Date.now() - dakdest));
@@ -150,6 +150,91 @@ client.on("message", msg => {
   }
 });
 //
+
+client.on("guildMemberAdd", async member => {
+  // Güvenlik Sistemi
+  let user = client.users.get(member.id);
+  let g = await db.fetch(`gold_${member.id}`);
+  let kanal = client.channels.get(`658735941938053131`);
+
+  if (!kanal) return;
+  if (!g) {
+    const Canvas = require("canvas");
+    const canvas = Canvas.createCanvas(360, 100);
+    const ctx = canvas.getContext("2d");
+
+    const resim1 = await Canvas.loadImage(
+      "https://cdn.discordapp.com/attachments/597433546868654106/627428441695977497/gvnlk-spheli.png"
+    );
+    const resim2 = await Canvas.loadImage(
+      "https://cdn.discordapp.com/attachments/597433546868654106/627427731407241226/gvnlk-gvnli.png"
+    );
+    const kurulus = new Date().getTime() - user.createdAt.getTime();
+    const gün = moment(kurulus).format("dddd");
+    var kontrol;
+    if (kurulus > 2629800000) kontrol = resim2;
+    if (kurulus < 2629800000) kontrol = resim1;
+
+    const background = await Canvas.loadImage(
+      "https://cdn.discordapp.com/attachments/545569894268272650/659038583017046027/gvnlk-arka.jpg"
+    );
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+    const avatar = await Canvas.loadImage(member.user.displayAvatarURL);
+    ctx.drawImage(kontrol, 0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.lineWidth = 4;
+    ctx.fill();
+    ctx.lineWidth = 4;
+    ctx.arc(180, 46, 36, 0, 2 * Math.PI);
+    ctx.clip();
+    ctx.drawImage(avatar, 143, 10, 73, 72);
+
+    const attachment = new Discord.Attachment(
+      canvas.toBuffer(),
+      "güvenlik.png"
+    );
+    kanal.send(attachment);
+  } else {
+    const Canvas = require("canvas");
+    const canvas = Canvas.createCanvas(360, 100);
+    const ctx = canvas.getContext("2d");
+
+    const resim1 = await Canvas.loadImage(
+      "https://cdn.discordapp.com/attachments/597433546868654106/627428441695977497/gvnlk-spheli.png"
+    );
+    const resim2 = await Canvas.loadImage(
+      "https://cdn.discordapp.com/attachments/597433546868654106/627427731407241226/gvnlk-gvnli.png"
+    );
+    const kurulus = new Date().getTime() - user.createdAt.getTime();
+    const gün = moment(kurulus).format("dddd");
+    var kontrol;
+    if (kurulus > 2629800000) kontrol = resim2;
+    if (kurulus < 2629800000) kontrol = resim1;
+
+    const background = await Canvas.loadImage(
+      "GOLD ARKA PLAN"
+    );
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+
+    const avatar = await Canvas.loadImage(member.user.displayAvatarURL);
+    ctx.drawImage(kontrol, 0, 0, canvas.width, canvas.height);
+    ctx.beginPath();
+    ctx.lineWidth = 4;
+    ctx.fill();
+    ctx.lineWidth = 4;
+    ctx.arc(180, 46, 36, 0, 2 * Math.PI);
+    ctx.clip();
+    ctx.drawImage(avatar, 143, 10, 73, 72);
+
+    const attachment = new Discord.Attachment(
+      canvas.toBuffer(),
+      "GOLD ARKA PLAN"
+    );
+    kanal.send(attachment);
+  }
+});
+
 client.on("message", async message => {
   if (message.content === "sa") {
     client.emit(
@@ -166,10 +251,6 @@ client.on("message", async message => {
     );
   }
 });
-
-
-
-
 
 /*client.on("message", async message => {
   let banl = await db.fetch(`banl_${message.author.id}`);
