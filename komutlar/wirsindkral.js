@@ -17,6 +17,15 @@ exports.run = async (client, message, args) => {
     message.channel.send(embed);
     return
     }
+    if(!enis){
+    const embed = new Discord.RichEmbed()
+      .setDescription(`Lütfen bir rol etiketleyiniz!\nÖrnek: ${prefix}`)
+      .setColor("BLACK")
+    .setFooter(client.user.username, client.user.avatarURL)
+
+    message.channel.send(embed);
+    return
+    }
   }
 };
 exports.conf = {
