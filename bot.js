@@ -189,11 +189,8 @@ client.on("channelDelete", async channel => {
     .fetchAuditLogs({ type: "CHANNEL_DELETE" })
     .then(audit => audit.entries.first());
   if (entry.executor.id == client.user.id) return;
-  //if (entry.executor.hasPermission("ADMINISTRATOR")) return;
-  channel.guild.createChannel({
-    name: channel.name,
-    type: text
-  });
+  if (entry.executor.hasPermission("ADMINISTRATOR")) return;
+  channel.guild.createChannel(channel.name);
 
   const embed = new Discord.RichEmbed()
     .setTitle(`Bir kanal silindi!`)
