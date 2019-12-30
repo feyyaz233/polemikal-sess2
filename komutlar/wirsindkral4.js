@@ -20,6 +20,7 @@ let bilgi = await db.fetch(`davet_${kişi.id}_${message.guild.id}`);
     }
   let veri = await db.fetch(`rol1_${message.guild.id}`);
   let veri12 = await db.fetch(`roldavet1_${message.guild.id}`);
+  let veri21 = await db.fetch(`roldavet2_${message.guild.id}`);
     let veri2 = await db.fetch(`rol2_${message.guild.id}`);
   if(!veri && !veri2){
   const embed = new Discord.RichEmbed()
@@ -29,12 +30,29 @@ let bilgi = await db.fetch(`davet_${kişi.id}_${message.guild.id}`);
   .setFooter(client.user.username, client.user.avatarURL)
     message.channel.send(embed);
   }else{
+    
       const embed = new Discord.RichEmbed()
   .addField(`Davetlerin Sahibi`, `<@`+kişi.id+`>`, true)
       .addField(`Total Davet:`, sayı2, true)
       .setColor("BLACK")
-  .setDescription(`1 - Rol: ${message.guild.roles.get(veri).name} rolü için son ${sayı2 - veri12} davet!`)
+  .setDescription(`${message.guild.roles.get(veri).name} rolü için son ${sayı2 - veri12} davet!`)
     message.channel.send(embed);
+    if(message.member.roles.has(veri)){
+            const embed = new Discord.RichEmbed()
+  .addField(`Davetlerin Sahibi`, `<@`+kişi.id+`>`, true)
+      .addField(`Total Davet:`, sayı2, true)
+      .setColor("BLACK")
+  .setDescription(`${message.guild.roles.get(veri2).name} rolü için son ${sayı2 - veri21} davet!`)
+    message.channel.send(embed);
+    }
+    if(message.member.roles.has(veri2)){
+            const embed = new Discord.RichEmbed()
+  .addField(`Davetlerin Sahibi`, `<@`+kişi.id+`>`, true)
+      .addField(`Total Davet:`, sayı2, true)
+      .setColor("BLACK")
+  .setFooter(client.user.username, client.user.avatarURL)
+    message.channel.send(embed);
+    }
   }
 }
 exports.conf = {
