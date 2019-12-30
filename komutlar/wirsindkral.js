@@ -47,12 +47,12 @@ exports.run = async (client, message, args) => {
       .setFooter(client.user.username, client.user.avatarURL);
 
     message.channel.send(embed);
-    db.set(`rol1_${message.guild.id}`, sine.id);
-    db.set(`roldavet1_${message.guild.id}`, enis);
+    await db.set(`rol1_${message.guild.id}`, sine.id);
+    await db.set(`roldavet1_${message.guild.id}`, enis);
     return;
   }
   ///////////////////
-  if (veri) {
+  else{
     let enis = args[1];
     let sine = message.mentions.roles.first();
     if (!sine) {
@@ -86,8 +86,8 @@ exports.run = async (client, message, args) => {
 
     message.channel.send(embed);
 
-    db.set(`rol2_${message.guild.id}`, sine.id);
-    db.set(`roldavet2_${message.guild.id}`, enis);
+    await db.set(`rol2_${message.guild.id}`, sine.id);
+    await db.set(`roldavet2_${message.guild.id}`, enis);
     return;
   }
 };
