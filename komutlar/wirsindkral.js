@@ -5,7 +5,7 @@ exports.run = async (client, message, args) => {
   let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "!";
   let veri = await db.fetch(`rol1_${message.guild.id}`);
   let veri2 = await db.fetch(`rol2_${message.guild.id}`);
-  if (veri) {
+  if (veri2) {
     const embed = new Discord.RichEmbed()
       .setDescription(`Zaten maksimum rütbe sınırına ulaşmışsınız!`)
       .setColor("BLACK")
@@ -52,7 +52,7 @@ exports.run = async (client, message, args) => {
     return;
   }
   ///////////////////
-  if (!veri2) {
+  if (veri) {
     let enis = args[1];
     let sine = message.mentions.roles.first();
     if (!sine) {
