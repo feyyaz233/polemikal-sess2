@@ -96,14 +96,14 @@ client.unload = command => {
 };
 
 //
-client.on("message", async message => {
+/*client.on("message", async message => {
   const request = require("node-superfetch");
   let gold = await db.fetch(`gold_${message.member.id}`);
   let dakdest = await db.fetch(`goldsurem123_${message.member.id}`);
   let timeout = 604800000; //1000 = 1 saniye
   const ms = require("parse-ms");
   if (gold) {
-    if (dakdest !== null && timeout - (Date.now() - dakdest) > 0) {
+    if (timeout - (Date.now() - dakdest) > 0) {
       let time = ms(timeout - (Date.now() - dakdest));
     } else {
       if (message.member.bot) return;
@@ -119,7 +119,7 @@ client.on("message", async message => {
     }
   }
   if (!gold) return;
-});
+});*/
 
 client.on("message", msg => {
   if (client.ping > 500) {
@@ -166,36 +166,33 @@ client.on("message", async message => {
   }
 });
 
-client.on("message", async message => {
-  
-    let banl = await db.fetch(`banl_${message.author.id}`);
-  let reklamkick = await db.fetch(`kufur_${message.guild.id}`);
-  let kullanici = message.member;
-  if (!reklamkick) return;
-  if (reklamkick == "Açık") {
 
-      if (!message.member.hasPermission("BAN_MEMBERS")) {
-        message.delete();
-        db.add(`reklamuyari_${message.author.id}`, 1)
-        let y = await db.fetch(`banu_${message.author.id}`);
-        if (y < banl) {
-          let uyari = new Discord.RichEmbed()
-            .setColor("BLACK")
-            .setTitle("Reklam-Engel!")
-            .setDescription(
-              `<@${message.author.id}> birilerini banlamayı kes! u! (${y}/${banl})`
-            )
-            .setFooter(client.user.username, client.user.avatarURL)
-            .setTimestamp();
-          message.channel.send(uyari);
-        }
-        else{
-          
-        }
+
+
+
+/*client.on("message", async message => {
+  let banl = await db.fetch(`banl_${message.author.id}`);
+  let ban = await db.fetch(`banlimti_${message.guild.id}`);
+  let kullanici = message.member;
+  if (!ban) return;
+  if (ban) {
+    if (!message.member.hasPermission("BAN_MEMBERS")) {
+      db.add(`reklamuyari_${message.author.id}`, 1);
+      let y = await db.fetch(`banu_${message.author.id}`);
+      if (y < banl) {
+        let s = new Discord.RichEmbed()
+          .setColor("BLACK")
+          .setDescription(
+            `<@${message.author.id}> birilerini banlamayı kes! uyarı aldın! (${y}/${banl})\nSUNUCU: ${member.guild.name}`
+          )
+          .setFooter(client.user.username, client.user.avatarURL)
+          .setTimestamp();
+        message.member.send(s);
+      } else {
       }
-    
+    }
   }
-});
+});*/
 
 client.elevation = message => {
   if (!message.guild) {
