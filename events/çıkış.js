@@ -17,7 +17,7 @@ module.exports = async member => {
   let memberChannel = await db.fetch(`gcc_${member.guild.id}`)
   let msj = await db.fetch(`cikisM_${member.guild.id}`)
   if (!msj) msj = `{uye}, ${randomMsg_integer}`
-  
+  let g =await db.fetch(`gold_${member.id}`)
   
   const canvas = Canvas.createCanvas(360, 240);
     const ctx = canvas.getContext('2d');
@@ -45,13 +45,14 @@ module.exports = async member => {
     ctx.clip();
     ctx.drawImage(avatar, 112, 55, 110, 110);
   
-  let g = await db.fetch(`gold_${member.id}`)
+  
 if(!g){
   const attachment = new Discord.Attachment(canvas.toBuffer(), 'GüleGüle.png');
   member.guild.channels.get(memberChannel).send(attachment)
   member.guild.channels.get(memberChannel).send(msj.replace('{uye}', member).replace('{sunucu}', member.guild.name))
   if (member.user.bot) return member.guild.channels.get(memberChannel).send(`🤖 Bu bir bot, ${member.user.tag}`)
-}else{
+}
+  if(g){
 const attachment = new Discord.Attachment(canvas.toBuffer(), 'GOLD ÖZEL PNGYİ KOY');
   member.guild.channels.get(memberChannel).send(attachment)
   member.guild.channels.get(memberChannel).send(`AMAN DANRIM BU BİR GOLD ÜYE `+msj.replace('{uye}', member).replace('{sunucu}', member.guild.name))

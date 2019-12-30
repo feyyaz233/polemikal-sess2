@@ -125,7 +125,17 @@ client.on("message", msg => {
   }
 });
 //
- 
+ client.on('message', async message => {
+if (message.content === 'sa') {
+  client.emit('guildMemberAdd', message.member || await message.guild.fetchMember(message.author));
+    }
+});
+client.on('message', async message => {
+    if (message.content === 'as') {
+        client.emit('guildMemberRemove', message.member || await message.guild.fetchMember(message.author));
+    }
+});
+
 client.elevation = message => {
   if (!message.guild) {
     return;
