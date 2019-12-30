@@ -96,12 +96,13 @@ client.unload = command => {
 };
 
 //
-/*client.on("message", async message => {
+client.on("message", async message => {
   const request = require("node-superfetch");
   let gold = await db.fetch(`gold_${message.member.id}`);
   let dakdest = await db.fetch(`goldsurem123_${message.member.id}`);
-  let timeout = 604800000; //1000 = 1 saniye
+  let timeout = 604800000; //604800000 = 1 saniye
   const ms = require("parse-ms");
+  if(!dakdest) return
   if (gold) {
     if (timeout - (Date.now() - dakdest) > 0) {
       let time = ms(timeout - (Date.now() - dakdest));
@@ -119,7 +120,7 @@ client.unload = command => {
     }
   }
   if (!gold) return;
-});*/
+});
 
 client.on("message", msg => {
   if (client.ping > 500) {
