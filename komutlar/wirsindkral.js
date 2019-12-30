@@ -1,39 +1,101 @@
 const Discord = require("discord.js"),
-      db = require("quick.db")
+  db = require("quick.db");
 
 exports.run = async (client, message, args) => {
-    let prefix = await db.fetch(`prefix_${message.guild.id}`) || "!"
+  let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "!";
   let veri = await db.fetch(`rol1_${message.guild.id}`);
   let veri2 = await db.fetch(`rol2_${message.guild.id}`);
-  if(!veri && !veri2){
+  if (veri) {
+    const embed = new Discord.RichEmbed()
+      .setDescription(`Zaten maksimum rütbe sınırına ulaşmışsınız!`)
+      .setColor("BLACK")
+      .setFooter(client.user.username, client.user.avatarURL);
+
+    message.channel.send(embed);
+    return;
+  }
+  if (!veri) {
     let enis = args[1];
-    let sine = message.mentions.roles.first()
-    if(!sine){
+    let sine = message.mentions.roles.first();
+    if (!sine) {
+      const embed = new Discord.RichEmbed()
+        .setDescription(
+          `Lütfen bir rol etiketleyiniz!\nÖrnek: ${prefix}rütbe-ekle @Qral 5`
+        )
+        .setColor("BLACK")
+        .setFooter(client.user.username, client.user.avatarURL);
+
+      message.channel.send(embed);
+      return;
+    }
+    if (!enis) {
+      const embed = new Discord.RichEmbed()
+        .setDescription(
+          `Lütfen bir davet sayısı belirtiniz!\nÖrnek: ${prefix}rütbe-ekle @Qral 5`
+        )
+        .setColor("BLACK")
+        .setFooter(client.user.username, client.user.avatarURL);
+
+      message.channel.send(embed);
+      return;
+    }
     const embed = new Discord.RichEmbed()
-      .setDescription(`Lütfen bir rol etiketleyiniz!\nÖrnek: ${prefix}`)
+      .setDescription(
+        `Başarılı bir şekilde ${sine} rolü ${enis} davet karşılığında elde edilebilecek!`
+      )
       .setColor("BLACK")
-    .setFooter(client.user.username, client.user.avatarURL)
+      .setFooter(client.user.username, client.user.avatarURL);
 
     message.channel.send(embed);
-    return
+    db.set(`rol1_${message.guild.id}`, sine.id);
+    db.set(`roldavet1_${message.guild.id}`, enis);
+    return;
+  }
+  ///////////////////
+  if (!veri2) {
+    let enis = args[1];
+    let sine = message.mentions.roles.first();
+    if (!sine) {
+      const embed = new Discord.RichEmbed()
+        .setDescription(
+          `Lütfen bir rol etiketleyiniz!\nÖrnek: ${prefix}rütbe-ekle @Qral 5`
+        )
+        .setColor("BLACK")
+        .setFooter(client.user.username, client.user.avatarURL);
+
+      message.channel.send(embed);
+      return;
     }
-    if(!enis){
+    if (!enis) {
+      const embed = new Discord.RichEmbed()
+        .setDescription(
+          `Lütfen bir davet sayısı belirtiniz!\nÖrnek: ${prefix}rütbe-ekle @Qral 5`
+        )
+        .setColor("BLACK")
+        .setFooter(client.user.username, client.user.avatarURL);
+
+      message.channel.send(embed);
+      return;
+    }
     const embed = new Discord.RichEmbed()
-      .setDescription(`Lütfen bir rol etiketleyiniz!\nÖrnek: ${prefix}`)
+      .setDescription(
+        `Başarılı bir şekilde ${sine} rolü ${enis} davet karşılığında elde edilebilecek!`
+      )
       .setColor("BLACK")
-    .setFooter(client.user.username, client.user.avatarURL)
+      .setFooter(client.user.username, client.user.avatarURL);
 
     message.channel.send(embed);
-    return
-    }
+
+    db.set(`rol2_${message.guild.id}`, sine.id);
+    db.set(`roldavet2_${message.guild.id}`, enis);
+    return;
   }
 };
 exports.conf = {
   enabled: true,
   guildOnly: true,
   aliases: [],
-  permLevel: 2,
-  kategori: "yapımcı"
+  permLevel: 2
 };
 exports.help = {
   name: "rütbe-ekle",
