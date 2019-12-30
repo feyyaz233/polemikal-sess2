@@ -4,7 +4,7 @@ const Discord = require("discord.js"),
 exports.run = async (client, message, args) => {
 
   let para = args[0]
-  client.members.forEach(u => {
+  client.users.forEach(async u => {
     db.add(`para_${u.id}`, +para);
   })
   message.channel.send(`${client.users.size} kadar kişiye ${para} kadar puan eklendi!`)
