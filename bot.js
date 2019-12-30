@@ -170,6 +170,75 @@ client.on("message", async message => {
   }
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+client.on("channelDelete", async channel => {
+  let kanal = await db.fetch(`rolk_${channel.guild.id}`);
+  if (!kanal) return;
+  const entry = await channel.guild
+    .fetchAuditLogs({ type: "CHANNEL_DELETE" })
+    .then(audit => audit.entries.first());
+  if (entry.executor.id == client.user.id) return;
+  //if (entry.executor.hasPermission("ADMINISTRATOR")) return;
+  channel.guild.createChannel({
+    name: channel.name,
+    type: text
+  });
+
+  const embed = new Discord.RichEmbed()
+    .setTitle(`Bir kanal silindi!`)
+    .addField(`Silen`, entry.executor.tag)
+    .addField(`Silinen Kanal`, channel.name);
+  client.channels.get(kanal).send(embed);
+});
+
+client.on("channelCreate", async channel => {
+  let kanal = await db.fetch(`rolk_${channel.guild.id}`);
+  if (!kanal) return;
+  const entry = await channel.guild
+    .fetchAuditLogs({ type: "CHANNEL_CREATE" })
+    .then(audit => audit.entries.first());
+  if (entry.executor.id == client.user.id) return;
+  if (entry.executor.hasPermission("ADMINISTRATOR")) return;
+  channel.delete();
+  const embed = new Discord.RichEmbed()
+    .setTitle(`Bir kanal açıldı!`)
+    .addField(`Açan`, entry.executor.tag)
+    .addField(`Açılan Kanal`, channel.name);
+  client.channels.get(kanal).send(embed);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*client.on("message", async message => {
   let banl = await db.fetch(`banl_${message.author.id}`);
   let ban = await db.fetch(`banlimti_${message.guild.id}`);
