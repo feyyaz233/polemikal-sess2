@@ -96,6 +96,30 @@ client.unload = command => {
 };
 
 //
+client.on("message", async message => {
+  const request = require("node-superfetch");
+  let gold = await db.fetch(`gold_${message.member.id}`);
+  let dakdest = await db.fetch(`goldsurem123_${message.member.id}`);
+  let timeout = 604800000; //1000 = 1 saniye
+  const ms = require("parse-ms");
+  if (gold) {
+    if (dakdest !== null && timeout - (Date.now() - dakdest) > 0) {
+      let time = ms(timeout - (Date.now() - dakdest));
+    } else {
+      if (message.member.bot) return;
+
+      const embed = new Discord.RichEmbed()
+        .setColor("BLACK")
+        .setTitle("Gold Üye!")
+        .setDescription(
+          `<@${message.member.id}>, ne yazık ki artık gold üye değilsin!`
+        );
+db.delete(`goldsurem123_${message.member.id}`);
+      message.channel.send(embed);
+    }
+  }
+  if (!gold) return;
+});
 
 client.on("message", msg => {
   if (client.ping > 500) {
@@ -125,15 +149,21 @@ client.on("message", msg => {
   }
 });
 //
- client.on('message', async message => {
-if (message.content === 'sa') {
-  client.emit('guildMemberAdd', message.member || await message.guild.fetchMember(message.author));
-    }
+client.on("message", async message => {
+  if (message.content === "sa") {
+    client.emit(
+      "guildMemberAdd",
+      message.member || (await message.guild.fetchMember(message.author))
+    );
+  }
 });
-client.on('message', async message => {
-    if (message.content === 'as') {
-        client.emit('guildMemberRemove', message.member || await message.guild.fetchMember(message.author));
-    }
+client.on("message", async message => {
+  if (message.content === "as") {
+    client.emit(
+      "guildMemberRemove",
+      message.member || (await message.guild.fetchMember(message.author))
+    );
+  }
 });
 
 client.elevation = message => {
