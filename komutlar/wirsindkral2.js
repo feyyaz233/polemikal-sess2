@@ -27,6 +27,8 @@ await db.delete(`rol1_${message.guild.id}`);
 await db.delete(`roldavet1_${message.guild.id}`);
   await db.set(`rol1_${message.guild.id}`, veri2)
   await db.set(`roldavet1_${message.guild.id}`, e3)
+  await db.delete(`rol2_${message.guild.id}`);
+await db.delete(`roldavet2_${message.guild.id}`);
   return
 }
   else if(rol.id === veri2){
