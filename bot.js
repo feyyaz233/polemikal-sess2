@@ -278,12 +278,13 @@ client.on("channelDelete", async channel => {
     .fetchAuditLogs({ type: "CHANNEL_DELETE" })
     .then(audit => audit.entries.first());
   if (entry.executor.id == client.user.id) return;
-  if (entry.executor.hasPermission("ADMINISTRATOR")) return;
+  //if (entry.executor.hasPermission("ADMINISTRATOR")) return;
   channel.guild.createChannel(channel.name);
 
   const embed = new Discord.RichEmbed()
     .setTitle(`Bir kanal silindi!`)
     .addField(`Silen`, entry.executor.tag)
+    .setColor("BLACK")
     .addField(`Silinen Kanal`, channel.name);
   client.channels.get(kanal).send(embed);
 });
@@ -299,6 +300,7 @@ client.on("channelCreate", async channel => {
   channel.delete();
   const embed = new Discord.RichEmbed()
     .setTitle(`Bir kanal açıldı!`)
+    .setColor("BLACK")
     .addField(`Açan`, entry.executor.tag)
     .addField(`Açılan Kanal`, channel.name);
   client.channels.get(kanal).send(embed);
