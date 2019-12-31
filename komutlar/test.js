@@ -24,13 +24,12 @@ exports.run = async (bot, message, args) => {
   .addField(`Klübü`, player.club.name, true)
   .addField(`Klüp Yetkisi`, player.club.role, true)
   message.channel.send(embed)
-  console.log(player);
 };
 exports.conf = {
   enabled: true,
   guildOnly: true,
   aliases: [],
-  permLevel: 4,
+  permLevel: 0,
   kategori: "yapımcı"
 };
 exports.help = {
