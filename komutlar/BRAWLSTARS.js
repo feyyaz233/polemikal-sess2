@@ -42,6 +42,8 @@ exports.run = async (client, message, args) => {
         .setDescription(
           `Bu komutu kullanabilmeniz için bota oy vermeniz gerekmektedir!\nBota Oy Ver: [Tıkla](https://top.gg/bot/642436223314558976/vote)`
         );
+      message.channel.send(embed);
+      return;
     }
   });
 };
@@ -49,11 +51,10 @@ exports.conf = {
   enabled: true,
   guildOnly: false,
   aliases: [],
-  permLevel: 4,
-  kategori: "yapımcı"
+  permLevel: 0
 };
 exports.help = {
-  name: "goldyap",
-  description: "Napcan?",
-  usage: "goldyap"
+  name: "bs",
+  description: "bs",
+  usage: "bs"
 };
