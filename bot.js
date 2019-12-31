@@ -96,31 +96,7 @@ client.unload = command => {
 };
 
 //
-client.on("message", async message => {
-  const request = require("node-superfetch");
-  let gold = await db.fetch(`gold_${message.member.id}`);
-  let dakdest = await db.fetch(`goldsurem123_${message.member.id}`);
-  let timeout = 604800000; //604800000 = 1 saniye
-  const ms = require("parse-ms");
-  if (!dakdest) return;
-  if (gold) {
-    if (timeout - (Date.now() - dakdest) > 0) {
-      let time = ms(timeout - (Date.now() - dakdest));
-    } else {
-      if (message.member.bot) return;
 
-      const embed = new Discord.RichEmbed()
-        .setColor("BLACK")
-        .setTitle("Gold Üye!")
-        .setDescription(
-          `<@${message.member.id}>, ne yazık ki artık gold üye değilsin!`
-        );
-      db.delete(`goldsurem123_${message.member.id}`);
-      message.channel.send(embed);
-    }
-  }
-  if (!gold) return;
-});
 
 client.on("message", msg => {
   if (client.ping > 500) {
@@ -150,98 +126,7 @@ client.on("message", msg => {
   }
 });
 //
-client.on("message", async message => {
-  let sayac = JSON.parse(fs.readFileSync("./ayarlar/sayac.json", "utf8"));
-  if (sayac[message.guild.id]) {
-    if (sayac[message.guild.id].sayi <= message.guild.members.size) {
-      const embed = new Discord.RichEmbed()
-        .setDescription(
-          `Tebrikler, başarılı bir şekilde ${sayac[message.guild.id].sayi} kullanıcıya ulaştık!`
-        )
-        .setColor("0x808080")
-        .setTimestamp();
-      message.channel.send({ embed });
-      delete sayac[message.guild.id].sayi;
-      delete sayac[message.guild.id];
-      fs.writeFile("./ayarlar/sayac.json", JSON.stringify(sayac), err => {
-        console.log(err);
-      });
-    }
-  }
-});
-client.on("guildMemberRemove", async member => {
-  let sayac = JSON.parse(fs.readFileSync("./ayarlar/sayac.json", "utf8"));
-  let giriscikis = JSON.parse(fs.readFileSync("./ayarlar/sayac.json", "utf8"));
 
-  if (!giriscikis[member.guild.id].kanal) {
-    return;
-  }
-
-  try {
-    let gold = await db.fetch(`gold_${member.id}`);
-    let giriscikiskanalID = giriscikis[member.guild.id].kanal;
-    let giriscikiskanali = client.guilds
-      .get(member.guild.id)
-      .channels.get(giriscikiskanalID);
-    if (!gold) {
-      giriscikiskanali.send(
-        `📤 ${member.user.tag}, aramızdan ayrıldı, \**${
-          sayac[member.guild.id].sayi
-        }\** kişi olmamıza \**${sayac[member.guild.id].sayi -
-          member.guild.memberCount}\** kişi kaldı!`
-      );
-      return;
-    } else {
-      giriscikiskanali.send(
-        `BU BİR GOLD ÜYE!!!\n📤 ${member.user.tag}, aramızdan ayrıldı, \**${
-          sayac[member.guild.id].sayi
-        }\** kişi olmamıza \**${sayac[member.guild.id].sayi -
-          member.guild.memberCount}\** kişi kaldı!`
-      );
-      return;
-    }
-  } catch (e) {
-    // eğer hata olursa bu hatayı öğrenmek için hatayı konsola gönderelim.
-    return console.log(e);
-  }
-});
-
-client.on("guildMemberAdd", async member => {
-  let sayac = JSON.parse(fs.readFileSync("./ayarlar/sayac.json", "utf8"));
-  let giriscikis = JSON.parse(fs.readFileSync("./ayarlar/sayac.json", "utf8"));
-
-  if (!giriscikis[member.guild.id].kanal) {
-    return;
-  }
-
-  try {
-    let gold = await db.fetch(`gold_${member.id}`);
-    let giriscikiskanalID = giriscikis[member.guild.id].kanal;
-    let giriscikiskanali = client.guilds
-      .get(member.guild.id)
-      .channels.get(giriscikiskanalID);
-    if (!gold) {
-      giriscikiskanali.send(
-        `📥 ${member.user.tag}, aramıza katıldı **${
-          sayac[member.guild.id].sayi
-        }** kişi olmamıza **${sayac[member.guild.id].sayi -
-          member.guild.memberCount}** kişi kaldı!`
-      );
-      return;
-    } else {
-      giriscikiskanali.send(
-        `BU BİR GOLD ÜYE!!!\n📥 ${member.user.tag}, aramıza katıldı **${
-          sayac[member.guild.id].sayi
-        }** kişi olmamıza **${sayac[member.guild.id].sayi -
-          member.guild.memberCount}** kişi kaldı!`
-      );
-      return;
-    }
-  } catch (e) {
-    // eğer hata olursa bu hatayı öğrenmek için hatayı konsola gönderelim.
-    return console.log(e);
-  }
-});
 
 client.on("guildMemberAdd", async member => {
   let user = client.users.get(member.id);
