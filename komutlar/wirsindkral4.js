@@ -63,7 +63,7 @@ exports.run = async (client, message, args, tools) => {
       return;
     }
   }
-  if (message.member.roles.has(veri2)) {
+  if (message.member.roles.has(veri2) && message.member.roles.has(veri)) {
     const embed = new Discord.RichEmbed()
       .addField(`Davetlerin Sahibi`, `<@` + kişi.id + `>`, true)
       .addField(`Total Davet:`, sayı2, true)
