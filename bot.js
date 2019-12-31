@@ -197,9 +197,14 @@ client.on("ready", () => {
 client.on("guildMemberRemove", async member => {
   let kanal = await db.fetch(`davetkanal_${member.guild.id}`);
   if (!kanal) return;
-
+let veri = await db.fetch(`rol1_${member.guild.id}`);
+    let veri12 = await db.fetch(`roldavet1_${member.guild.id}`);
+    let veri21 = await db.fetch(`roldavet2_${member.guild.id}`);
+    let veri2 = await db.fetch(`rol2_${member.guild.id}`);
   let d = await db.fetch(`bunudavet_${member.id}`);
   const sa = client.users.get(d);
+  const sasad = member.guild.members.get(d);
+  let sayı2 = await db.fetch(`davet_${d}_${member.guild.id}`);
   db.add(`davet_${d}_${member.guild.id}`, -1);
 
   if (!d) {
@@ -219,7 +224,21 @@ client.on("guildMemberRemove", async member => {
       )
       .setFooter(client.user.username, client.user.avatarURL);
     client.channels.get(kanal).send(aa);
-    return;
+    
+        if (!veri) return;
+
+    if (sasad.roles.has(veri)) {
+      if (sayı2 <= veri12) {
+        sasad.removeRole(veri);
+        return
+      }
+    } if()
+      if (!veri2) return;
+      if (sayı2 => veri21) {
+        sasad.addRole(veri2);
+        return
+      }
+    }
   }
 });
 
@@ -236,7 +255,7 @@ client.on("guildMemberAdd", async member => {
     invites[member.guild.id] = guildInvites;
 
     const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-
+    const sasad = member.guild.members.get(invite.inviter.id);
     const davetçi = client.users.get(invite.inviter.id);
 
     db.add(`davet_${invite.inviter.id}_${member.guild.id}`, +1);
@@ -258,15 +277,18 @@ client.on("guildMemberAdd", async member => {
       .setFooter(client.user.username, client.user.avatarURL);
     client.channels.get(kanal).send(aa);
     if (!veri) return;
-    if (sayı2 => veri21) {
-      if (invite.inviter.roles.has(veri2)) return;
-      invite.inviter.addRole(veri2);
-      return;
-    }
-    if (sayı2 => veri12) {
-      if (invite.inviter.roles.has(veri)) return;
-      invite.inviter.addRole(veri);
-      return;
+
+    if (!sasad.roles.has(veri)) {
+      if (sayı2 => veri12) {
+        sasad.addRole(veri);
+        return
+      }
+    } else {
+      if (!veri2) return;
+      if (sayı2 => veri21) {
+        sasad.addRole(veri2);
+        return
+      }
     }
   });
 });
@@ -279,9 +301,11 @@ client.on("channelDelete", async channel => {
     .then(audit => audit.entries.first());
   if (entry.executor.id == client.user.id) return;
   if (entry.executor.hasPermission("ADMINISTRATOR")) return;
-  channel.guild.createChannel(channel.name, 'text', [{
-    id: channel.guild.id
-  }]);
+  channel.guild.createChannel(channel.name, "text", [
+    {
+      id: channel.guild.id
+    }
+  ]);
 
   const embed = new Discord.RichEmbed()
     .setTitle(`Bir kanal silindi!`)
