@@ -197,10 +197,10 @@ client.on("ready", () => {
 client.on("guildMemberRemove", async member => {
   let kanal = await db.fetch(`davetkanal_${member.guild.id}`);
   if (!kanal) return;
-let veri = await db.fetch(`rol1_${member.guild.id}`);
-    let veri12 = await db.fetch(`roldavet1_${member.guild.id}`);
-    let veri21 = await db.fetch(`roldavet2_${member.guild.id}`);
-    let veri2 = await db.fetch(`rol2_${member.guild.id}`);
+  let veri = await db.fetch(`rol1_${member.guild.id}`);
+  let veri12 = await db.fetch(`roldavet1_${member.guild.id}`);
+  let veri21 = await db.fetch(`roldavet2_${member.guild.id}`);
+  let veri2 = await db.fetch(`rol2_${member.guild.id}`);
   let d = await db.fetch(`bunudavet_${member.id}`);
   const sa = client.users.get(d);
   const sasad = member.guild.members.get(d);
@@ -224,19 +224,20 @@ let veri = await db.fetch(`rol1_${member.guild.id}`);
       )
       .setFooter(client.user.username, client.user.avatarURL);
     client.channels.get(kanal).send(aa);
-    
-        if (!veri) return;
+
+    if (!veri) return;
 
     if (sasad.roles.has(veri)) {
       if (sayı2 <= veri12) {
         sasad.removeRole(veri);
-        return
+        return;
       }
-    } if()
+    }
+    if (sasad.roles.has(veri2)) {
       if (!veri2) return;
-      if (sayı2 => veri21) {
-        sasad.addRole(veri2);
-        return
+      if (sayı2 <= veri21) {
+        sasad.removeRole(veri2);
+        return;
       }
     }
   }
@@ -281,13 +282,13 @@ client.on("guildMemberAdd", async member => {
     if (!sasad.roles.has(veri)) {
       if (sayı2 => veri12) {
         sasad.addRole(veri);
-        return
+        return;
       }
     } else {
       if (!veri2) return;
       if (sayı2 => veri21) {
         sasad.addRole(veri2);
-        return
+        return;
       }
     }
   });
