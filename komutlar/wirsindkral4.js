@@ -27,8 +27,8 @@ exports.run = async (client, message, args, tools) => {
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL);
     message.channel.send(embed);
-  } 
-  if(!message.member.roles.has(veri)){
+  }
+  if (!message.member.roles.has(veri)) {
     const embed = new Discord.RichEmbed()
       .addField(`Davetlerin Sahibi`, `<@` + kişi.id + `>`, true)
       .addField(`Total Davet:`, sayı2, true)
@@ -41,15 +41,16 @@ exports.run = async (client, message, args, tools) => {
     return;
   }
   if (message.member.roles.has(veri)) {
-      if (!veri2) {
-        const embed = new Discord.RichEmbed()
-          .addField(`Davetlerin Sahibi`, `<@` + kişi.id + `>`, true)
-          .addField(`Total Davet:`, sayı2, true)
-          .setColor("BLACK")
-          .setFooter(client.user.username, client.user.avatarURL);
-        message.channel.send(embed);
-        return;
-      }
+    if (!veri2) {
+      const embed = new Discord.RichEmbed()
+        .addField(`Davetlerin Sahibi`, `<@` + kişi.id + `>`, true)
+        .addField(`Total Davet:`, sayı2, true)
+        .setColor("BLACK")
+        .setFooter(client.user.username, client.user.avatarURL);
+      message.channel.send(embed);
+      return;
+    }
+    if (veri2) {
       const embed = new Discord.RichEmbed()
         .addField(`Davetlerin Sahibi`, `<@` + kişi.id + `>`, true)
         .addField(`Total Davet:`, sayı2, true)
@@ -61,16 +62,16 @@ exports.run = async (client, message, args, tools) => {
       message.channel.send(embed);
       return;
     }
-    if (message.member.roles.has(veri2)) {
-      const embed = new Discord.RichEmbed()
-        .addField(`Davetlerin Sahibi`, `<@` + kişi.id + `>`, true)
-        .addField(`Total Davet:`, sayı2, true)
-        .setColor("BLACK")
-        .setFooter(client.user.username, client.user.avatarURL);
-      message.channel.send(embed);
-      return;
-    }
-    
+  }
+  if (message.member.roles.has(veri2)) {
+    const embed = new Discord.RichEmbed()
+      .addField(`Davetlerin Sahibi`, `<@` + kişi.id + `>`, true)
+      .addField(`Total Davet:`, sayı2, true)
+      .setColor("BLACK")
+      .setFooter(client.user.username, client.user.avatarURL);
+    message.channel.send(embed);
+    return;
+  }
 };
 exports.conf = {
   enabled: true,

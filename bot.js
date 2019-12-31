@@ -142,7 +142,7 @@ client.on("guildMemberAdd", async member => {
   if (kurulus < 2629800000) kontrol = "resim1";
 });
 
-client.on("message", async message => {
+/*client.on("message", async message => {
   if (message.content === "sa") {
     client.emit(
       "guildMemberAdd",
@@ -157,7 +157,7 @@ client.on("message", async message => {
       message.member || (await message.guild.fetchMember(message.author))
     );
   }
-});
+});*/
 
 client.on("channelDelete", async channel => {
   let kanal = await db.fetch(`rolk_${channel.guild.id}`);
