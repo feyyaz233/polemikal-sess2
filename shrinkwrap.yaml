@@ -1,5 +1,6 @@
 dependencies:
   array-sort: 1.0.0
+  brawlstars: 1.2.4
   canvas: 2.6.1
   chalk: 3.0.0
   colors: 1.4.0
@@ -1531,6 +1532,12 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-b8um+L1RzM3WDSzvhm6gIz1yfTbBt6YTlcEKAvsmqCZZFw46z626lVj9j1yEPW33H5H+lBQpZMP1k8l+78Ha0A==
+  /brawlstars/1.2.4:
+    dependencies:
+      ladybug-fetch: 0.1.0
+    dev: false
+    resolution:
+      integrity: sha512-8WwBHme1a4Rx8nKZs6O34suLJ0K450fWmp10I6oDeb81CCnJdd8u1EILzXkUr5ig+uPkqcoPlF9xYZq+ERzzPg==
   /brorand/1.1.0:
     dev: false
     resolution:
@@ -5330,6 +5337,10 @@ packages:
       npm: '>= 3.0.0'
     resolution:
       integrity: sha1-KGru3ANWazPefBm+2zYckgMeJrY=
+  /ladybug-fetch/0.1.0:
+    dev: false
+    resolution:
+      integrity: sha512-Jn91T2z3hRAix7dne02PbuLQbCb1HI/mim5pXwnqm0VsQQmKxG7jGjO6+I7uJNxvFqfitd6Su5MiPBbZjzLWjw==
   /latest-version/5.1.0:
     dependencies:
       package-json: 6.5.0
@@ -9197,6 +9208,7 @@ shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   array-sort: ^1.0.0
+  brawlstars: ^1.2.4
   canvas: ^2.6.1
   chalk: ^3.0.0
   colors: ^1.4.0
