@@ -10,9 +10,9 @@ exports.run = async (bot, message, args) => {
   const player = await client2.getPlayer(bs2);
   const embed = new Discord.RichEmbed()
   .setColor("BLACK")
-  .setTitle(player.name)
+  .setTitle(`BRAWL STARS HESAP KONTROL`)
   .addField(`Hesap Adı`, player.name, true)
-  .addField(`Hesap Tagı`, player.tag, true)
+  .addField(`Hesap Tagı`, `#${player.tag}`, true)
   .addField(`Ad Renk Id`, player.nameColorId, true)
   .addField(`Mevcut Kupa`, player.trophies, true)
   .addField(`En Yüksek Kupa`, player.highestTrophies, true)
@@ -23,7 +23,6 @@ exports.run = async (bot, message, args) => {
   .addField(`Büyük Savaşçı Rekoru`, player.bestTimeAsBigBrawler, true)
   .addField(`Klübü`, player.club.name, true)
   .addField(`Klüp Yetkisi`, player.club.role, true)
-.setImage(player.avatarUrl)
   message.channel.send(embed)
   console.log(player);
 };
