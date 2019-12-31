@@ -243,12 +243,12 @@ client.on("guildMemberAdd", async member => {
       .setFooter(client.user.username, client.user.avatarURL);
     client.channels.get(kanal).send(aa);
     if(!veri) return
-    if(sayı2 == veri21){
+    if(sayı2 => veri21){
       if(invite.inviter.roles.has(veri2)) return
       invite.inviter.addRole(veri2)
       return
     }
-    if(sayı2 == veri12){
+    if(sayı2 => veri12){
       if(invite.inviter.roles.has(veri)) return
       invite.inviter.addRole(veri)
       return
