@@ -159,6 +159,125 @@ client.on("message", async message => {
   }
 });*/
 
+
+
+
+
+
+const invites = {};
+
+const wait = require("util").promisify(setTimeout);
+
+client.on("ready", () => {
+  wait(1000);
+
+  client.guilds.forEach(g => {
+    g.fetchInvites().then(guildInvites => {
+      invites[g.id] = guildInvites;
+    });
+  });
+});
+
+client.on("guildMemberRemove", async member => {
+  let kanal = await db.fetch(`davetkanal_${member.guild.id}`);
+  if (!kanal) return;
+
+  let d = await db.fetch(`bunudavet_${member.id}`);
+  const sa = client.users.get(d);
+  db.add(`davet_${d}_${member.guild.id}`, -1);
+
+  if (!d) {
+    const aa = new Discord.RichEmbed()
+      .setColor("BLACK")
+      .setDescription(
+        `\`\`${member.user.tag}\`\` **adlı şahıs aramızdan ayrıldı.\nŞahsı davet eden:** \`\`Bulunamadı!\`\``
+      )
+      .setFooter(client.user.username, client.user.avatarURL);
+    client.channels.get(kanal).send(aa);
+    return;
+  } else {
+    const aa = new Discord.RichEmbed()
+      .setColor("BLACK")
+      .setDescription(
+        `\`\`${member.user.tag}\`\` **adlı şahıs aramızdan ayrıldı.\nŞahsı davet eden:** \`\`${sa.tag}\`\``
+      )
+      .setFooter(client.user.username, client.user.avatarURL);
+    client.channels.get(kanal).send(aa);
+    return;
+  }
+});
+
+client.on("guildMemberAdd", async member => {
+  
+  member.guild.fetchInvites().then(async guildInvites => {
+      let veri = await db.fetch(`rol1_${member.guild.id}`);
+  let veri12 = await db.fetch(`roldavet1_${member.guild.id}`);
+  let veri21 = await db.fetch(`roldavet2_${member.guild.id}`);
+  let veri2 = await db.fetch(`rol2_${member.guild.id}`);
+    let kanal = await db.fetch(`davetkanal_${member.guild.id}`);
+    if (!kanal) return;
+    const ei = invites[member.guild.id];
+
+    invites[member.guild.id] = guildInvites;
+
+    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+
+    const davetçi = client.users.get(invite.inviter.id);
+
+    db.add(`davet_${invite.inviter.id}_${member.guild.id}`, +1);
+    db.set(`bunudavet_${member.id}`, invite.inviter.id);
+    let sayı = await db.fetch(`davet_${invite.inviter.id}_${member.guild.id}`);
+
+    let sayı2;
+    if (!sayı) {
+      sayı2 = 0;
+    } else {
+      sayı2 = await db.fetch(`davet_${invite.inviter.id}_${member.guild.id}`);
+    }
+
+    const aa = new Discord.RichEmbed()
+      .setColor("BLACK")
+      .setDescription(
+        `\`\`${member.user.tag}\`\` **adlı şahıs sunucuya katıldı.\nŞahsı davet eden:** \`\`${davetçi.tag}\`\`\n**Toplam \`\`${sayı2}\`\` daveti oldu!**`
+      )
+      .setFooter(client.user.username, client.user.avatarURL);
+    client.channels.get(kanal).send(aa);
+    if(!veri) return
+    if(sayı2 == veri21){
+      if(invite.inviter.roles.has(veri2)) return
+      invite.inviter.addRole(veri2)
+      return
+    }
+    if(sayı2 == veri12){
+      if(invite.inviter.roles.has(veri)) return
+      invite.inviter.addRole(veri)
+      return
+    }
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 client.on("channelDelete", async channel => {
   let kanal = await db.fetch(`rolk_${channel.guild.id}`);
   if (!kanal) return;
