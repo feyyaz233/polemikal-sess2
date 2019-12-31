@@ -65,8 +65,8 @@ exports.conf = {
 }
 
 exports.help = {
-	name: 'avel',
+	name: 'se',
 	description: 'Yazılan kodu çalıştırır.',
-	usage: 'avel [kod]'
+	usage: 'se [kod]'
 }
 //Komutlara atcan kardeş
