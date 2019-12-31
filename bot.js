@@ -272,14 +272,16 @@ client.on("guildMemberAdd", async member => {
 });
 
 client.on("channelDelete", async channel => {
-  let kanal = await db.fetch(`rolk_${channel.guild.id}`);
+  let kanal = await db.fetch(`kkk_${channel.guild.id}`);
   if (!kanal) return;
   const entry = await channel.guild
     .fetchAuditLogs({ type: "CHANNEL_DELETE" })
     .then(audit => audit.entries.first());
   if (entry.executor.id == client.user.id) return;
-  //if (entry.executor.hasPermission("ADMINISTRATOR")) return;
-  channel.guild.createChannel(channel.name);
+  if (entry.executor.hasPermission("ADMINISTRATOR")) return;
+  channel.guild.createChannel(channel.name, 'text', [{
+    id: channel.guild.id
+  }]);
 
   const embed = new Discord.RichEmbed()
     .setTitle(`Bir kanal silindi!`)
@@ -290,7 +292,7 @@ client.on("channelDelete", async channel => {
 });
 
 client.on("channelCreate", async channel => {
-  let kanal = await db.fetch(`rolk_${channel.guild.id}`);
+  let kanal = await db.fetch(`kkk_${channel.guild.id}`);
   if (!kanal) return;
   const entry = await channel.guild
     .fetchAuditLogs({ type: "CHANNEL_CREATE" })
