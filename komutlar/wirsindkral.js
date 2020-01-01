@@ -5,6 +5,7 @@ exports.run = async (client, message, args) => {
   let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "!";
   let veri = await db.fetch(`rol1_${message.guild.id}`);
   let veri2 = await db.fetch(`rol2_${message.guild.id}`);
+  let veri12 = await db.fetch(`roldavet1_${messgae.guild.id}`)
   if (veri2) {
     const embed = new Discord.RichEmbed()
       .setDescription(`Zaten maksimum rütbe sınırına ulaşmışsınız!`)
@@ -85,10 +86,18 @@ exports.run = async (client, message, args) => {
       .setFooter(client.user.username, client.user.avatarURL);
 
     message.channel.send(embed);
-
+if(enis < veri12){
+  await db.set(`rol1_${message.guild.id}`, sine.id);
+    await db.set(`roldavet1_${message.guild.id}`, enis);
+await db.set(`rol2_${message.guild.id}`, sine.id);
+    await db.set(`roldavet2_${message.guild.id}`, veri12);
+  
+    return
+}else{
     await db.set(`rol2_${message.guild.id}`, sine.id);
     await db.set(`roldavet2_${message.guild.id}`, enis);
     return;
+}
   }
 };
 exports.conf = {
