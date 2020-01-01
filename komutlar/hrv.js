@@ -27,11 +27,11 @@ exports.run = async (client, message, args) => {
     .setDescription(`Herkesten ${rol} adlı rol verilmekte!`)
     .setColor("BLACK");
 
-setTimeout(() => {
+
      message.guild.members.forEach(u => {
-    u.removeRole(rol);
-  });
-}, 1000)
+    u.addRole(rol);
+     })
+
   // message.channel.send('Herkese **'+ rol.name +'** adlı rol verildi!')
   message.channel.send(embed);
 };

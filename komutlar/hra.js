@@ -27,11 +27,11 @@ exports.run = async (client, message, args) => {
     .setDescription(`Herkesten ${rol} adlı rol alınmakta!`)
     .setColor("BLACK");
 
-  setTimeout(() => {
+  
     message.guild.members.forEach(u => {
       u.removeRole(rol);
     });
-  }, 1000);
+  
 
   message.channel.send(embed);
 };
