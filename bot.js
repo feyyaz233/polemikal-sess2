@@ -126,43 +126,6 @@ client.on("message", msg => {
 });
 //
 
-client.on("guildMemberAdd", async member => {
-  let user = client.users.get(member.id);
-  let kanal = client.channels.get(`658735941938053131`);
-  const Canvas = require("canvas");
-  const canvas = Canvas.createCanvas(500, 150);
-  const ctx = canvas.getContext("2d");
-
-  const resim1 = await Canvas.loadImage(
-    "https://cdn.discordapp.com/attachments/645974126325923859/661620832832978955/spj.png"
-  );
-  const resim2 = await Canvas.loadImage(
-    "https://cdn.discordapp.com/attachments/645974126325923859/661620295597031447/guvv.png"
-  );
-  const kurulus = new Date().getTime() - user.createdAt.getTime();
-  const gün = moment(kurulus).format("dddd");
-  var kontrol;
-  if (kurulus > 2629800000) kontrol = resim2;
-  if (kurulus < 2629800000) kontrol = resim1;
-  const background = await Canvas.loadImage(
-    "https://cdn.discordapp.com/attachments/658735941938053131/661622456137809995/unknown.png"
-  );
-  ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-
-  const avatar = await Canvas.loadImage(member.user.displayAvatarURL);
-  ctx.drawImage(kontrol, 0, 0, canvas.width, canvas.height);
-  ctx.beginPath();
-  ctx.lineWidth = 4;
-  ctx.fill();
-  ctx.lineWidth = 4;
-  ctx.arc(180, 46, 36, 0, 2 * Math.PI);
-  ctx.clip();
-  ctx.drawImage(avatar, 0, 0, 0, 0);
-
-  const attachment = new Discord.Attachment(canvas.toBuffer(), "güvenlik.png");
-  kanal.send(attachment);
-});
-
 client.on("message", async message => {
   if (message.content === "sa") {
     client.emit(
@@ -245,52 +208,26 @@ client.on("guildMemberRemove", async member => {
 
 client.on("guildMemberAdd", async member => {
   member.guild.fetchInvites().then(async guildInvites => {
-    let veri = await db.fetch(`rol1_${member.guild.id}`);
-    let veri12 = await db.fetch(`roldavet1_${member.guild.id}`);
-    let veri21 = await db.fetch(`roldavet2_${member.guild.id}`);
-    let veri2 = await db.fetch(`rol2_${member.guild.id}`);
-    let kanal = await db.fetch(`davetkanal_${member.guild.id}`);
-    if (!kanal) return;
+    let kanal = client.channels.get(`651462821489541120`);
     const ei = invites[member.guild.id];
 
-    invites[member.guild.id] = guildInvites;
-
-    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-    const sasad = member.guild.members.get(invite.inviter.id);
-    const davetçi = client.users.get(invite.inviter.id);
-
-    db.add(`davet_${invite.inviter.id}_${member.guild.id}`, +1);
-    db.set(`bunudavet_${member.id}`, invite.inviter.id);
-    let sayı = await db.fetch(`davet_${invite.inviter.id}_${member.guild.id}`);
-
-    let sayı2;
-    if (!sayı) {
-      sayı2 = 0;
-    } else {
-      sayı2 = await db.fetch(`davet_${invite.inviter.id}_${member.guild.id}`);
-    }
+    const invite2 = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+    const sasad = member.guild.members.get(invite2.inviter.id);
+    const davetçi = client.users.get(invite2.inviter.id);
+    let invites = await member.guild.fetchInvites();
+    let regular = invites
+      .array()
+      .find(invite => invite.inviter.id === invite2.inviter.id)
+      ? invites.find(invite => invite.inviter.id === invite2.inviter.id).uses
+      : 0;
 
     const aa = new Discord.RichEmbed()
       .setColor("BLACK")
       .setDescription(
-        `\`\`${member.user.tag}\`\` **adlı şahıs sunucuya katıldı.\nŞahsı davet eden:** \`\`${davetçi.tag}\`\`\n**Toplam \`\`${sayı2}\`\` daveti oldu!**`
+        `\`\`${member.user.tag}\`\` **adlı şahıs sunucuya katıldı.\nŞahsı davet eden:** \`\`${davetçi.tag}\`\`\n**Toplam \`\`${regular}\`\` daveti oldu!**`
       )
       .setFooter(client.user.username, client.user.avatarURL);
-    client.channels.get(kanal).send(aa);
-    if (!veri) return;
-
-    if (!sasad.roles.has(veri)) {
-      if (sayı2 => veri12) {
-        sasad.addRole(veri);
-        return;
-      }
-    } else {
-      if (!veri2) return;
-      if (sayı2 => veri21) {
-        sasad.addRole(veri2);
-        return;
-      }
-    }
+    kanal.send(aa);
   });
 });
 
