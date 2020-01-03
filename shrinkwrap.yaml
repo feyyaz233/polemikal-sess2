@@ -12,6 +12,7 @@ dependencies:
   ffmpeg: 0.0.4
   ffmpeg-binaries: 4.0.0
   figlet: 1.2.4
+  fortnitetracker-7days-stats: 3.3.1
   fs: 0.0.2
   g-image-search: 1.0.2
   generate-password: 1.4.2
@@ -3798,6 +3799,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Fs9VRguL0gqGHkXS5GQiMCr1VhZBxz0JnJs4JmMp/2jL18Fmbzvv7vOFRU+U8TBkHEE/CX1qDXzJplVULgsLeg==
+  /fortnitetracker-7days-stats/3.3.1:
+    dependencies:
+      request: 2.88.0
+    dev: false
+    resolution:
+      integrity: sha512-7AHUtbNS8/hwpwnFKoy5IBKL7Dz2PtjSWbGrZAjUTMginvLzQW6cChwI9WqT4nOnlEreVVT20ZJXKriqy2EYbA==
   /forwarded/0.1.2:
     dev: false
     engines:
@@ -9220,6 +9227,7 @@ specifiers:
   ffmpeg: ^0.0.4
   ffmpeg-binaries: ^4.0.0
   figlet: ^1.2.4
+  fortnitetracker-7days-stats: ^3.3.0
   fs: ^0.0.2
   g-image-search: ^1.0.2
   generate-password: ^1.4.1

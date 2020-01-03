@@ -53,7 +53,8 @@
     "quick.hook": "^1.5.1",
     "util": "^0.12.1",
     "canvas": "^2.6.1",
-    "brawlstars": "^1.2.4"
+    "brawlstars": "^1.2.4",
+    "fortnitetracker-7days-stats": "^3.3.0"
   },
   "engines": {
     "node": "8.x"
