@@ -169,6 +169,9 @@ client.on("guildMemberRemove", async member => {
   client.channels.get(kanal).send(a2a);
 });
 
+
+
+
 client.on("guildMemberAdd", async member => {
   member.guild.fetchInvites().then(async guildInvites => {
     let kanal = client.channels.get(`651462821489541120`);
