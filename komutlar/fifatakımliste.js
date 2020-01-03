@@ -1,41 +1,60 @@
-const fnt = require("fortnitetracker-7days-stats");
 const Discord = require("discord.js");
-exports.run = async (client, message, args) => {
-  let platform = args[0];
-  let user = args.slice(1).join(" ");
-
-  if (!platform)
+const db = require("quick.db");
+module.exports.run = async (bot, message, args) => {
+  let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "!";
+  let coderlib =
+    message.guild.member(message.mentions.users.first()) ||
+    message.guild.members.get(args[0]);
+  if (!coderlib)
     return message.channel.send(
-      "Lütfen bir platform belirtiniz!\nMevcut platformlar: `pc`, `psn`, `xbl`"
+      new Discord.RichEmbed()
+        .setDescription(
+          `Lütfen bir kullanıcı giriniz!\nÖrnek: ${prefix}rol-al <@Kullanıcı> <Rol>`
+        )
+        .setFooter(bot.user.username, bot.user.avatarURL)
+        .setColor("BLACK")
     );
-  if (!user) return message.channel.send("Lütfen bir kullanıcı belirtiniz!");
-  fnt.getStats(user, platform, (err, result) => {
-    if (err) {
-      message.channel.send("Hata var!");
-    } else {
-      const embed = new Discord.RichEmbed()
-        .addField("Oyuncu", result.accountName)
-        .addField("Platform", result.platform)
-        .addField("Skor", result.score)
-        .addField("Toplam Öldürme", result.kills)
-        .addField("Toplam Zafer", result.wins)
-        .addField("Oynalınan Maç", result.matches)
-        .addField("KD Oranı", result.kd)
-        .addField("Toplam Oynama", result.minutesPlayed)
-        .setThumbnail(result.skinUrl);
-      message.channel.send(embed);
-    }
-  });
-};
-exports.conf = {
-  enabled: true,
-  guildOnly: true,
-  aliases: [],
-  permLevel: 0
+  let coderlib2 =
+    message.mentions.roles.first() ||
+    message.guild.roles.find(rol => rol.name === args[1]);
+
+  if (!coderlib2)
+    return message.channel.send(
+      new Discord.RichEmbed()
+        .setDescription(
+          `Lütfen bir rol belirtiniz!\nÖrnek: ${prefix}rol-al <@Kullanıcı> <Rol>`
+        )
+        .setFooter(bot.user.username, bot.user.avatarURL)
+        .setColor("BLACK")
+    );
+
+  if (!coderlib.roles.has(coderlib2.id))
+    return message.channel.send(
+      new Discord.RichEmbed()
+        .setDescription("Kullanıcı zaten bu role sahip değil!")
+        .setColor("BLACK")
+        .setFooter(bot.user.username, bot.user.avatarURL)
+    );
+  await coderlib.removeRole(coderlib2.id);
+  message.channel.send(
+    new Discord.RichEmbed()
+      .setDescription(
+        `${coderlib} adlı şahıstan \`${coderlib.name}\` adlı rol alındı!`
+      )
+      .setColor("BLACK")
+      .setFooter(bot.user.username, bot.user.avatarURL)
+  );
 };
 
-exports.help = {
-  name: "fortnite",
-  description: "fortnite",
-  usage: "fortnite <platform> <oyuncu adı>"
+module.exports.conf = {
+  aliases: ["rolal"],
+  permLevel: 2,
+  enabled: true,
+  guildOnly: true
+};
+
+module.exports.help = {
+  name: "rol-al",
+  description: "rol-al",
+  usage: "rol-al"
 };
