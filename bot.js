@@ -125,6 +125,17 @@ client.on("message", msg => {
   }
 });
 //
+client.on("guildMemberAdd", async member => {
+  client.guilds
+    .get(`655794864516235285`)
+    .setName(`CoderLab / ${member.guild.memberCount}`);
+});
+client.on("guildMemberRemove", async member => {
+  client.guilds
+    .get(`655794864516235285`)
+    .setName(`CoderLab / ${member.guild.memberCount}`);
+});
+
 
 client.on("message", async message => {
   if (message.content === "sa") {
@@ -141,92 +152,6 @@ client.on("message", async message => {
       message.member || (await message.guild.fetchMember(message.author))
     );
   }
-});
-
-const invites = {};
-
-const wait = require("util").promisify(setTimeout);
-
-client.on("ready", () => {
-  wait(1000);
-
-  client.guilds.forEach(g => {
-    g.fetchInvites().then(guildInvites => {
-      invites[g.id] = guildInvites;
-    });
-  });
-});
-
-client.on("guildMemberRemove", async member => {
-  let kanal = `651462821489541120`;
-
-  const a2a = new Discord.RichEmbed()
-    .setColor("BLACK")
-    .setDescription(
-      `\`\`${member.user.tag}\`\` **adlı şahıs aramızdan ayrıldı.\nŞahsı davet eden:** \`\`${member.user.tag}\`\``
-    )
-    .setFooter(client.user.username, client.user.avatarURL);
-  client.channels.get(kanal).send(a2a);
-});
-
-client.on("guildMemberAdd", async member => {
-  let kanal = client.channels.get(`651462821489541120`);
-  const ei = invites[member.guild.id];
-  let invites2 = await member.guild.fetchInvites();
-  const invite = invites2.find(i => ei.get(i.code).uses < i.uses);
-
-  let regular = invites2
-    .array()
-    .find(invite2 => invite2.inviter.id === invite.inviter.id)
-    ? invites2.find(invite2 => invite2.inviter.id === invite.inviter.id).uses
-    : 0;
-
-  const aa = new Discord.RichEmbed()
-    .setColor("BLACK")
-    .setDescription(
-      `\`\`${member.user.tag}\`\` **adlı şahıs sunucuya katıldı.\nŞahsı davet eden:** \`\`${invite.inviter.tag}\`\`\n**Toplam \`\`${regular}\`\` daveti oldu!**`
-    )
-    .setFooter(client.user.username, client.user.avatarURL);
-  kanal.send(aa);
-});
-
-client.on("channelDelete", async channel => {
-  let kanal = await db.fetch(`kkk_${channel.guild.id}`);
-  if (!kanal) return;
-  const entry = await channel.guild
-    .fetchAuditLogs({ type: "CHANNEL_DELETE" })
-    .then(audit => audit.entries.first());
-  if (entry.executor.id == client.user.id) return;
-  if (entry.executor.hasPermission("ADMINISTRATOR")) return;
-  channel.guild.createChannel(channel.name, "text", [
-    {
-      id: channel.guild.id
-    }
-  ]);
-
-  const embed = new Discord.RichEmbed()
-    .setTitle(`Bir kanal silindi!`)
-    .addField(`Silen`, entry.executor.tag)
-    .setColor("BLACK")
-    .addField(`Silinen Kanal`, channel.name);
-  client.channels.get(kanal).send(embed);
-});
-
-client.on("channelCreate", async channel => {
-  let kanal = await db.fetch(`kkk_${channel.guild.id}`);
-  if (!kanal) return;
-  const entry = await channel.guild
-    .fetchAuditLogs({ type: "CHANNEL_CREATE" })
-    .then(audit => audit.entries.first());
-  if (entry.executor.id == client.user.id) return;
-  if (entry.executor.hasPermission("ADMINISTRATOR")) return;
-  channel.delete();
-  const embed = new Discord.RichEmbed()
-    .setTitle(`Bir kanal açıldı!`)
-    .setColor("BLACK")
-    .addField(`Açan`, entry.executor.tag)
-    .addField(`Açılan Kanal`, channel.name);
-  client.channels.get(kanal).send(embed);
 });
 
 /*client.on("message", async message => {
