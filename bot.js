@@ -169,24 +169,21 @@ client.on("guildMemberRemove", async member => {
   client.channels.get(kanal).send(a2a);
 });
 
-
-
-
 client.on("guildMemberAdd", async member => {
   member.guild.fetchInvites().then(async guildInvites => {
     let kanal = client.channels.get(`651462821489541120`);
+    const ei = invites[member.guild.id];
 
-    let invites = await member.guild.fetchInvites();
-    let regular = invites
-      .array()
-      .find(invite => invite.inviter.id === invite.inviter.id)
-      ? invites.find(invite => invite.inviter.id === invite.inviter.id).uses
-      : 0;
+    invites[member.guild.id] = guildInvites;
+    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+
+    let invites2 = await member.guild.fetchInvites();
+    let regular = invites2.array().find(invite2 => invite2.inviter.id === invite.inviter.id) ? invites2.find(invite2 => invite2.inviter.id === invite.inviter.id).uses : 0;
 
     const aa = new Discord.RichEmbed()
       .setColor("BLACK")
       .setDescription(
-        `\`\`${member.user.tag}\`\` **adlı şahıs sunucuya katıldı.\nŞahsı davet eden:** \`\`${member.user.tag}\`\`\n**Toplam \`\`${regular}\`\` daveti oldu!**`
+        `\`\`${member.user.tag}\`\` **adlı şahıs sunucuya katıldı.\nŞahsı davet eden:** \`\`${invite.inviter.tag}\`\`\n**Toplam \`\`${regular}\`\` daveti oldu!**`
       )
       .setFooter(client.user.username, client.user.avatarURL);
     kanal.send(aa);
