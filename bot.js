@@ -152,40 +152,8 @@ client.on("message", async message => {
     );
   }
 });
-client.on("guildMemberRemove", async member => {
-  let hedef = await db.fetch(`sayaçhedef_${member.guild.id}`);
-  let kanal = await db.fetch(`sayaçkanal_${member.guild.id}`);
-  let msj = await db.fetch(`sayaçmsjbb_${member.guild.id}`);
-  if (!hedef) return;
-  if (!kanal) return;
 
-  if (!msj) {
-    const embed = new Discord.RichEmbed()
-      .setColor("BLACK")
-      .setDescription(
-        `<a:tik:627830420070727690> - :loudspeaker: **@${
-          member.user.tag
-        }** adlı şahsa aramızdan ayrıldı! ${hedef} kişi olmamıza ${hedef -
-          member.guild.memberCount} kişi kaldı! :inbox_tray:`
-      )
-      .setFooter(client.user.username, client.user.avatarURL);
-    client.channels.get(kanal).send(embed);
-    return;
-  } else {
-    var msj2 = msj
-      .replace(`-sunucu-`, `${member.guild.name}`)
-      .replace(`-uye-`, `${member.user.tag}`)
-      .replace(`-uyetag-`, `<@${member.user.id}>`)
-      .replace(`-hedef-`, `${hedef}`)
-      .replace(`-hedefkalan-`, `${hedef - member.guild.memberCount}`);
-    const embed = new Discord.RichEmbed()
-      .setColor("BLACK")
-      .setDescription(msj2)
-      .setFooter(client.user.username, client.user.avatarURL);
-    client.channels.get(kanal).send(embed);
-    return;
-  }
-});
+
 /*client.on("message", async message => {
   let banl = await db.fetch(`banl_${message.author.id}`);
   let ban = await db.fetch(`banlimti_${message.guild.id}`);

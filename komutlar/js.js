@@ -1,13 +1,18 @@
-exports.run = async(client, message, args) => {
-  let user = message.mentions.users.first() || message.author;
- let invites = await message.guild.fetchInvites() 
-  let regular = invites.array().find(invite => invite.inviter.id === user.id) ? invites.find(invite => invite.inviter.id === user.id).uses : 0
- 
-  message.channel.send(`toplam ${regular} davetin var`)
-}
+const Discord = require("discord.js");
+exports.run = async (client, message, args) => {
+  const embed = new Discord.RichEmbed().setDescription(
+    `İşte pingim; ${client.ping}ms!`
+  );
+  message.channel.send(embed);
+};
 exports.conf = {
-  aliases: []
-}
+  aliases: ["pong"],
+  permLevel: 0,
+  enabled: true,
+  guildOnly: false
+};
 exports.help = {
-  name: "davetlerim"
-}
+  name: "ping",
+  description: "ping",
+  usage: "ping"
+};
