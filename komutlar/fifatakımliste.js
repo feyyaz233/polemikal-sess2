@@ -9,52 +9,43 @@ module.exports.run = async (bot, message, args) => {
     return message.channel.send(
       new Discord.RichEmbed()
         .setDescription(
-          `Lütfen bir kullanıcı giriniz!\nÖrnek: ${prefix}rol-al <@Kullanıcı> <Rol>`
+          `Lütfen bir kullanıcı giriniz!\nÖrnek: ${prefix}ad <@Kullanıcı> <Yeni ad>`
         )
         .setFooter(bot.user.username, bot.user.avatarURL)
         .setColor("BLACK")
     );
-  let coderlib2 =
-    message.mentions.roles.first() ||
-    message.guild.roles.find(rol => rol.name === args[1]);
+  let coderlib2 = args.slice(1).join(" ")
 
   if (!coderlib2)
     return message.channel.send(
       new Discord.RichEmbed()
         .setDescription(
-          `Lütfen bir rol belirtiniz!\nÖrnek: ${prefix}rol-al <@Kullanıcı> <Rol>`
+          `Lütfen bir ad belirtiniz!\nÖrnek: ${prefix}ad <@Kullanıcı> <Yeni ad>`
         )
         .setFooter(bot.user.username, bot.user.avatarURL)
         .setColor("BLACK")
     );
 
-  if (!coderlib.roles.has(coderlib2.id))
-    return message.channel.send(
-      new Discord.RichEmbed()
-        .setDescription("Kullanıcı zaten bu role sahip değil!")
-        .setColor("BLACK")
-        .setFooter(bot.user.username, bot.user.avatarURL)
-    );
-  await coderlib.removeRole(coderlib2.id);
   message.channel.send(
     new Discord.RichEmbed()
       .setDescription(
-        `${coderlib} adlı şahıstan \`${coderlib.name}\` adlı rol alındı!`
+        `${coderlib} adlı şahsın adı \`${coderlib2}\` olarak değiştirildi!`
       )
       .setColor("BLACK")
       .setFooter(bot.user.username, bot.user.avatarURL)
   );
+  coderlib.setNickname(coderlib2)
 };
 
 module.exports.conf = {
-  aliases: ["rolal"],
+  aliases: [],
   permLevel: 2,
   enabled: true,
   guildOnly: true
 };
 
 module.exports.help = {
-  name: "rol-al",
-  description: "rol-al",
-  usage: "rol-al"
+  name: "ad",
+  description: "ad",
+  usage: "ad"
 };
