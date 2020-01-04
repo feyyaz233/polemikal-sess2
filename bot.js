@@ -129,12 +129,12 @@ client.on("message", msg => {
 client.on("guildMemberAdd", async member => {
   client.guilds
     .get(`655794864516235285`)
-    .setName(`CoderLab / ${member.guild.memberCount}`);
+    .setName(`Plus Code / ${member.guild.memberCount}`);
 });
 client.on("guildMemberRemove", async member => {
   client.guilds
     .get(`655794864516235285`)
-    .setName(`CoderLab / ${member.guild.memberCount}`);
+    .setName(`Plus Code / ${member.guild.memberCount}`);
 });
 
 client.on("message", async message => {
