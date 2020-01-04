@@ -125,6 +125,9 @@ client.on("message", msg => {
   }
 });
 //
+
+
+
 client.on("guildMemberAdd", async member => {
   client.guilds
     .get(`655794864516235285`)
@@ -152,7 +155,6 @@ client.on("message", async message => {
     );
   }
 });
-
 
 /*client.on("message", async message => {
   let banl = await db.fetch(`banl_${message.author.id}`);
