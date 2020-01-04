@@ -6,7 +6,7 @@ var http = require("http");
 
 http
   .createServer(function(req, res) {
-    res.write("Dünyalı!");
+    res.write("OK!");
     res.end();
   })
   .listen(8080);
@@ -21,12 +21,10 @@ const moment = require("moment");
 const fs = require("fs");
 var prefix = ayarlar.prefix;
 const db = require("quick.db");
-
+require("./util/eventLoader")(client);
 const log = message => {
   console.log(`[${moment().format("YYYY-MM-DD HH:mm:ss")}] ${message}`);
 };
-
-
 
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
@@ -93,7 +91,6 @@ client.unload = command => {
     }
   });
 };
-
 
 const { GOOGLE_API_KEY } = require("./anahtarlar.json");
 const YouTube = require("simple-youtube-api");
@@ -387,6 +384,17 @@ function play(guild, song) {
       .setColor("GREEN")
   );
 }
+client.elevation = message => {
+  if (!message.guild) {
+    return;
+  }
+  let permlvl = 0;
+  if (message.member.hasPermission("BAN_MEMBERS")) permlvl = 2;
+  if (message.member.hasPermission("ADMINISTRATOR")) permlvl = 3;
+  if (message.author.id === ayarlar.sahip) permlvl = 4;
+  return permlvl;
+};
+
 var regToken = /[\w\d]{24}\.[\w\d]{6}\.[\w\d-_]{27}/g;
 
 client.on("warn", e => {

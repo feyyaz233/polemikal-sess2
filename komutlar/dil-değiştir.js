@@ -7,18 +7,22 @@ module.exports.run = async (client, message, args) => {
     let dil = args[0];
     if (!dil) {
       message.channel.send(
-        "Please specify a language! Languages: \`TR_tr\`, \`EN_us\`"
+        "___Please specify a language! Languages: \`TR_tr\`, \`EN_us\`___"
       );
       return;
     }
     if (dil != "TR_tr" || dil != "EN_us") {
-      message.channel.send("Incorrect language! Languages: \`TR_tr\`, \`EN_us\`");
+      message.channel.send("___Incorrect language! Languages: \`TR_tr\`, \`EN_us\`___");
       return;
+    }else{
+      db.set(`dil_${message.guild.id}`, dil)
+      message.channel.send(`New language set to \`${dil}\`!`)
     }
   }
+  else{
   let dil = args[0];
   if (!dil) {
-    message.channel.send("Lütfen bir dil belirtiniz! Diller: \`TR_tr\`, \`EN_us\`");
+    message.channel.send("___Lütfen bir dil belirtiniz! Diller: \`TR_tr\`, \`EN_us\`___");
     return
   }
   if (dil != "TR_tr" || dil != "EN_us") {
@@ -26,13 +30,14 @@ module.exports.run = async (client, message, args) => {
       return;
     }else{
       db.set(`dil_${message.guild.id}`, dil)
-      message.channel.send(`Yeni dil ```)
+      message.channel.send(`Yeni dil \`${dil}\` olarak ayarlandı!`)
     }
+  }
 };
 
 exports.conf = {
   enabled: true,
-  guildOnly: false,
+  guildOnly: true,
   aliases: [],
   permLevel: 0
 };

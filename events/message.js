@@ -8,6 +8,7 @@ module.exports = message => {
 	setTimeout(() => {
     talkedRecently.delete(message.author.id);
   }, 2500);
+  let prefix = "!"
   let client = message.client;
   if (message.author.bot) return;
   if (!message.content.startsWith(ayarlar.prefix)) return;
