@@ -54,7 +54,8 @@
     "util": "^0.12.1",
     "canvas": "^2.6.1",
     "brawlstars": "^1.2.4",
-    "fortnitetracker-7days-stats": "^3.3.0"
+    "fortnitetracker-7days-stats": "^3.3.0",
+    "translate": "^1.1.0"
   },
   "engines": {
     "node": "8.x"
