@@ -341,11 +341,16 @@ ${videos.map(video2 => `[**${++index}**] **${video2.title}**`).join("\n")}`
         new Discord.RichEmbed()
           .setImage(song.eyad)
           .addField(`Song Title`, `[${song.title}](${song.url})`, true)
-          .addField(`Song Duration`, `${song.durationm}:${song.durations}`, true)
+          .addField(
+            `Song Duration`,
+            `${song.durationm}:${song.durations}`,
+            true
+          )
           .addField(`Sound Level`, serverQueue.volume, true)
           .setColor("GREEN")
       );
     }
+    return;
   }
   if (dil === "TR_tr") {
     if (msg.author.bot) return undefined;
@@ -552,89 +557,38 @@ ${videos.map(video2 => `[**${++index}**] **${video2.title}**`).join("\n")}`
     }
 
     return undefined;
-  }
-});
+    function play(guild, song) {
+      const serverQueue = queue.get(guild.id);
 
-async function handleVideo(video, msg, voiceChannel, playlist = false) {
-  const serverQueue = queue.get(msg.guild.id);
-  console.log(video);
-  const song = {
-    id: video.id,
-    title: video.title,
-    url: `https://www.youtube.com/watch?v=${video.id}`,
-    durationh: video.duration.hours,
-    durationm: video.duration.minutes,
-    durations: video.duration.seconds,
-    views: video.views
-  };
-  if (!serverQueue) {
-    const queueConstruct = {
-      textChannel: msg.channel,
-      voiceChannel: voiceChannel,
-      connection: null,
-      songs: [],
-      volume: 5,
-      playing: true
-    };
-    queue.set(msg.guild.id, queueConstruct);
+      if (!song) {
+        serverQueue.voiceChannel.leave();
+        queue.delete(guild.id);
+        return;
+      }
+      console.log(serverQueue.songs);
 
-    queueConstruct.songs.push(song);
+      const dispatcher = serverQueue.connection
+        .playStream(ytdl(song.url))
+        .on("end", reason => {
+          if (reason === "Yayın hızı yetersiz!") console.log("GG");
+          else console.log(reason);
+          serverQueue.songs.shift();
+          play(guild, serverQueue.songs[0]);
+        })
+        .on("error", error => console.error(error));
+      dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 
-    try {
-      var connection = await voiceChannel.join();
-      queueConstruct.connection = connection;
-      play(msg.guild, queueConstruct.songs[0]);
-    } catch (error) {
-      console.error(`Sistemde bir hata var! Hata: ${error}`);
-      queue.delete(msg.guild.id);
-      return msg.channel.send(
+      serverQueue.textChannel.send(
         new Discord.RichEmbed()
-          .setDescription(`Sistemde bir hata var! Hata: ${error}`)
-          .setColor("RED")
+          .setImage(song.eyad)
+          .addField(`Şarkı Adı`, `[${song.title}](${song.url})`, true)
+          .addField(`Şarkı Süresi`, `${song.durationm}:${song.durations}`, true)
+          .addField(`Ses Seviyesi`, serverQueue.volume, true)
+          .setColor("GREEN")
       );
     }
-  } else {
-    serverQueue.songs.push(song);
-    console.log(serverQueue.songs);
-    if (playlist) return undefined;
-    return msg.channel.send(
-      new Discord.RichEmbed()
-        .setDescription(`**${song.title}** adlı müzik sıraya eklendi!`)
-        .setColor("GREEN")
-    );
   }
-  return undefined;
-  function play(guild, song) {
-    const serverQueue = queue.get(guild.id);
-
-    if (!song) {
-      serverQueue.voiceChannel.leave();
-      queue.delete(guild.id);
-      return;
-    }
-    console.log(serverQueue.songs);
-
-    const dispatcher = serverQueue.connection
-      .playStream(ytdl(song.url))
-      .on("end", reason => {
-        if (reason === "Yayın hızı yetersiz!") console.log("GG");
-        else console.log(reason);
-        serverQueue.songs.shift();
-        play(guild, serverQueue.songs[0]);
-      })
-      .on("error", error => console.error(error));
-    dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-
-    serverQueue.textChannel.send(
-      new Discord.RichEmbed()
-        .setImage(song.eyad)
-        .addField(`Şarkı Adı`, `[${song.title}](${song.url})`, true)
-        .addField(`Şarkı Süresi`, `${song.durationm}:${song.durations}`, true)
-        .addField(`Ses Seviyesi`, serverQueue.volume, true)
-        .setColor("GREEN")
-    );
-  }
-}
+});
 
 client.elevation = message => {
   if (!message.guild) {
