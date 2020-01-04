@@ -1,20 +1,36 @@
 const Discord = require("discord.js");
-const translate = require('translate');
 
-exports.run = async (bot, message, args) => {
-const text = await translate('Hello world', 'es');
-console.log(text);
+module.exports.run = async (client, message, args) => {
+  let coderlab = args.slice(0).join("%20");
+
+  let link =
+    `https://translate.google.com/#view=home&op=translate&sl=tr&tl=en&text=` +
+    coderlab;
+  if (!coderlab)
+    return message.channel.send(
+      `**___Lütfen çevirilecek bir şey giriniz!___**`
+    );
+
+  let embed = new Discord.RichEmbed()
+
+    .setColor("BLACK")
+
+    .addField("Kelime:", `${args.slice(0).join(" ")}`)
+    .addField("Sonuç:", `[Tıkla](${link})`)
+    .setTimestamp();
+
+  message.channel.send(embed);
 };
 
 exports.conf = {
-  aliases: [],
-  permLevel: 0,
   enabled: true,
-  guildOnly: true
+  guildOnly: false,
+  aliases: [],
+  permLevel: 0
 };
 
 exports.help = {
-  name: "test",
-  description: "film-öner",
-  usage: "film-öner"
+  name: "çeviri",
+  description: "çeviri",
+  usage: "çeviri"
 };
