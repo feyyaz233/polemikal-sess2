@@ -1,4 +1,4 @@
-const express = require("express");
+/*const express = require("express");
 const app = express();
 const keep_alive = require("./keep_alive.js"); //index.js Const Kısımlarına
 
@@ -9,7 +9,7 @@ http
     res.write("Dünyalı!");
     res.end();
   })
-  .listen(8080);
+  .listen(8080);*/
 // -------------------------------------------------------------
 
 //
