@@ -387,7 +387,13 @@ ${videos.map(video2 => `[**${++index}**] **${video2.title}**`).join("\n")}`
     return undefined;
   }
   if (dil == "EN_us") {
+    if (command === "d" || command === "durdur") return;
+    if (command === "de" || command === "devam") return;
+    if (command === "geç" || command === "g") return;
+    if (command === "s" || command === "ses") return;
+    if (command === "liste" || command === "sıra") return;
     if (command === "y" || command === "help") return;
+    if (command === "çal" || command === "oynat") return;
     if (command === "h" || command === "yardım") return;
     if (command === "lang" || command === "dil") return;
     if (command === "language") return;
