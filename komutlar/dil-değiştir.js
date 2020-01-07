@@ -47,8 +47,8 @@ module.exports.run = async (client, message, args) => {
 exports.conf = {
   enabled: true,
   guildOnly: true,
-  aliases: [],
-  permLevel: 0
+  aliases: ["language", "lang"],
+  permLevel: 3
 };
 
 exports.help = {
