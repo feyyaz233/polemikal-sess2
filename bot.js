@@ -111,7 +111,7 @@ client.on("message", async msg => {
   let command = msg.content.toLowerCase().split(" ")[0];
   command = command.slice(prefix.length);
   if (dil == "TR_tr") {
-    if (command === "çal" || ) {
+    if (command === "çal" || command === "oynat") {
       const voiceChannel = msg.member.voiceChannel;
       if (!voiceChannel)
         return msg.channel.send(
@@ -214,7 +214,7 @@ ${videos.map(video2 => `[**${++index}**] **${video2.title}**`).join("\n")}`
         }
         return handleVideo(video, msg, voiceChannel);
       }
-    } else if (command === "geç") {
+    } else if (command === "geç" || command === "g") {
       if (!msg.member.voiceChannel)
         return msg.channel.send(
           new Discord.RichEmbed()
@@ -230,7 +230,7 @@ ${videos.map(video2 => `[**${++index}**] **${video2.title}**`).join("\n")}`
 
       serverQueue.connection.dispatcher.end("Sıradaki müziğe geçildi!");
       return undefined;
-    } else if (command === "ses") {
+    } else if (command === "ses" || command === "s") {
       if (!msg.member.voiceChannel)
         return msg.channel.send(
           new Discord.RichEmbed()
@@ -256,7 +256,7 @@ ${videos.map(video2 => `[**${++index}**] **${video2.title}**`).join("\n")}`
           .setDescription(`Ses seviyesi **${args[1]}** olarak ayarlandı!`)
           .setColor("GREEN")
       );
-    } else if (command === "liste") {
+    } else if (command === "liste" || command === "sıra") {
       let index = 0;
       if (!serverQueue)
         return msg.channel.send(
@@ -275,7 +275,7 @@ ${videos.map(video2 => `[**${++index}**] **${video2.title}**`).join("\n")}`
             )
         )
         .addField("Çalınan", `${serverQueue.songs[0].title}`);
-    } else if (command === "durdur") {
+    } else if (command === "durdur" || command === "d") {
       if (serverQueue && serverQueue.playing) {
         serverQueue.playing = false;
         serverQueue.connection.dispatcher.pause();
@@ -288,7 +288,7 @@ ${videos.map(video2 => `[**${++index}**] **${video2.title}**`).join("\n")}`
       return msg.channel.send(
         "Ne yazık ki şuan herhangi bir müzik çalmamakta!"
       );
-    } else if (command === "devam") {
+    } else if (command === "devam" || command === "de") {
       if (serverQueue && !serverQueue.playing) {
         serverQueue.playing = true;
         serverQueue.connection.dispatcher.resume();
@@ -387,7 +387,11 @@ ${videos.map(video2 => `[**${++index}**] **${video2.title}**`).join("\n")}`
     return undefined;
   }
   if (dil == "EN_us") {
-    if (command === "play") {
+    if (command === "y" || command === "help") return;
+    if (command === "h" || command === "yardım") return;
+    if (command === "lang" || command === "dil") return;
+    if (command === "language") return;
+    if (command === "play" || command === "p") {
       const voiceChannel = msg.member.voiceChannel;
       if (!voiceChannel)
         return msg.channel.send(
@@ -492,7 +496,7 @@ ${videos.map(video2 => `[**${++index}**] **${video2.title}**`).join("\n")}`
         }
         return handleVideo(video, msg, voiceChannel);
       }
-    } else if (command === "skip") {
+    } else if (command === "skip" || command === "s") {
       if (!msg.member.voiceChannel)
         return msg.channel.send(
           new Discord.RichEmbed()
@@ -510,7 +514,7 @@ ${videos.map(video2 => `[**${++index}**] **${video2.title}**`).join("\n")}`
 
       serverQueue.connection.dispatcher.end("Switch to next music!");
       return undefined;
-    } else if (command === "ses") {
+    } else if (command === "volume" || command === "vol") {
       if (!msg.member.voiceChannel)
         return msg.channel.send(
           new Discord.RichEmbed()
@@ -538,7 +542,7 @@ ${videos.map(video2 => `[**${++index}**] **${video2.title}**`).join("\n")}`
           .setDescription(`Volume set to: **${args[1]}**!`)
           .setColor("GREEN")
       );
-    } else if (command === "queue") {
+    } else if (command === "queue" || command === "list") {
       let index = 0;
       if (!serverQueue)
         return msg.channel.send(
@@ -559,7 +563,7 @@ ${videos.map(video2 => `[**${++index}**] **${video2.title}**`).join("\n")}`
             )
         )
         .addField("Çalınan", `${serverQueue.songs[0].title}`);
-    } else if (command === "stop") {
+    } else if (command === "stop" || "st") {
       if (serverQueue && serverQueue.playing) {
         serverQueue.playing = false;
         serverQueue.connection.dispatcher.pause();
@@ -572,7 +576,7 @@ ${videos.map(video2 => `[**${++index}**] **${video2.title}**`).join("\n")}`
       return msg.channel.send(
         "Unfortunately, he doesn't play any music right now!"
       );
-    } else if (command === "devam") {
+    } else if (command === "resume") {
       if (serverQueue && !serverQueue.playing) {
         serverQueue.playing = true;
         serverQueue.connection.dispatcher.resume();
