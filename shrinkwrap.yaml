@@ -3,6 +3,7 @@ dependencies:
   discord.js: 11.5.1
   express: 4.17.1
   fs: 0.0.2
+  generate-password: 1.4.2
   http: 0.0.0
   moment: 2.24.0
   node-opus: 0.3.3
@@ -362,6 +363,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-4fJE7zkzwbKmS9R5kTYGDQ9ZFPg=
+  /generate-password/1.4.2:
+    dev: false
+    resolution:
+      integrity: sha512-UYEOMRcnpC/228qfCQNSebq8jmIonoPYPILsZl2NmH16Vm53yPvgo/KK3BYeCA3JmhSA/a/HqHzaY0v5dRbyoQ==
   /has-binary2/1.0.3:
     dependencies:
       isarray: 2.0.1
@@ -886,6 +891,7 @@ specifiers:
   discord.js: ^11.5.1
   express: ^4.17.1
   fs: ^0.0.2
+  generate-password: ^1.4.1
   http: ^0.0.0
   moment: ^2.24.0
   node-opus: ^0.3.2
