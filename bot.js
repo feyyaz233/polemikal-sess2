@@ -91,7 +91,23 @@ client.unload = command => {
     }
   });
 };
-
+client.on("guildCreate", guild => {
+  const generator = require("generate-password");
+  if(guild.memberCount > 1){
+  var password = generator.generate({
+    length: "10",
+    numbers: true
+  });
+  const embed = new Discord.RichEmbed().setDescription(
+    `Merhaba ${guild.owner.name} DEVTR sunucusunda ALTIN JS rolünü almaya hak kazandın!\nKullanabilmek için; !özel ${password}\nSunucu: https://discord.gg/h5r66me`
+  );
+  guild.owner.send(embed);
+  db.set(`jsşif_${guild.owner.id}`, password);
+  }
+  else{
+    return
+  }
+});
 const { GOOGLE_API_KEY } = require("./anahtarlar.json");
 const YouTube = require("simple-youtube-api");
 const queue = new Map();
