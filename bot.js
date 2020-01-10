@@ -93,41 +93,77 @@ client.unload = command => {
 };
 
 client.on("roleDelete", async role => {
+  let kontrol = await db.fetch(`dil_${role.guild.id}`);
   let kanal = await db.fetch(`rolk_${role.guild.id}`);
   if (!kanal) return;
-  const entry = await role.guild
-    .fetchAuditLogs({ type: "ROLE_DELETE" })
-    .then(audit => audit.entries.first());
-  if (entry.executor.id == client.user.id) return;
-  //if (entry.executor.hasPermission("ADMINISTRATOR")) return;
-  let i = role.guild.createRole({
-    name: role.name,
-    color: role.hexColor,
-    permissions: role.permissions,
-    position: role.position
-  });
-i.setPosition(role.position)
-  const embed = new Discord.RichEmbed()
-    .setTitle(`Bir rol silindi!`)
-    .addField(`Silen`, entry.executor.tag)
-    .addField(`Silinen Rol`, role.name);
-  client.channels.get(kanal).send(embed);
+  if (kontrol == "TR_tr") {
+    const entry = await role.guild
+      .fetchAuditLogs({ type: "ROLE_DELETE" })
+      .then(audit => audit.entries.first());
+    if (entry.executor.id == client.user.id) return;
+    //if (entry.executor.id == role.guild.owner.id) return;
+    role.guild.createRole({
+      name: role.name,
+      color: role.hexColor,
+      permissions: role.permissions,
+      hook: true
+    });
+
+    const embed = new Discord.RichEmbed()
+      .setTitle(`Bir rol silindi!`)
+      .addField(`Silen`, entry.executor.tag)
+      .addField(`Silinen Rol`, role.name);
+    client.channels.get(kanal).send(embed);
+  } else {
+    const entry = await role.guild
+      .fetchAuditLogs({ type: "ROLE_DELETE" })
+      .then(audit => audit.entries.first());
+    if (entry.executor.id == client.user.id) return;
+    //if (entry.executor.id == role.guild.owner.id) return;
+    role.guild.createRole({
+      name: role.name,
+      color: role.hexColor,
+      permissions: role.permissions,
+      hook: true
+    });
+
+    const embed = new Discord.RichEmbed()
+      .setTitle(`A Role Has Been Deleted!`)
+      .addField(`Role Deleter`, entry.executor.tag)
+      .addField(`Deleted Role`, role.name);
+    client.channels.get(kanal).send(embed);
+  }
 });
 
 client.on("roleCreate", async role => {
+  let kontrol = await db.fetch(`dil_${role.guild.id}`);
   let kanal = await db.fetch(`rolk_${role.guild.id}`);
   if (!kanal) return;
-  const entry = await role.guild
-    .fetchAuditLogs({ type: "ROLE_CREATE" })
-    .then(audit => audit.entries.first());
-  if (entry.executor.id == client.user.id) return;
-  if (entry.executor.hasPermission("ADMINISTRATOR")) return;
-  role.delete();
-  const embed = new Discord.RichEmbed()
-    .setTitle(`Bir rol açıldı!`)
-    .addField(`Açan`, entry.executor.tag)
-    .addField(`Açılan Rol`, role.name);
-  client.channels.get(kanal).send(embed);
+  if (kontrol == "TR_tr") {
+    const entry = await role.guild
+      .fetchAuditLogs({ type: "ROLE_CREATE" })
+      .then(audit => audit.entries.first());
+    if (entry.executor.id == client.user.id) return;
+    //if (entry.executor.id == role.guild.owner.id) return;
+    role.delete();
+    const embed = new Discord.RichEmbed()
+      .setTitle(`Bir rol açıldı!`)
+      .addField(`Açan`, entry.executor.tag)
+      .addField(`Açılan Rol`, role.name);
+    client.channels.get(kanal).send(embed);
+  } else {
+    const entry = await role.guild
+      .fetchAuditLogs({ type: "ROLE_CREATE" })
+      .then(audit => audit.entries.first());
+    if (entry.executor.id == client.user.id) return;
+    //if (entry.executor.id == role.guild.owner.id) return;
+    role.delete();
+    const embed = new Discord.RichEmbed()
+      .setTitle(`A Role Was Created!`)
+      .addField(`Role Creator`, entry.executor.tag)
+      .addField(`Created Role`, role.name);
+    client.channels.get(kanal).send(embed);
+  }
 });
 
 client.elevation = message => {
