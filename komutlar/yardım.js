@@ -10,8 +10,8 @@ module.exports.run = async (client, message, args) => {
         `Bot sürümü; **v0.1**, Prefix: **${prefix}**, Dil: **${kontrol}**`
       )
       .addField(`Bot`, `\`yardım\`, \`dil\`, \`bot-bilgi\``)
-
-      .setColor("BLACK")
+.addField(`Koruma Sistemleri`, `\`rol-koruma\``)
+    .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL);
     message.channel.send(embed);
   } else {
