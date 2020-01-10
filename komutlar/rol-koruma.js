@@ -5,13 +5,37 @@ module.exports.run = async (client, message, args) => {
   let kontrol = await db.fetch(`dil_${message.guild.id}`);
   let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "!";
   if (kontrol == "TR_tr") {
-let kanal = message.mentions.channels.first()
-  } else {
+    let kanal = message.mentions.channels.first();
+    if (!kanal) {
+      const embed = new Discord.RichEmbed()
+        .setColor("BLACK")
+        .setFooter(client.user.username, client.user.avatarURL)
+        .setDescription(`Lütfen log kanalını etiketleyiniz!`);
+      message.channel.send(embed);
+      return;
+    }
+    db.set(`rolk_${message.guild.id}`, kanal.id);
     const embed = new Discord.RichEmbed()
-      .setDescription(`Ping; ${client.ping} ms!`)
-
       .setColor("BLACK")
-      .setFooter(client.user.username, client.user.avatarURL);
+      .setFooter(client.user.username, client.user.avatarURL)
+      .setDescription(`Rol koruma log kanalı; ${kanal} olarak ayarlandı!`);
+    message.channel.send(embed);
+    return;
+  } else {
+    let kanal = message.mentions.channels.first();
+    if (!kanal) {
+      const embed = new Discord.RichEmbed()
+        .setColor("BLACK")
+        .setFooter(client.user.username, client.user.avatarURL)
+        .setDescription(`Please tag the log channel!`);
+      message.channel.send(embed);
+      return;
+    }
+    db.set(`rolk_${message.guild.id}`, kanal.id);
+    const embed = new Discord.RichEmbed()
+      .setColor("BLACK")
+      .setFooter(client.user.username, client.user.avatarURL)
+      .setDescription(`Role protection log channel; Set to $ {channel}!`);
     message.channel.send(embed);
     return;
   }
@@ -20,12 +44,12 @@ let kanal = message.mentions.channels.first()
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: [],
+  aliases: ["role-protection"],
   permLevel: 0
 };
 
 exports.help = {
-  name: "test",
-  description: "test",
-  usage: "test"
+  name: "rol-koruma",
+  description: "rol-koruma",
+  usage: "rol-koruma"
 };
