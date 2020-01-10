@@ -6,18 +6,14 @@ module.exports.run = async (client, message, args) => {
   let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "!";
   if (kontrol == "TR_tr") {
     const embed = new Discord.RichEmbed()
-      .setDescription(
-        `[Tıkla!](https://discordapp.com/oauth2/authorize?client_id=665232633529368576&scope=bot&permissions=8)`
-      )
+      .setDescription(`Gecikme; ${client.ping} ms!`)
 
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL);
     message.channel.send(embed);
   } else {
     const embed = new Discord.RichEmbed()
-      .setDescription(
-        `[Click Me!](https://discordapp.com/oauth2/authorize?client_id=665232633529368576&scope=bot&permissions=8)`
-      )
+      .setDescription(`Ping; ${client.ping} ms!`)
 
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL);
@@ -29,12 +25,12 @@ module.exports.run = async (client, message, args) => {
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ["invite"],
+  aliases: ["gecikme"],
   permLevel: 0
 };
 
 exports.help = {
-  name: "davet",
-  description: "davet",
-  usage: "davet"
+  name: "ping",
+  description: "ping",
+  usage: "ping"
 };
