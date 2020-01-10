@@ -35,7 +35,7 @@ module.exports.run = async (client, message, args) => {
     const embed = new Discord.RichEmbed()
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL)
-      .setDescription(`Role protection log channel; Set to $ {channel}!`);
+      .setDescription(`Role protection log channel; Set to ${kanal}!`);
     message.channel.send(embed);
     return;
   }

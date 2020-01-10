@@ -3,11 +3,17 @@ const Discord = require("discord.js"),
 
 module.exports.run = async (client, message, args) => {
   let kontrol = await db.fetch(`dil_${message.guild.id}`);
+  let kontrol2;
+  if(!kontrol){
+    kontrol2 = "EN_us"
+  }else{
+    kontrol2 = "TR_tr"
+  }
   let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "!";
   if (kontrol == "TR_tr") {
     const embed = new Discord.RichEmbed()
       .setDescription(
-        `Bot sürümü; **v0.1**, Prefix: **${prefix}**, Dil: **${kontrol}**`
+        `Bot sürümü; **v0.1**, Prefix: **${prefix}**, Dil: **${kontrol2}**`
       )
       .addField(`Bot`, `\`yardım\`, \`dil\`, \`bot-bilgi\``)
 .addField(`Koruma Sistemleri`, `\`rol-koruma\``)
@@ -17,10 +23,10 @@ module.exports.run = async (client, message, args) => {
   } else {
     const embed = new Discord.RichEmbed()
       .setDescription(
-        `Bot Version; **v0.1**, Prefix: **${prefix}**, Language: **${kontrol}**`
+        `Bot Version; **v0.1**, Prefix: **${prefix}**, Language: **${kontrol2}**`
       )
       .addField(`Bot`, `\`help\`, \`language\`, \`bot-info\``)
-
+.addField(`Protection Systems`, `\`role-protection\``)
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL);
     message.channel.send(embed);
