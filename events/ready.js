@@ -7,5 +7,5 @@ var prefix = ayarlar.prefix;
 
 module.exports = client => {
   client.user.setStatus("online");
-  client.user.setActivity("Müzik çalıyorum!");
+  client.user.setActivity("Yapımdayım!");
 };

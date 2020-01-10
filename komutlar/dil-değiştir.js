@@ -13,10 +13,10 @@ module.exports.run = async (client, message, args) => {
     }
     if (dil === "EN_us") {
       db.set(`dil_${message.guild.id}`, dil);
-      message.channel.send(`New language set to \`${dil}\`!`);
+      message.channel.send(`__New language set to \`${dil}\`!__`);
     } else if (dil === "TR_tr") {
       db.set(`dil_${message.guild.id}`, dil);
-      message.channel.send(`New language set to \`${dil}\`!`);
+      message.channel.send(`__Yeni dil \`${dil}\` olarak ayarlandı!__`);
     } else {
       message.channel.send(
         "__Incorrect language! Languages: `TR_tr`, `EN_us`__"
@@ -33,7 +33,7 @@ module.exports.run = async (client, message, args) => {
     }
     if (dil === "EN_us") {
       db.set(`dil_${message.guild.id}`, dil);
-      message.channel.send(`__Yeni dil \`${dil}\` olarak ayarlandı!__`);
+      message.channel.send(`__New language set to \`${dil}\`!__`);
     } else if (dil === "TR_tr") {
       db.set(`dil_${message.guild.id}`, dil);
       message.channel.send(`__Yeni dil \`${dil}\` olarak ayarlandı!__`);
