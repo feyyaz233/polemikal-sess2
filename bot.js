@@ -101,7 +101,7 @@ client.on("roleDelete", async role => {
       .fetchAuditLogs({ type: "ROLE_DELETE" })
       .then(audit => audit.entries.first());
     if (entry.executor.id == client.user.id) return;
-    //if (entry.executor.id == role.guild.owner.id) return;
+    if (entry.executor.id == role.guild.owner.id) return;
     role.guild.createRole({
       name: role.name,
       color: role.hexColor,
@@ -111,6 +111,7 @@ client.on("roleDelete", async role => {
 
     const embed = new Discord.RichEmbed()
       .setTitle(`Bir rol silindi!`)
+      .setColor("BLACK")
       .addField(`Silen`, entry.executor.tag)
       .addField(`Silinen Rol`, role.name);
     client.channels.get(kanal).send(embed);
@@ -119,7 +120,7 @@ client.on("roleDelete", async role => {
       .fetchAuditLogs({ type: "ROLE_DELETE" })
       .then(audit => audit.entries.first());
     if (entry.executor.id == client.user.id) return;
-    //if (entry.executor.id == role.guild.owner.id) return;
+    if (entry.executor.id == role.guild.owner.id) return;
     role.guild.createRole({
       name: role.name,
       color: role.hexColor,
@@ -129,6 +130,7 @@ client.on("roleDelete", async role => {
 
     const embed = new Discord.RichEmbed()
       .setTitle(`A Role Has Been Deleted!`)
+      .setColor("BLACK")
       .addField(`Role Deleter`, entry.executor.tag)
       .addField(`Deleted Role`, role.name);
     client.channels.get(kanal).send(embed);
@@ -144,10 +146,11 @@ client.on("roleCreate", async role => {
       .fetchAuditLogs({ type: "ROLE_CREATE" })
       .then(audit => audit.entries.first());
     if (entry.executor.id == client.user.id) return;
-    //if (entry.executor.id == role.guild.owner.id) return;
+    if (entry.executor.id == role.guild.owner.id) return;
     role.delete();
     const embed = new Discord.RichEmbed()
       .setTitle(`Bir rol açıldı!`)
+      .setColor("BLACK")
       .addField(`Açan`, entry.executor.tag)
       .addField(`Açılan Rol`, role.name);
     client.channels.get(kanal).send(embed);
@@ -156,10 +159,11 @@ client.on("roleCreate", async role => {
       .fetchAuditLogs({ type: "ROLE_CREATE" })
       .then(audit => audit.entries.first());
     if (entry.executor.id == client.user.id) return;
-    //if (entry.executor.id == role.guild.owner.id) return;
+    if (entry.executor.id == role.guild.owner.id) return;
     role.delete();
     const embed = new Discord.RichEmbed()
       .setTitle(`A Role Was Created!`)
+      .setColor("BLACK")
       .addField(`Role Creator`, entry.executor.tag)
       .addField(`Created Role`, role.name);
     client.channels.get(kanal).send(embed);
