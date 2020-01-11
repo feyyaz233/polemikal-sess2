@@ -13,7 +13,7 @@ if(kontrol == null){
         `Bot sürümü; **v0.1**, Prefix: **${prefix}**, Dil: **${kontrol}**`
       )
       .addField(`Bot`, `\`yardım\`, \`dil\`, \`bot-bilgi\``)
-      .addField(`Koruma Sistemleri`, `\`rol-koruma\`, \`rol-koruma-sıfırla\`, \`kanal-koruma\`, \`kanal-koruma-sıfırla\`, \`ban-koruma\`, \`ban-koruma-sıfırla\``)
+      .addField(`Koruma Sistemleri`, `\`rol-koruma\`, \`rol-koruma-sıfırla\`, \`kanal-koruma\`, \`kanal-koruma-sıfırla\`, \`ban-koruma\`, \`ban-koruma-sıfırla\`, \`ban-limit\`, \`ban-limit-rol\``)
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL);
     message.channel.send(embed);
@@ -25,7 +25,7 @@ if(kontrol == null){
       .addField(`Bot`, `\`help\`, \`language\`, \`bot-info\``)
       .addField(
         `Protection Systems`,
-        `\`role-protection\`, \`role-protection-reset\`, \`channel-protection\`, \`channel-protection-reset\`, \`ban-protection\`, \`ban-protection-reset\``
+        `\`role-protection\`, \`role-protection-reset\`, \`channel-protection\`, \`channel-protection-reset\`, \`ban-protection\`, \`ban-protection-reset\`, \`ban-limit\`, \`ban-limit-role\``
       )
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL);

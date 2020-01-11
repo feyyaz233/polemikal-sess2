@@ -5,12 +5,12 @@ module.exports.run = async (client, message, args) => {
   let kontrol = await db.fetch(`dil_${message.guild.id}`);
   let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "!";
   if (kontrol == "TR_tr") {
-    let kanal = args[0]
+    let kanal = message.mention.roles.first();
     if (!kanal) {
       const embed = new Discord.RichEmbed()
         .setColor("BLACK")
         .setFooter(client.user.username, client.user.avatarURL)
-        .setDescription(`Lütfen bir sınır belirtiniz!`);
+        .setDescription(`Lütfen bir rol etiketleyiniz!`);
       message.channel.send(embed);
       return;
     }
@@ -18,16 +18,16 @@ module.exports.run = async (client, message, args) => {
     const embed = new Discord.RichEmbed()
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL)
-      .setDescription(`Ban limit; ${kanal} olarak ayarlandı!\nNot: Eğer ayarlardan herhangi bir rol ayarlanmadıysa limit işlemez!`);
+      .setDescription(`Ban limit rolü; ${kanal} olarak ayarlandı!\nNot: Eğer ayarlardan herhangi bir limit sayısı ayarlanmadıysa işlemez!`);
     message.channel.send(embed);
     return;
   } else {
-    let kanal = args[0]
+    let kanal = message.mention.roles.first();
     if (!kanal) {
       const embed = new Discord.RichEmbed()
         .setColor("BLACK")
         .setFooter(client.user.username, client.user.avatarURL)
-        .setDescription(`Please specify a limit!`);
+        .setDescription(`Please tag a role!`);
       message.channel.send(embed);
       return;
     }
@@ -35,7 +35,7 @@ module.exports.run = async (client, message, args) => {
     const embed = new Discord.RichEmbed()
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL)
-      .setDescription(`Ban limit; Set to ${kanal}!\nNote: If no role has been set in the settings, no limit is set!`);
+      .setDescription(`Ban limit role; Set to ${kanal}! \ nNote: It will not work if no limit is set from the settings!`);
     message.channel.send(embed);
     return;
   }
@@ -44,12 +44,12 @@ module.exports.run = async (client, message, args) => {
 exports.conf = {
   enabled: true,
   guildOnly: true,
-  aliases: [],
+  aliases: ["ban-limit-role"],
   permLevel: 3
 };
 
 exports.help = {
-  name: "ban-limit",
-  description: "ban-limit",
-  usage: "ban-limit"
+  name: "ban-limit-rol",
+  description: "ban-limit-rol",
+  usage: "ban-limit-rol"
 };
