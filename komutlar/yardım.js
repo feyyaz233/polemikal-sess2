@@ -3,9 +3,9 @@ const Discord = require("discord.js"),
 
 module.exports.run = async (client, message, args) => {
   let kontrol = await db.fetch(`dil_${message.guild.id}`);
-if(kontrol == null){
-  kontrol = "EN_us"
-}
+  if (kontrol == null) {
+    kontrol = "EN_us";
+  }
   let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "!";
   if (kontrol == "TR_tr") {
     const embed = new Discord.RichEmbed()
@@ -13,7 +13,12 @@ if(kontrol == null){
         `Bot sürümü; **v0.1**, Prefix: **${prefix}**, Dil: **${kontrol}**`
       )
       .addField(`Bot`, `\`yardım\`, \`dil\`, \`bot-bilgi\``)
-      .addField(`Koruma Sistemleri`, `\`rol-koruma\`, \`rol-koruma-sıfırla\`, \`kanal-koruma\`, \`kanal-koruma-sıfırla\`, \`ban-koruma\`, \`ban-koruma-sıfırla\`, \`ban-limit\`, \`ban-limit-rol\``)
+      .addField(`Rol Koruma`, `\`rol-koruma\`, \`rol-koruma-sıfırla\``)
+      .addField(`Kanal Koruma`, `\`kanal-koruma\`, \`kanal-koruma-sıfırla\``)
+      .addField(
+        `Ban Koruma`,
+        `\`ban-koruma\`, \`ban-koruma-sıfırla\`, \`ban-limit\`, \`ban-limit-rol\`, \`ban-limit-sıfırla\`, \`ban-limit-rol-sıfırla\``
+      )
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL);
     message.channel.send(embed);
@@ -24,8 +29,16 @@ if(kontrol == null){
       )
       .addField(`Bot`, `\`help\`, \`language\`, \`bot-info\``)
       .addField(
-        `Protection Systems`,
-        `\`role-protection\`, \`role-protection-reset\`, \`channel-protection\`, \`channel-protection-reset\`, \`ban-protection\`, \`ban-protection-reset\`, \`ban-limit\`, \`ban-limit-role\``
+        `Role Protection`,
+        `\`role-protection\`, \`role-protection-reset\``
+      )
+      .addField(
+        `Channel Protection`,
+        `\`channel-protection\`, \`channel-protection-reset\``
+      )
+      .addField(
+        `Ban Protection`,
+        `\`ban-protection\`, \`ban-protection-reset\`, \`ban-limit\`, \`ban-limit-role\`, \`ban-limit-reset\`, \`ban-limit-role-reset\``
       )
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL);
