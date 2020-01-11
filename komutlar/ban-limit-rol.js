@@ -5,7 +5,7 @@ module.exports.run = async (client, message, args) => {
   let kontrol = await db.fetch(`dil_${message.guild.id}`);
   let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "!";
   if (kontrol == "TR_tr") {
-    let kanal = message.mention.roles.first();
+    let kanal = message.mentions.roles.first();
     if (!kanal) {
       const embed = new Discord.RichEmbed()
         .setColor("BLACK")
@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
       return;
     }
-    db.set(`slimido_${message.guild.id}`, kanal);
+    db.set(`banrol_${message.guild.id}`, kanal);
     const embed = new Discord.RichEmbed()
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL)
@@ -22,7 +22,7 @@ module.exports.run = async (client, message, args) => {
     message.channel.send(embed);
     return;
   } else {
-    let kanal = message.mention.roles.first();
+    let kanal = message.mentions.roles.first();
     if (!kanal) {
       const embed = new Discord.RichEmbed()
         .setColor("BLACK")
@@ -31,7 +31,7 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
       return;
     }
-    db.set(`slimido_${message.guild.id}`, kanal);
+    db.set(`banrol_${message.guild.id}`, kanal);
     const embed = new Discord.RichEmbed()
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL)
