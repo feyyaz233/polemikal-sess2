@@ -94,16 +94,73 @@ client.unload = command => {
 client.on("guildBanAdd", async (guild, user) => {
   let kontrol = await db.fetch(`dil_${guild.id}`);
   let kanal = await db.fetch(`bank_${guild.id}`);
+  let rol = await db.fetch(`banrol_${guild.id}`);
   if (!kanal) return;
   if (kontrol == "TR_tr") {
-const entry = await guild
+    const entry = await guild
       .fetchAuditLogs({ type: "BAN_MEMBER" })
       .then(audit => audit.entries.first());
     if (entry.executor.id == client.user.id) return;
     if (entry.executor.id == guild.owner.id) return;
+    if (!rol) {
+      guild.unban(user.id);
+      entry.executor.kick();
+      const embed = new Discord.RichEmbed()
+        .setTitle(`Biri Yasaklandı!`)
+        .setColor("BLACK")
+        .addField(`Yasaklayan`, entry.executor.tag)
+        .addField(`Yasaklanan Kişi`, user.name)
+        .addField(
+          `Sonuç`,
+          `Yasaklayan kişi sunucudan açıldı!\nve yasaklanan kişinin yasağı kalktı!`
+        );
+      client.channels.get(kanal).send(embed);
+    } else {
+      if (entry.executor.roles.has(rol)) {
+        let limito = await db.fetch(`limido_${entry.executor.id}`);
+        let slimito = await db.fetch(`slimido_${guild.id}`);
+        if (slimito == limito || slimito > limito) {
+          guild.unban(user.id);
+          entry.executor.kick();
+          const embed = new Discord.RichEmbed()
+            .setTitle(`Biri Yasaklandı!`)
+            .setColor("BLACK")
+            .addField(`Yasaklayan`, entry.executor.tag)
+            .addField(`Yasaklanan Kişi`, user.name)
+            .addField(
+              `Sonuç`,
+              `Yasaklayan kişi sunucudan açıldı!\nve yasaklanan kişinin yasağı kalktı!\nNOT: LİMİTİ AŞTI!`
+            );
+          client.channels.get(kanal).send(embed);
+        } else {
+          const embed = new Discord.RichEmbed()
+            .setTitle(`Biri Yasaklandı!`)
+            .setColor("BLACK")
+            .addField(`Yasaklayan`, entry.executor.tag)
+            .addField(`Yasaklanan Kişi`, user.name)
+            .addField(
+              `Sonuç`,
+              `Yasaklayan kişi ${limito}/${slimito} sınırına ulaştı!`
+            );
+          client.channels.get(kanal).send(embed);
+        }
+      } else {
+        guild.unban(user.id);
+        entry.executor.kick();
+        const embed = new Discord.RichEmbed()
+          .setTitle(`Biri Yasaklandı!`)
+          .setColor("BLACK")
+          .addField(`Yasaklayan`, entry.executor.tag)
+          .addField(`Yasaklanan Kişi`, user.name)
+          .addField(
+            `Sonuç`,
+            `Yasaklayan kişi sunucudan açıldı!\nve yasaklanan kişinin yasağı kalktı!`
+          );
+        client.channels.get(kanal).send(embed);
+      }
+    }
   }
-
-})
+});
 client.on("roleDelete", async role => {
   let kontrol = await db.fetch(`dil_${role.guild.id}`);
   let kanal = await db.fetch(`rolk_${role.guild.id}`);
