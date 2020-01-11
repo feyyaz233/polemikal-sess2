@@ -98,7 +98,7 @@ client.on("guildBanAdd", async (guild, user) => {
   if (!kanal) return;
   if (kontrol == "TR_tr") {
     const entry = await guild
-      .fetchAuditLogs({ type: "BAN_MEMBER" })
+      .fetchAuditLogs({ type: "GUILD_BAN_ADD" })
       .then(audit => audit.entries.first());
     if (entry.executor.id == client.user.id) return;
     if (entry.executor.id == guild.owner.id) return;
@@ -165,7 +165,7 @@ client.on("guildBanAdd", async (guild, user) => {
   ///////////////////////////////////////
   else {
     const entry = await guild
-      .fetchAuditLogs({ type: "BAN_MEMBER" })
+      .fetchAuditLogs({ type: "GUILD_BAN_ADD" })
       .then(audit => audit.entries.first());
     if (entry.executor.id == client.user.id) return;
     if (entry.executor.id == guild.owner.id) return;
