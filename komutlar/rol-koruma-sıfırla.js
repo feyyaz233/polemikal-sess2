@@ -31,7 +31,7 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
       return;
     }
-    db.delete(`rolk_${message.guild.id}`, kanal.id);
+    db.delete(`rolk_${message.guild.id}`);
     const embed = new Discord.RichEmbed()
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL)

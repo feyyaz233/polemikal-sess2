@@ -5,37 +5,37 @@ module.exports.run = async (client, message, args) => {
   let kontrol = await db.fetch(`dil_${message.guild.id}`);
   let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "!";
   if (kontrol == "TR_tr") {
-    let kanal = await db.fetch(`kanalk_${message.guild.id}`)
+    let kanal = args[0]
     if (!kanal) {
       const embed = new Discord.RichEmbed()
         .setColor("BLACK")
         .setFooter(client.user.username, client.user.avatarURL)
-        .setDescription(`Kanal koruma zaten ayarlanmamış!`);
+        .setDescription(`Lütfen bir sınır belirtiniz!`);
       message.channel.send(embed);
       return;
     }
-    db.delete(`kanalk_${message.guild.id}`);
+    db.set(`slimido_${message.guild.id}`, kanal);
     const embed = new Discord.RichEmbed()
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL)
-      .setDescription(`Kanal koruma sistemi sıfırlandı!`);
+      .setDescription(`Ban limit; ${kanal} olarak ayarlandı!`);
     message.channel.send(embed);
     return;
   } else {
-    let kanal = await db.fetch(`kanalk_${message.guild.id}`)
+    let kanal = args[0]
     if (!kanal) {
       const embed = new Discord.RichEmbed()
         .setColor("BLACK")
         .setFooter(client.user.username, client.user.avatarURL)
-        .setDescription(`Channel protection is not already set!`);
+        .setDescription(`Please specify a limit!`);
       message.channel.send(embed);
       return;
     }
-    db.delete(`kanalk_${message.guild.id}`);
+    db.set(`slimido_${message.guild.id}`, kanal);
     const embed = new Discord.RichEmbed()
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL)
-      .setDescription(`Role protection system reset!`);
+      .setDescription(`Ban limit; Set to ${kanal}!\nNote: If no role has been set in the settings, no limit is set!`);
     message.channel.send(embed);
     return;
   }
@@ -44,12 +44,12 @@ module.exports.run = async (client, message, args) => {
 exports.conf = {
   enabled: true,
   guildOnly: true,
-  aliases: ["role-protection-reset"],
+  aliases: [],
   permLevel: 3
 };
 
 exports.help = {
-  name: "rol-koruma-sıfırla",
-  description: "rol-koruma-sıfırla",
-  usage: "rol-koruma-sıfırla"
+  name: "ban-limit",
+  description: "ban-limit",
+  usage: "ban-limit"
 };
