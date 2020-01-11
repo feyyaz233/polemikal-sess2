@@ -110,10 +110,11 @@ client.on("roleDelete", async role => {
     });
 
     const embed = new Discord.RichEmbed()
-      .setTitle(`Bir rol silindi!`)
+      .setTitle(`Bir Rol Silindi!`)
       .setColor("BLACK")
       .addField(`Silen`, entry.executor.tag)
-      .addField(`Silinen Rol`, role.name);
+      .addField(`Silinen Rol`, role.name)
+      .addField(`Sonuç`, `Rol Geri Açıldı!`);
     client.channels.get(kanal).send(embed);
   } else {
     const entry = await role.guild
@@ -132,7 +133,8 @@ client.on("roleDelete", async role => {
       .setTitle(`A Role Has Been Deleted!`)
       .setColor("BLACK")
       .addField(`Role Deleter`, entry.executor.tag)
-      .addField(`Deleted Role`, role.name);
+      .addField(`Deleted Role`, role.name)
+      .addField(`Resulut`, `Role Opened Back!`);
     client.channels.get(kanal).send(embed);
   }
 });
@@ -149,10 +151,12 @@ client.on("roleCreate", async role => {
     if (entry.executor.id == role.guild.owner.id) return;
     role.delete();
     const embed = new Discord.RichEmbed()
-      .setTitle(`Bir rol açıldı!`)
+      .setTitle(`Bir Rol Açıldı!`)
       .setColor("BLACK")
+
       .addField(`Açan`, entry.executor.tag)
-      .addField(`Açılan Rol`, role.name);
+      .addField(`Açılan Rol`, role.name)
+      .addField(`Sonuç`, `Rol Geri Silindi!`);
     client.channels.get(kanal).send(embed);
   } else {
     const entry = await role.guild
@@ -165,7 +169,8 @@ client.on("roleCreate", async role => {
       .setTitle(`A Role Was Created!`)
       .setColor("BLACK")
       .addField(`Role Creator`, entry.executor.tag)
-      .addField(`Created Role`, role.name);
+      .addField(`Created Role`, role.name)
+      .addField(`Result`, `Role Back Deleted!`);
     client.channels.get(kanal).send(embed);
   }
 });
