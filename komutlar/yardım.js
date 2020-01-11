@@ -26,7 +26,7 @@ module.exports.run = async (client, message, args) => {
         `Bot Version; **v0.1**, Prefix: **${prefix}**, Language: **${kontrol2}**`
       )
       .addField(`Bot`, `\`help\`, \`language\`, \`bot-info\``)
-.addField(`Protection Systems`, `\`role-protection\`, \`role-protection-reset\``)
+.addField(`Protection Systems`, `\`role-protection\`, \`role-protection-reset\`, \`channel-protection\`, \`channel-protection-reset\``)
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL);
     message.channel.send(embed);

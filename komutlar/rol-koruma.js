@@ -43,9 +43,9 @@ module.exports.run = async (client, message, args) => {
 
 exports.conf = {
   enabled: true,
-  guildOnly: false,
+  guildOnly: true,
   aliases: ["role-protection"],
-  permLevel: 0
+  permLevel: 3
 };
 
 exports.help = {

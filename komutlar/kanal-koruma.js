@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
       return;
     }
-    db.set(`rolk_${message.guild.id}`, kanal.id);
+    db.set(`kanalk_${message.guild.id}`, kanal.id);
     const embed = new Discord.RichEmbed()
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL)
@@ -31,11 +31,11 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
       return;
     }
-    db.set(`rolk_${message.guild.id}`, kanal.id);
+    db.set(`kanalk_${message.guild.id}`, kanal.id);
     const embed = new Discord.RichEmbed()
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL)
-      .setDescription(`Role protection log channel; Set to ${kanal}!`);
+      .setDescription(`Channel protection log channel; Set to ${kanal}!`);
     message.channel.send(embed);
     return;
   }
@@ -43,9 +43,9 @@ module.exports.run = async (client, message, args) => {
 
 exports.conf = {
   enabled: true,
-  guildOnly: false,
+  guildOnly: true,
   aliases: ["channel-protection"],
-  permLevel: 0
+  permLevel: 3
 };
 
 exports.help = {
