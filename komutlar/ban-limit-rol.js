@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
       return;
     }
-    db.set(`banrol_${message.guild.id}`, kanal);
+    db.set(`banrol_${message.guild.id}`, kanal.id);
     const embed = new Discord.RichEmbed()
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL)
@@ -31,7 +31,7 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
       return;
     }
-    db.set(`banrol_${message.guild.id}`, kanal);
+    db.set(`banrol_${message.guild.id}`, kanal.id);
     const embed = new Discord.RichEmbed()
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL)

@@ -101,7 +101,7 @@ client.on("guildBanAdd", async (guild, user) => {
       .fetchAuditLogs({ type: "GUILD_BAN_ADD" })
       .then(audit => audit.entries.first());
     if (entry.executor.id == client.user.id) return;
-    if (entry.executor.id == guild.owner.id) return;
+    //if (entry.executor.id == guild.owner.id) return;
     if (!rol) {
       guild.unban(user.id);
       entry.executor.kick();
@@ -168,7 +168,7 @@ client.on("guildBanAdd", async (guild, user) => {
       .fetchAuditLogs({ type: "GUILD_BAN_ADD" })
       .then(audit => audit.entries.first());
     if (entry.executor.id == client.user.id) return;
-    if (entry.executor.id == guild.owner.id) return;
+    //if (entry.executor.id == guild.owner.id) return;
     if (!rol) {
       guild.unban(user.id);
       entry.executor.kick();
