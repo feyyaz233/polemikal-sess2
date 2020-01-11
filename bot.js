@@ -197,6 +197,7 @@ client.on("channelDelete", async channel => {
 
       .addField(`Silinen Kanal`, channel.name)
       .addField(`Sonuç`, `Kanal Geri Açıldı!`)
+
       .setColor("BLACK");
     client.channels.get(kanal).send(embed);
   } else {
@@ -215,7 +216,8 @@ client.on("channelDelete", async channel => {
       .setTitle(`One Channel Deleted!`)
       .addField(`Deleter Channel`, entry.executor.tag)
       .setColor("BLACK")
-      .addField(`Deleted Channel`, channel.name);
+      .addField(`Deleted Channel`, channel.name)
+      .addField(`Result`, `Channel Back Opened!`);
     client.channels.get(kanal).send(embed);
   }
 });
@@ -224,19 +226,35 @@ client.on("channelCreate", async channel => {
   let kontrol = await db.fetch(`dil_${channel.guild.id}`);
   let kanal = await db.fetch(`kanalk_${channel.guild.id}`);
   if (!kanal) return;
-  if(kontrol == "TR_tr")
-  const entry = await channel.guild
-    .fetchAuditLogs({ type: "CHANNEL_CREATE" })
-    .then(audit => audit.entries.first());
-  if (entry.executor.id == client.user.id) return;
-  if (entry.executor.hasPermission("ADMINISTRATOR")) return;
-  channel.delete();
-  const embed = new Discord.RichEmbed()
-    .setTitle(`Bir kanal açıldı!`)
-    .setColor("BLACK")
-    .addField(`Açan`, entry.executor.tag)
-    .addField(`Açılan Kanal`, channel.name);
-  client.channels.get(kanal).send(embed);
+  if (kontrol == "TR_tr") {
+    const entry = await channel.guild
+      .fetchAuditLogs({ type: "CHANNEL_CREATE" })
+      .then(audit => audit.entries.first());
+    if (entry.executor.id == client.user.id) return;
+    if (entry.executor.id == channel.guild.owner.id) return;
+    channel.delete();
+    const embed = new Discord.RichEmbed()
+      .setTitle(`Bir Kanal Açıldı!`)
+      .setColor("BLACK")
+      .addField(`Açan`, entry.executor.tag)
+      .addField(`Açılan Kanal`, channel.name)
+      .addField(`Sonuç`, `Kanal Geri Silindi!`);
+    client.channels.get(kanal).send(embed);
+  } else {
+    const entry = await channel.guild
+      .fetchAuditLogs({ type: "CHANNEL_CREATE" })
+      .then(audit => audit.entries.first());
+    if (entry.executor.id == client.user.id) return;
+    if (entry.executor.id == channel.guild.owner.id) return;
+    channel.delete();
+    const embed = new Discord.RichEmbed()
+      .setTitle(`A Channel Opened!`)
+      .setColor("BLACK")
+      .addField(`Channel Opener`, entry.executor.tag)
+      .addField(`Drop Down Channel`, channel.name)
+      .addField(`Result`, `Channel Back Deleted!`);
+    client.channels.get(kanal).send(embed);
+  }
 });
 
 client.elevation = message => {
