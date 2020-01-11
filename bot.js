@@ -91,7 +91,19 @@ client.unload = command => {
     }
   });
 };
+client.on("guildBanAdd", async (guild, user) => {
+  let kontrol = await db.fetch(`dil_${guild.id}`);
+  let kanal = await db.fetch(`bank_${guild.id}`);
+  if (!kanal) return;
+  if (kontrol == "TR_tr") {
+const entry = await guild
+      .fetchAuditLogs({ type: "BAN_MEMBER" })
+      .then(audit => audit.entries.first());
+    if (entry.executor.id == client.user.id) return;
+    if (entry.executor.id == guild.owner.id) return;
+  }
 
+})
 client.on("roleDelete", async role => {
   let kontrol = await db.fetch(`dil_${role.guild.id}`);
   let kanal = await db.fetch(`rolk_${role.guild.id}`);
