@@ -104,7 +104,7 @@ client.on("guildBanAdd", async (guild, user) => {
     //if (entry.executor.id == guild.owner.id) return;
     if (!rol) {
       guild.unban(user.id);
-      entry.executor.kick();
+      guild.members.get(entry.executor.id).kick();
       const embed = new Discord.RichEmbed()
         .setTitle(`Biri Yasaklandı!`)
         .setColor("BLACK")
@@ -122,7 +122,7 @@ client.on("guildBanAdd", async (guild, user) => {
         if (slimito == limito || slimito > limito) {
           db.delete(`limido_${entry.executor.id}`);
           guild.unban(user.id);
-          entry.executor.kick();
+          guild.members.get(entry.executor.id).kick();
           const embed = new Discord.RichEmbed()
             .setTitle(`Biri Yasaklandı!`)
             .setColor("BLACK")
@@ -148,7 +148,7 @@ client.on("guildBanAdd", async (guild, user) => {
         }
       } else {
         guild.unban(user.id);
-        entry.executor.kick();
+        guild.members.get(entry.executor.id).kick();
         const embed = new Discord.RichEmbed()
           .setTitle(`Biri Yasaklandı!`)
           .setColor("BLACK")
@@ -171,7 +171,7 @@ client.on("guildBanAdd", async (guild, user) => {
     //if (entry.executor.id == guild.owner.id) return;
     if (!rol) {
       guild.unban(user.id);
-      entry.executor.kick();
+      guild.members.get(entry.executor.id).kick();
       const embed = new Discord.RichEmbed()
         .setTitle(`Biri Yasaklandı!`)
         .setColor("BLACK")
@@ -188,7 +188,7 @@ client.on("guildBanAdd", async (guild, user) => {
         let slimito = await db.fetch(`slimido_${guild.id}`);
         if (slimito == limito || slimito > limito) {
           guild.unban(user.id);
-          entry.executor.kick();
+          guild.members.get(entry.executor.id).kick();
           const embed = new Discord.RichEmbed()
             .setTitle(`Biri Yasaklandı!`)
             .setColor("BLACK")
@@ -213,7 +213,7 @@ client.on("guildBanAdd", async (guild, user) => {
         }
       } else {
         guild.unban(user.id);
-        entry.executor.kick();
+        guild.members.get(entry.executor.id).kick();
         const embed = new Discord.RichEmbed()
           .setTitle(`Biri Yasaklandı!`)
           .setColor("BLACK")

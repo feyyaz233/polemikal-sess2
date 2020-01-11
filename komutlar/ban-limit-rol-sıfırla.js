@@ -5,37 +5,37 @@ module.exports.run = async (client, message, args) => {
   let kontrol = await db.fetch(`dil_${message.guild.id}`);
   let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "!";
   if (kontrol == "TR_tr") {
-    let kanal = message.mentions.channels.first();
+    let kanal = await db.fetch(`banrol_${message.guild.id}`)
     if (!kanal) {
       const embed = new Discord.RichEmbed()
         .setColor("BLACK")
         .setFooter(client.user.username, client.user.avatarURL)
-        .setDescription(`Lütfen log kanalını etiketleyiniz!`);
+        .setDescription(`Ban limit rolü zaten ayarlanmamış!`);
       message.channel.send(embed);
       return;
     }
-    db.set(`bank_${message.guild.id}`, kanal.id);
+    db.delete(`banrol_${message.guild.id}`);
     const embed = new Discord.RichEmbed()
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL)
-      .setDescription(`Ban limit log kanalı; ${kanal} olarak ayarlandı!`);
+      .setDescription(`Ban limit rolü sıfırlandı!`);
     message.channel.send(embed);
     return;
   } else {
-    let kanal = message.mentions.channels.first();
+    let kanal = await db.fetch(`banrol_${message.guild.id}`)
     if (!kanal) {
       const embed = new Discord.RichEmbed()
         .setColor("BLACK")
         .setFooter(client.user.username, client.user.avatarURL)
-        .setDescription(`Please tag the log channel!`);
+        .setDescription(`Ban limit role is not already set!`);
       message.channel.send(embed);
       return;
     }
-    db.set(`bank_${message.guild.id}`, kanal.id);
+    db.delete(`banrol_${message.guild.id}`);
     const embed = new Discord.RichEmbed()
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL)
-      .setDescription(`Ban limit log channel; Set to ${kanal}!`);
+      .setDescription(`Ban limit role reset!`);
     message.channel.send(embed);
     return;
   }
@@ -44,12 +44,12 @@ module.exports.run = async (client, message, args) => {
 exports.conf = {
   enabled: true,
   guildOnly: true,
-  aliases: ["ban-protection"],
+  aliases: ["ban-limit-role-reset"],
   permLevel: 3
 };
 
 exports.help = {
-  name: "ban-koruma",
-  description: "ban-koruma",
-  usage: "ban-koruma"
+  name: "ban-limit-rol-sıfırla",
+  description: "ban-limit-rol-sıfırla",
+  usage: "ban-limit-rol-sıfırla"
 };
