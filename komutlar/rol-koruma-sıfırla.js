@@ -22,7 +22,7 @@ module.exports.run = async (client, message, args) => {
     message.channel.send(embed);
     return;
   } else {
-    let kanal = message.mentions.channels.first();
+    let kanal = await db.fetch(`rolk_${message.guild.id}`)
     if (!kanal) {
       const embed = new Discord.RichEmbed()
         .setColor("BLACK")
@@ -44,12 +44,12 @@ module.exports.run = async (client, message, args) => {
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ["role-protection"],
+  aliases: ["role-protection-reset"],
   permLevel: 0
 };
 
 exports.help = {
-  name: "rol-koruma",
-  description: "rol-koruma",
-  usage: "rol-koruma"
+  name: "rol-koruma-sıfırla",
+  description: "rol-koruma-sıfırla",
+  usage: "rol-koruma-sıfırla"
 };

@@ -16,7 +16,7 @@ module.exports.run = async (client, message, args) => {
         `Bot sürümü; **v0.1**, Prefix: **${prefix}**, Dil: **${kontrol2}**`
       )
       .addField(`Bot`, `\`yardım\`, \`dil\`, \`bot-bilgi\``)
-.addField(`Koruma Sistemleri`, `\`rol-koruma\``)
+.addField(`Koruma Sistemleri`, `\`rol-koruma\`, \`rol-koruma-sıfırla\``)
     .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL);
     message.channel.send(embed);
@@ -26,7 +26,7 @@ module.exports.run = async (client, message, args) => {
         `Bot Version; **v0.1**, Prefix: **${prefix}**, Language: **${kontrol2}**`
       )
       .addField(`Bot`, `\`help\`, \`language\`, \`bot-info\``)
-.addField(`Protection Systems`, `\`role-protection\``)
+.addField(`Protection Systems`, `\`role-protection\`, \`role-protection-reset\``)
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL);
     message.channel.send(embed);
