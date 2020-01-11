@@ -163,8 +163,7 @@ client.on("guildBanAdd", async (guild, user) => {
     }
   }
   ///////////////////////////////////////
-  else{
-    
+  else {
     const entry = await guild
       .fetchAuditLogs({ type: "BAN_MEMBER" })
       .then(audit => audit.entries.first());
@@ -183,8 +182,7 @@ client.on("guildBanAdd", async (guild, user) => {
           `Yasaklayan kişi sunucudan açıldı!\nve yasaklanan kişinin yasağı kalktı!`
         );
       client.channels.get(kanal).send(embed);
-    } 
-    else {
+    } else {
       if (entry.executor.roles.has(rol)) {
         let limito = await db.fetch(`limido_${entry.executor.id}`);
         let slimito = await db.fetch(`slimido_${guild.id}`);
