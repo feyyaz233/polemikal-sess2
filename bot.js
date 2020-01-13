@@ -313,25 +313,81 @@ client.on("roleDelete", async role => {
       }
     }
   } else {
-    const entry = await role.guild
-      .fetchAuditLogs({ type: "ROLE_DELETE" })
-      .then(audit => audit.entries.first());
-    if (entry.executor.id == client.user.id) return;
-    if (entry.executor.id == role.guild.owner.id) return;
-    role.guild.createRole({
-      name: role.name,
-      color: role.hexColor,
-      permissions: role.permissions,
-      hook: true
-    });
+    if (!rol) {
+      if (entry.executor.id == client.user.id) return;
+      if (entry.executor.id == role.guild.owner.id) return;
+      role.guild.createRole({
+        name: role.name,
+        color: role.hexColor,
+        permissions: role.permissions,
+        hook: true
+      });
 
-    const embed = new Discord.RichEmbed()
-      .setTitle(`A Role Has Been Deleted!`)
-      .setColor("BLACK")
-      .addField(`Role Deleter`, entry.executor.tag)
-      .addField(`Deleted Role`, role.name)
-      .addField(`Resulut`, `Role Opened Back!`);
-    client.channels.get(kanal).send(embed);
+      const embed = new Discord.RichEmbed()
+        .setTitle(`A Role Deleted!`)
+        .setColor("BLACK")
+        .addField(`Role Deleter`, entry.executor.tag)
+        .addField(`Silinen Rol`, role.name)
+        .addField(`Sonuç`, `Rol Geri Açıldı!`);
+      client.channels.get(kanal).send(embed);
+    } else {
+      if (entry.executor.roles.has(rol)) {
+        let limito = await db.fetch(`limitrol_${entry.executor.id}`);
+        let slimito = await db.fetch(`rollim_${role.guild.id}`);
+        if (slimito == limito || slimito > limito) {
+          role.guild.createRole({
+            name: role.name,
+            color: role.hexColor,
+            permissions: role.permissions,
+            hook: true
+          });
+          role.guild.members.get(entry.executor.id).kick();
+          const embed = new Discord.RichEmbed()
+            .setTitle(`Bir Rol Silen!`)
+            .setColor("BLACK")
+            .addField(`Rolü Silen`, entry.executor.tag)
+            .addField(`Silinen Rol`, role.name)
+            .addField(`Sonuç`, `Rol geri açıldı! Rolü açan sunucudan atıldı!`);
+          client.channels.get(kanal).send(embed);
+        } else {
+          let limito = await db.fetch(`limitrol_${entry.executor.id}`);
+          let slimito = await db.fetch(`rollim_${role.guild.id}`);
+
+          role.guild.createRole({
+            name: role.name,
+            color: role.hexColor,
+            permissions: role.permissions,
+            hook: true
+          });
+          role.guild.members.get(entry.executor.id).kick();
+          const embed = new Discord.RichEmbed()
+            .setTitle(`Bir Rol Silen!`)
+            .setColor("BLACK")
+            .addField(`Rolü Silen`, entry.executor.tag)
+            .addField(`Silinen Rol`, role.name)
+            .addField(
+              `Sonuç`,
+              `Rol geri açılamadı! Rolü açan ${limito}/${slimito} sınırına ulaştı!`
+            );
+          client.channels.get(kanal).send(embed);
+        }
+      } else {
+        role.guild.createRole({
+          name: role.name,
+          color: role.hexColor,
+          permissions: role.permissions,
+          hook: true
+        });
+
+        const embed = new Discord.RichEmbed()
+          .setTitle(`Bir Rol Silindi!`)
+          .setColor("BLACK")
+          .addField(`Silen`, entry.executor.tag)
+          .addField(`Silinen Rol`, role.name)
+          .addField(`Sonuç`, `Rol Geri Açıldı!`);
+        client.channels.get(kanal).send(embed);
+      }
+    }
   }
 });
 
