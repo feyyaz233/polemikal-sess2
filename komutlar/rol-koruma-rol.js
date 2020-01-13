@@ -14,11 +14,11 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
       return;
     }
-    db.set(`banrol_${message.guild.id}`, kanal.id);
+    db.set(`rolrol_${message.guild.id}`, kanal.id);
     const embed = new Discord.RichEmbed()
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL)
-      .setDescription(`Ban limit rolü; ${kanal} olarak ayarlandı!\nNot: Eğer ayarlardan herhangi bir limit sayısı ayarlanmadıysa işlemez!`);
+      .setDescription(`Rol koruma rolü; ${kanal} olarak ayarlandı!\nNot: Eğer ayarlardan herhangi bir limit sayısı ayarlanmadıysa işlemez!`);
     message.channel.send(embed);
     return;
   } else {
@@ -31,11 +31,11 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
       return;
     }
-    db.set(`banrol_${message.guild.id}`, kanal.id);
+    db.set(`rolrol_${message.guild.id}`, kanal.id);
     const embed = new Discord.RichEmbed()
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL)
-      .setDescription(`Ban limit role; Set to ${kanal}!\nNote: It will not work if no limit is set from the settings!`);
+      .setDescription(`Role protection role; Set to ${kanal}!\nNote: It will not work if no limit is set from the settings!`);
     message.channel.send(embed);
     return;
   }
@@ -44,12 +44,12 @@ module.exports.run = async (client, message, args) => {
 exports.conf = {
   enabled: true,
   guildOnly: true,
-  aliases: ["ban-limit-role"],
+  aliases: ["role-protection-role"],
   permLevel: 3
 };
 
 exports.help = {
-  name: "ban-limit-rol",
-  description: "ban-limit-rol",
-  usage: "ban-limit-rol"
+  name: "rol-koruma-rol",
+  description: "rol-koruma-rol",
+  usage: "rol-koruma-rol"
 };
