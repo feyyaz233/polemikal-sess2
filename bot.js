@@ -101,7 +101,7 @@ client.on("guildBanAdd", async (guild, user) => {
       .fetchAuditLogs({ type: "GUILD_BAN_ADD" })
       .then(audit => audit.entries.first());
     if (entry.executor.id == client.user.id) return;
-    //if (entry.executor.id == guild.owner.id) return;
+    if (entry.executor.id == guild.owner.id) return;
     if (!rol) {
       guild.unban(user.id);
       guild.members.get(entry.executor.id).kick();
@@ -168,7 +168,7 @@ client.on("guildBanAdd", async (guild, user) => {
       .fetchAuditLogs({ type: "GUILD_BAN_ADD" })
       .then(audit => audit.entries.first());
     if (entry.executor.id == client.user.id) return;
-    //if (entry.executor.id == guild.owner.id) return;
+    if (entry.executor.id == guild.owner.id) return;
     if (!rol) {
       guild.unban(user.id);
       guild.members.get(entry.executor.id).kick();
@@ -229,29 +229,51 @@ client.on("guildBanAdd", async (guild, user) => {
   }
 });
 client.on("roleDelete", async role => {
+  const entry = await role.guild
+    .fetchAuditLogs({ type: "ROLE_DELETE" })
+    .then(audit => audit.entries.first());
+  let rol = await db.fetch(`rolrol_${role.guild.id}`);
   let kontrol = await db.fetch(`dil_${role.guild.id}`);
   let kanal = await db.fetch(`rolk_${role.guild.id}`);
   if (!kanal) return;
   if (kontrol == "TR_tr") {
-    const entry = await role.guild
-      .fetchAuditLogs({ type: "ROLE_DELETE" })
-      .then(audit => audit.entries.first());
-    if (entry.executor.id == client.user.id) return;
-    if (entry.executor.id == role.guild.owner.id) return;
-    role.guild.createRole({
-      name: role.name,
-      color: role.hexColor,
-      permissions: role.permissions,
-      hook: true
-    });
+    if (!rol) {
+      if (entry.executor.id == client.user.id) return;
+      if (entry.executor.id == role.guild.owner.id) return;
+      role.guild.createRole({
+        name: role.name,
+        color: role.hexColor,
+        permissions: role.permissions,
+        hook: true
+      });
 
-    const embed = new Discord.RichEmbed()
-      .setTitle(`Bir Rol Silindi!`)
-      .setColor("BLACK")
-      .addField(`Silen`, entry.executor.tag)
-      .addField(`Silinen Rol`, role.name)
-      .addField(`Sonuç`, `Rol Geri Açıldı!`);
-    client.channels.get(kanal).send(embed);
+      const embed = new Discord.RichEmbed()
+        .setTitle(`Bir Rol Silindi!`)
+        .setColor("BLACK")
+        .addField(`Silen`, entry.executor.tag)
+        .addField(`Silinen Rol`, role.name)
+        .addField(`Sonuç`, `Rol Geri Açıldı!`);
+      client.channels.get(kanal).send(embed);
+    } else {
+      if (entry.executor.roles.has(rol)) {
+        let limito = await db.fetch(`limitrol_${entry.executor.id}`);
+        let slimito = await db.fetch(`rollim_${role.guild.id}`);
+        if (slimito == limito || slimito > limito) {
+
+          guild.members.get(entry.executor.id).kick();
+          const embed = new Discord.RichEmbed()
+            .setTitle(`Bir Rol Silen!`)
+            .setColor("BLACK")
+            .addField(`Rolü Silen`, entry.executor.tag)
+            .addField(`Silinen Rol`, role.name)
+            .addField(
+              `Result`,
+              `The ban has been opened from the server!\and the ban has been lifted!\nNOTE: EXCEEDED!`
+            );
+          client.channels.get(kanal).send(embed);
+        }
+      }
+    }
   } else {
     const entry = await role.guild
       .fetchAuditLogs({ type: "ROLE_DELETE" })

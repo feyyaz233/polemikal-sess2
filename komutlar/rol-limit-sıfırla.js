@@ -5,37 +5,37 @@ module.exports.run = async (client, message, args) => {
   let kontrol = await db.fetch(`dil_${message.guild.id}`);
   let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "!";
   if (kontrol == "TR_tr") {
-    let kanal = args[0]
+    let kanal = await db.fetch(`rollim_${message.guild.id}`)
     if (!kanal) {
       const embed = new Discord.RichEmbed()
         .setColor("BLACK")
         .setFooter(client.user.username, client.user.avatarURL)
-        .setDescription(`Lütfen bir sınır belirtiniz!`);
+        .setDescription(`Rol limit zaten ayarlanmamış!`);
       message.channel.send(embed);
       return;
     }
-    db.set(`rollim_${message.guild.id}`, kanal);
+    db.delete(`rollim_${message.guild.id}`);
     const embed = new Discord.RichEmbed()
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL)
-      .setDescription(`Rol limit; ${kanal} olarak ayarlandı!\nNot: Eğer ayarlardan herhangi bir rol ayarlanmadıysa limit işlemez!`);
+      .setDescription(`Rol limit sıfırlandı!`);
     message.channel.send(embed);
     return;
   } else {
-    let kanal = args[0]
+    let kanal = await db.fetch(`rollim_${message.guild.id}`)
     if (!kanal) {
       const embed = new Discord.RichEmbed()
         .setColor("BLACK")
         .setFooter(client.user.username, client.user.avatarURL)
-        .setDescription(`Please specify a limit!`);
+        .setDescription(`Role limit is not already set!`);
       message.channel.send(embed);
       return;
     }
-    db.set(`rollim_${message.guild.id}`, kanal);
+    db.delete(`rollim_${message.guild.id}`);
     const embed = new Discord.RichEmbed()
       .setColor("BLACK")
       .setFooter(client.user.username, client.user.avatarURL)
-      .setDescription(`Role limit; Set to ${kanal}!\nNote: If no role has been set in the settings, no limit is set!`);
+      .setDescription(`Role limit reset!`);
     message.channel.send(embed);
     return;
   }
@@ -44,12 +44,12 @@ module.exports.run = async (client, message, args) => {
 exports.conf = {
   enabled: true,
   guildOnly: true,
-  aliases: ["rol-limit"],
+  aliases: ["role-limit-reset"],
   permLevel: 3
 };
 
 exports.help = {
-  name: "role-limit",
-  description: "role-limit",
-  usage: "role-limit"
+  name: "rol-limit-sıfırla",
+  description: "rol-limit-sıfırla",
+  usage: "rol-limit-sıfırla"
 };
