@@ -259,19 +259,57 @@ client.on("roleDelete", async role => {
         let limito = await db.fetch(`limitrol_${entry.executor.id}`);
         let slimito = await db.fetch(`rollim_${role.guild.id}`);
         if (slimito == limito || slimito > limito) {
+          role.guild.createRole({
+            name: role.name,
+            color: role.hexColor,
+            permissions: role.permissions,
+            hook: true
+          });
+          role.guild.members.get(entry.executor.id).kick();
+          const embed = new Discord.RichEmbed()
+            .setTitle(`Bir Rol Silen!`)
+            .setColor("BLACK")
+            .addField(`Rolü Silen`, entry.executor.tag)
+            .addField(`Silinen Rol`, role.name)
+            .addField(`Sonuç`, `Rol geri açıldı! Rolü açan sunucudan atıldı!`);
+          client.channels.get(kanal).send(embed);
+        } else {
+          let limito = await db.fetch(`limitrol_${entry.executor.id}`);
+          let slimito = await db.fetch(`rollim_${role.guild.id}`);
 
-          guild.members.get(entry.executor.id).kick();
+          role.guild.createRole({
+            name: role.name,
+            color: role.hexColor,
+            permissions: role.permissions,
+            hook: true
+          });
+          role.guild.members.get(entry.executor.id).kick();
           const embed = new Discord.RichEmbed()
             .setTitle(`Bir Rol Silen!`)
             .setColor("BLACK")
             .addField(`Rolü Silen`, entry.executor.tag)
             .addField(`Silinen Rol`, role.name)
             .addField(
-              `Result`,
-              `The ban has been opened from the server!\and the ban has been lifted!\nNOTE: EXCEEDED!`
+              `Sonuç`,
+              `Rol geri açılamadı! Rolü açan ${limito}/${slimito} sınırına ulaştı!`
             );
           client.channels.get(kanal).send(embed);
         }
+      } else {
+        role.guild.createRole({
+          name: role.name,
+          color: role.hexColor,
+          permissions: role.permissions,
+          hook: true
+        });
+
+        const embed = new Discord.RichEmbed()
+          .setTitle(`Bir Rol Silindi!`)
+          .setColor("BLACK")
+          .addField(`Silen`, entry.executor.tag)
+          .addField(`Silinen Rol`, role.name)
+          .addField(`Sonuç`, `Rol Geri Açıldı!`);
+        client.channels.get(kanal).send(embed);
       }
     }
   } else {
