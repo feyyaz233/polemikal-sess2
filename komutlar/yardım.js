@@ -13,7 +13,7 @@ module.exports.run = async (client, message, args) => {
         `Bot sürümü; **v0.1**, Prefix: **${prefix}**, Dil: **${kontrol}**`
       )
       .addField(`Bot`, `\`yardım\`, \`dil\`, \`bot-bilgi\``)
-      .addField(`Rol Koruma`, `\`rol-koruma\`, \`rol-koruma-sıfırla\``)
+      .addField(`Rol Koruma`, `\`rol-koruma\`, \`rol-koruma-sıfırla\`, \`rol-koruma-rol\`, \`rol-koruma-rol-sıfırla\``)
       .addField(`Kanal Koruma`, `\`kanal-koruma\`, \`kanal-koruma-sıfırla\``)
       .addField(
         `Ban Koruma`,
@@ -30,7 +30,7 @@ module.exports.run = async (client, message, args) => {
       .addField(`Bot`, `\`help\`, \`language\`, \`bot-info\``)
       .addField(
         `Role Protection`,
-        `\`role-protection\`, \`role-protection-reset\``
+        `\`role-protection\`, \`role-protection-reset\`, \`role-protection-role\`, \`role-protection-role-reset\``
       )
       .addField(
         `Channel Protection`,
