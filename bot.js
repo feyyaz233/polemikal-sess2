@@ -327,8 +327,8 @@ client.on("roleDelete", async role => {
         .setTitle(`A Role Deleted!`)
         .setColor("BLACK")
         .addField(`Role Deleter`, entry.executor.tag)
-        .addField(`Silinen Rol`, role.name)
-        .addField(`Sonuç`, `Rol Geri Açıldı!`);
+        .addField(`Deleting Role`, role.name)
+        .addField(`Result`, `Role Back A Open!`);
       client.channels.get(kanal).send(embed);
     } else {
       if (entry.executor.roles.has(rol)) {
@@ -343,11 +343,11 @@ client.on("roleDelete", async role => {
           });
           role.guild.members.get(entry.executor.id).kick();
           const embed = new Discord.RichEmbed()
-            .setTitle(`Bir Rol Silen!`)
+            .setTitle(`A Role Deleted!`)
             .setColor("BLACK")
-            .addField(`Rolü Silen`, entry.executor.tag)
-            .addField(`Silinen Rol`, role.name)
-            .addField(`Sonuç`, `Rol geri açıldı! Rolü açan sunucudan atıldı!`);
+            .addField(`Role Deleter`, entry.executor.tag)
+            .addField(`Deleting Role`, role.name)
+            .addField(`Result`, `Role Back A Open! Role Deleter Kicking Has Guild!`);
           client.channels.get(kanal).send(embed);
         } else {
           let limito = await db.fetch(`limitrol_${entry.executor.id}`);
@@ -361,13 +361,13 @@ client.on("roleDelete", async role => {
           });
           role.guild.members.get(entry.executor.id).kick();
           const embed = new Discord.RichEmbed()
-            .setTitle(`Bir Rol Silen!`)
+            .setTitle(`A Role Deleted!`)
             .setColor("BLACK")
-            .addField(`Rolü Silen`, entry.executor.tag)
-            .addField(`Silinen Rol`, role.name)
+            .addField(`Role Deleter`, entry.executor.tag)
+            .addField(`Deleting Role`, role.name)
             .addField(
-              `Sonuç`,
-              `Rol geri açılamadı! Rolü açan ${limito}/${slimito} sınırına ulaştı!`
+              `Result`,
+              `The role could not be turned back! Reached ${limito}/${slimito} limit, which opens the role!`
             );
           client.channels.get(kanal).send(embed);
         }
@@ -380,11 +380,11 @@ client.on("roleDelete", async role => {
         });
 
         const embed = new Discord.RichEmbed()
-          .setTitle(`Bir Rol Silindi!`)
+          .setTitle(`A Role Deleted!`)
           .setColor("BLACK")
-          .addField(`Silen`, entry.executor.tag)
-          .addField(`Silinen Rol`, role.name)
-          .addField(`Sonuç`, `Rol Geri Açıldı!`);
+          .addField(`Role Deleter`, entry.executor.tag)
+          .addField(`Deleting Role`, role.name)
+          .addField(`Result`, `Role Back A Open`);
         client.channels.get(kanal).send(embed);
       }
     }
