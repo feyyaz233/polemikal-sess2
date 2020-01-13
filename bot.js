@@ -173,13 +173,13 @@ client.on("guildBanAdd", async (guild, user) => {
       guild.unban(user.id);
       guild.members.get(entry.executor.id).kick();
       const embed = new Discord.RichEmbed()
-        .setTitle(`Biri Yasaklandı!`)
+        .setTitle(`One Banned!`)
         .setColor("BLACK")
-        .addField(`Yasaklayan`, entry.executor.tag)
-        .addField(`Yasaklanan Kişi`, user.name)
+        .addField(`Banner`, entry.executor.tag)
+        .addField(`Banned Person`, user.name)
         .addField(
           `Sonuç`,
-          `Yasaklayan kişi sunucudan açıldı!\nve yasaklanan kişinin yasağı kalktı!`
+          `The ban has been opened from the server!\nand the ban has been lifted!`
         );
       client.channels.get(kanal).send(embed);
     } else {
@@ -190,7 +190,7 @@ client.on("guildBanAdd", async (guild, user) => {
           guild.unban(user.id);
           guild.members.get(entry.executor.id).kick();
           const embed = new Discord.RichEmbed()
-            .setTitle(`Biri Yasaklandı!`)
+            .setTitle(`One Banned!`)
             .setColor("BLACK")
             .addField(`Yasaklayan`, entry.executor.tag)
             .addField(`Yasaklanan Kişi`, user.name)
