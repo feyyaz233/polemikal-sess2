@@ -192,22 +192,22 @@ client.on("guildBanAdd", async (guild, user) => {
           const embed = new Discord.RichEmbed()
             .setTitle(`One Banned!`)
             .setColor("BLACK")
-            .addField(`Yasaklayan`, entry.executor.tag)
-            .addField(`Yasaklanan Kişi`, user.name)
+            .addField(`Banner`, entry.executor.tag)
+            .addField(`Banned Person`, user.name)
             .addField(
-              `Sonuç`,
-              `Yasaklayan kişi sunucudan açıldı!\nve yasaklanan kişinin yasağı kalktı!\nNOT: LİMİTİ AŞTI!`
+              `Result`,
+              `The ban has been opened from the server!\and the ban has been lifted!\nNOTE: EXCEEDED!`
             );
           client.channels.get(kanal).send(embed);
         } else {
           const embed = new Discord.RichEmbed()
-            .setTitle(`Biri Yasaklandı!`)
+            .setTitle(`One Banned!`)
             .setColor("BLACK")
-            .addField(`Yasaklayan`, entry.executor.tag)
-            .addField(`Yasaklanan Kişi`, user.name)
+            .addField(`Banner`, entry.executor.tag)
+            .addField(`Banned Person`, user.name)
             .addField(
-              `Sonuç`,
-              `Yasaklayan kişi ${limito}/${slimito} sınırına ulaştı!`
+              `Result`,
+              `The ban has reached the limit of ${limito}/${slimito}!`
             );
           client.channels.get(kanal).send(embed);
         }
@@ -215,13 +215,13 @@ client.on("guildBanAdd", async (guild, user) => {
         guild.unban(user.id);
         guild.members.get(entry.executor.id).kick();
         const embed = new Discord.RichEmbed()
-          .setTitle(`Biri Yasaklandı!`)
+          .setTitle(`One Banned!`)
           .setColor("BLACK")
-          .addField(`Yasaklayan`, entry.executor.tag)
-          .addField(`Yasaklanan Kişi`, user.name)
+          .addField(`Banner`, entry.executor.tag)
+          .addField(`Banned Person`, user.name)
           .addField(
-            `Sonuç`,
-            `Yasaklayan kişi sunucudan açıldı!\nve yasaklanan kişinin yasağı kalktı!`
+            `Result`,
+            `The ban has been opened from the server!\nand the ban has been lifted!`
           );
         client.channels.get(kanal).send(embed);
       }
