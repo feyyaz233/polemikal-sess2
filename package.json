@@ -21,7 +21,8 @@
     "fs": "^0.0.2",
     "http": "^0.0.0",
     "generate-password": "^1.4.1",
-    "moment-duration-format": "^2.2.2"
+    "moment-duration-format": "^2.2.2",
+    "dateformat": "^3.0.3"
   },
   "engines": {
     "node": "8.x"

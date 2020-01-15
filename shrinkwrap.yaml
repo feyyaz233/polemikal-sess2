@@ -1,5 +1,6 @@
 dependencies:
   chalk: 3.0.0
+  dateformat: 3.0.3
   discord.js: 11.5.1
   express: 4.17.1
   fs: 0.0.2
@@ -188,6 +189,10 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-+Hp8fLp57wnUSt0tY0tHEXh4voZRDnoIrZPqlo3DPiI4y9lwg/jqx+1Om94/W6ZaPDOUbnjOt/99w66zk+l1Xg==
+  /dateformat/3.0.3:
+    dev: false
+    resolution:
+      integrity: sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==
   /debug/2.6.9:
     dependencies:
       ms: 2.0.0
@@ -893,6 +898,7 @@ shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   chalk: ^3.0.0
+  dateformat: ^3.0.3
   discord.js: ^11.5.1
   express: ^4.17.1
   fs: ^0.0.2
