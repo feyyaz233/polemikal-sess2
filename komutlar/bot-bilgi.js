@@ -10,7 +10,11 @@ module.exports.run = async (bot, message) => {
       if (bot.shard.id == 0) {
         shardi = 1;
       } else {
-        shardi = bot.shard.id;
+        if (bot.shard.id == 2) {
+          shardi = 3;
+        } else {
+          shardi = bot.shard.id;
+        }
       }
       if (kontrol == "TR_tr") {
         const duration = moment
@@ -60,8 +64,16 @@ module.exports.run = async (bot, message) => {
           .setColor("BLACK")
           .addField(`Version`, `0.1`, true)
           .addField(`Activity Time`, duration, true)
-          .addField(`Guilds`, results.reduce((prev, val) => prev + val, 0).toLocaleString(), true)
-          .addField(`Members`, results2.reduce((prev, val) => prev + val, 0).toLocaleString(), true)
+          .addField(
+            `Guilds`,
+            results.reduce((prev, val) => prev + val, 0).toLocaleString(),
+            true
+          )
+          .addField(
+            `Members`,
+            results2.reduce((prev, val) => prev + val, 0).toLocaleString(),
+            true
+          )
           .addField(`Ping`, bot.ping + "ms", true)
           .addField(
             `Used Ram`,

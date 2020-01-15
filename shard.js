@@ -1,19 +1,20 @@
-const Discord = require('discord.js');
-const bot = new Discord.Client()
-const express = require('express');
+const Discord = require("discord.js");
+const bot = new Discord.Client();
+const express = require("express");
 const app = express();
-const http = require('http');
-const coderlib = new Discord.ShardingManager('./bot.js', {
-    totalShards: 3,//shard sayısı
-    token: "NjY1MjMyNjMzNTI5MzY4NTc2.XhitZA.RyAOfDj-3DObqL6WljbZYKlnMZQ" //tokeniniz
+const http = require("http");
+const coderlab = new Discord.ShardingManager("./bot.js", {
+  totalShards: 3,
+  token: "NjY1MjMyNjMzNTI5MzY4NTc2.XhitZA.RyAOfDj-3DObqL6WljbZYKlnMZQ"
 });
 
-coderlib.spawn(); 
+coderlab.spawn();
 
-coderlib.on('launch', shard => {
-  console.log(`${shard.id} İD Sine Sahip Shard Başlatıldı!`)
+coderlab.on("launch", shard => {
+
+  console.log(`${shard.id} id.`);
 });
 
 setTimeout(() => {
-    coderlib.broadcastEval("process.exit()");
+  coderlab.broadcastEval("process.exit()");
 }, 21600000);

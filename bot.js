@@ -1,15 +1,4 @@
-/*const express = require("express");
-const app = express();
-const keep_alive = require("./keep_alive.js"); //index.js Const Kısımlarına
-
-var http = require("http");
-
-http
-  .createServer(function(req, res) {
-    res.write("OK!");
-    res.end();
-  })
-  .listen(8080);*/
+/**/
 // -------------------------------------------------------------
 
 //
