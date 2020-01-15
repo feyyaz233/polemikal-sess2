@@ -44,12 +44,12 @@ module.exports.run = async (client, message, args) => {
 exports.conf = {
   enabled: true,
   guildOnly: true,
-  aliases: ["role-protection-reset"],
+  aliases: ["channel-protection-reset"],
   permLevel: 3
 };
 
 exports.help = {
-  name: "rol-koruma-sıfırla",
-  description: "rol-koruma-sıfırla",
-  usage: "rol-koruma-sıfırla"
+  name: "kanal-koruma-sıfırla",
+  description: "kanal-koruma-sıfırla",
+  usage: "kanal-koruma-sıfırla"
 };
