@@ -1,21 +1,27 @@
-const Discord = require("s")
-const client = require(" ")
-const db = require(" s")
-const moment = require(" s")
-client.on("guildMemberAdd", async member => {
-  // Güvenlik Sistemi
-  let user = client.users.get(member.id);
+const Discord = require("discord.js"),
+  db = require("quick.db"),
+  moment = require("moment");
 
-  let kanal = client.channels.get(db.fetch(`guvenlik${member.guild.id}`));
+module.exports.run = async (client, message, args) => {
+  message.guild.members.forEach(u => {
+    let sa = message.guild.members.get(u.id);
+    const kurulus = new Date().getTime() - sa.createdAt.getTime();
+    const gün = moment(kurulus).format("dddd");
+    var kontrol;
+    if (kurulus > 1728000000) kontrol = "Fake Değil!";
+    if (kurulus < 1728000000) kontrol = "Fake!";
+    message.channel.send(`<@${u.id}> - ${kontrol}`);
+  });
+};
+exports.conf = {
+  enabled: true,
+  guildOnly: false,
+  aliases: [],
+  permLevel: 3
+};
 
-  if (!kanal) return;
-
-
-  const kurulus = new Date().getTime() - user.createdAt.getTime();
-  const gün = moment(kurulus).format("dddd");
-  var kontrol;
-  if (kurulus > 1728000000) return
-  if (kurulus < 1728000000) member.guild.members.get(member.id).ban();
-  const embed = new Discord.RichEmbed()
-  .setDescription("Fake hesap tespit edildi! Hesap sunucudan uzaklaştırıldı!")
-});
+exports.help = {
+  name: "fake",
+  description: "fake",
+  usage: "fake"
+};
