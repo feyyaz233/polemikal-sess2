@@ -347,7 +347,10 @@ client.on("roleDelete", async role => {
             .setColor("BLACK")
             .addField(`Role Deleter`, entry.executor.tag)
             .addField(`Deleting Role`, role.name)
-            .addField(`Result`, `Role Back A Open! Role Deleter Kicking Has Guild!`);
+            .addField(
+              `Result`,
+              `Role Back A Open! Role Deleter Kicking Has Guild!`
+            );
           client.channels.get(kanal).send(embed);
         } else {
           let limito = await db.fetch(`limitrol_${entry.executor.id}`);
@@ -509,6 +512,28 @@ client.on("channelCreate", async channel => {
   }
 });
 
+client.on("roleCreate", async role => {
+  let kanal = await db.fetch(`rolk_${role.guild.id}`);
+  if (!kanal) return;
+
+  const entry = await role.guild
+    .fetchAuditLogs({ type: "ROLE_CREATE" })
+    .then(audit => audit.entries.first());
+  if (entry.executor.id == client.user.id) return;
+  if (entry.executor.id == role.guild.owner.id) return;
+  role.delete();
+  role.guild.roles.forEach(r => {
+    role.guild.members.get(entry.executor.id).removeRole(r.id)
+  })
+  const embed = new Discord.RichEmbed()
+    .setTitle(`Bir Rol Açıldı!`)
+    .setColor("BLACK")
+
+    .addField(`Açan`, entry.executor.tag)
+    .addField(`Açılan Rol`, role.name)
+    .addField(`Sonuç`, `Rol Geri Silindi!`);
+  client.channels.get(kanal).send(embed);
+});
 client.elevation = message => {
   if (!message.guild) {
     return;
