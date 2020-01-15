@@ -1,38 +1,21 @@
-const Discord = require("discord.js"),
-  db = require("quick.db");
+const Discord = require("s")
+const client = require(" ")
+const db = require(" s")
+const moment = require(" s")
+client.on("guildMemberAdd", async member => {
+  // Güvenlik Sistemi
+  let user = client.users.get(member.id);
 
-module.exports.run = async (client, message, args) => {
-  let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "!";
+  let kanal = client.channels.get(db.fetch(`guvenlik${member.guild.id}`));
 
-  let kanal = args[0];
-  if (!kanal) {
-    const embed = new Discord.RichEmbed()
-      .setColor("BLACK")
-      .setFooter(client.user.username, client.user.avatarURL)
-      .setDescription(`Lütfen bir sınır belirtiniz!`);
-    message.channel.send(embed);
-    return;
-  }
-  db.set(`slimido_${message.guild.id}`, kanal);
+  if (!kanal) return;
+
+
+  const kurulus = new Date().getTime() - user.createdAt.getTime();
+  const gün = moment(kurulus).format("dddd");
+  var kontrol;
+  if (kurulus > 1728000000) return
+  if (kurulus < 1728000000) member.guild.members.get(member.id).ban();
   const embed = new Discord.RichEmbed()
-    .setColor("BLACK")
-    .setFooter(client.user.username, client.user.avatarURL)
-    .setDescription(
-      `Ban limit; ${kanal} olarak ayarlandı!\nNot: Eğer ayarlardan herhangi bir rol ayarlanmadıysa limit işlemez!`
-    );
-  message.channel.send(embed);
-  return;
-};
-
-exports.conf = {
-  enabled: true,
-  guildOnly: true,
-  aliases: [],
-  permLevel: 3
-};
-
-exports.help = {
-  name: "ban-limit",
-  description: "ban-limit",
-  usage: "ban-limit"
-};
+  .setDescription("Fake hesap tespit edildi! Hesap sunucudan uzaklaştırıldı!")
+});
