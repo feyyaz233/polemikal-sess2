@@ -22,11 +22,11 @@ module.exports = async bot => {
         "Hayat Guard Bot ile güzel!",
         "Version: v0.1",
         "g!help | g!invite | g!prefix",
-        `Shard: ${shardi}/${bot.shard.count}`,
+        /*`Shard: ${shardi}/${bot.shard.count}`,
         `${results.reduce(
           (prev, val) => prev + val,
           0
-        )} Guilds! ${results2.reduce((prev, val) => prev + val, 0)} Members!`
+        )} Guilds! ${results2.reduce((prev, val) => prev + val, 0)} Members!`*/
       ];
 
       setInterval(async () => {

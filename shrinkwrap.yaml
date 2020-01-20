@@ -4,14 +4,14 @@ dependencies:
   discord.js: 11.5.1
   express: 4.17.1
   fs: 0.0.2
-  generate-password: 1.4.2
+  generate-password: 1.5.0
   http: 0.0.0
   moment: 2.24.0
   moment-duration-format: 2.3.2
   node-opus: 0.3.3
   quick.db: 6.3.2
   simple-youtube-api: 5.2.1
-  ytdl-core: 1.0.6
+  ytdl-core: 1.0.7
 packages:
   /@types/color-name/1.1.1:
     dev: false
@@ -369,10 +369,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-4fJE7zkzwbKmS9R5kTYGDQ9ZFPg=
-  /generate-password/1.4.2:
+  /generate-password/1.5.0:
     dev: false
     resolution:
-      integrity: sha512-UYEOMRcnpC/228qfCQNSebq8jmIonoPYPILsZl2NmH16Vm53yPvgo/KK3BYeCA3JmhSA/a/HqHzaY0v5dRbyoQ==
+      integrity: sha512-rGb6xNK6BRdShUQ1FDPD6WgjrrIaBHZm+dhRlw7XjoBXciEn9RiNMNitIRC2ffSSVm3q9mt+ygetJK7450W/uA==
   /has-binary2/1.0.3:
     dependencies:
       isarray: 2.0.1
@@ -882,7 +882,7 @@ packages:
     dev: false
     resolution:
       integrity: sha1-AI4G2AlDIMNy28L47XagymyKxBk=
-  /ytdl-core/1.0.6:
+  /ytdl-core/1.0.7:
     dependencies:
       html-entities: 1.2.1
       m3u8stream: 0.6.4
@@ -892,7 +892,7 @@ packages:
     engines:
       node: '>=6'
     resolution:
-      integrity: sha512-6+g8ZRxO4V7U4U8HiE3R2Or7MSOl5g8BIZ4Z6Wa/cGsNyqu5IStMJiR3I+HfI+4jGtSaHzAM2SrkVtIrjGcBNA==
+      integrity: sha512-gECPN5g5JnSy8hIq11xHIGe1T/Xzy0mWxQin3zhlJ3nG/YjPcEVEejrdd2XmA4Vv2Zw3+b1ZyDjmt37XfZri6A==
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
@@ -902,11 +902,11 @@ specifiers:
   discord.js: ^11.5.1
   express: ^4.17.1
   fs: ^0.0.2
-  generate-password: ^1.4.1
+  generate-password: ^1.5.0
   http: ^0.0.0
   moment: ^2.24.0
   moment-duration-format: ^2.2.2
   node-opus: ^0.3.2
   quick.db: ^6.3.2
   simple-youtube-api: ^5.2.1
-  ytdl-core: ^1.0.6
+  ytdl-core: ^1.0.7
