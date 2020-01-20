@@ -3,19 +3,11 @@ const db = require("quick.db");
 const moment = require("moment");
 require("moment-duration-format");
 module.exports.run = async (bot, message) => {
- /* bot.shard.fetchClientValues("guilds.size").then(async results => {
-    bot.shard.fetchClientValues("users.size").then(async results2 => {*/
+  bot.shard.fetchClientValues("guilds.size").then(async results => {
+    bot.shard.fetchClientValues("users.size").then(async results2 => {
       let kontrol = await db.fetch(`dil_${message.guild.id}`);
-      let shardi;
-      if (bot.shard.id == 0) {
-        shardi = 1;
-      } else {
-        if (bot.shard.id == 2) {
-          shardi = 3;
-        } else {
-          shardi = bot.shard.id;
-        }
-      }
+      let shardi = bot.shard.id + 1;
+
       if (kontrol == "TR_tr") {
         const duration = moment
           .duration(bot.uptime)
@@ -26,12 +18,12 @@ module.exports.run = async (bot, message) => {
           .addField(`Aktiflik Süresi`, duration, true)
           .addField(
             `Sunucular`,
-            bot.guilds.size.toLocaleString(),
+            results.reduce((prev, val) => prev + val, 0).toLocaleString(),
             true
           )
           .addField(
             `Kullanıcılar`,
-            bot.users.size.toLocaleString(),
+            results2.reduce((prev, val) => prev + val, 0).toLocaleString(),
             true
           )
           .addField(`Gecikme`, bot.ping + "ms", true)
@@ -40,9 +32,9 @@ module.exports.run = async (bot, message) => {
             `%${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}`,
             true
           )
-          /*.addField(`Toplam Shard`, bot.shard.count, true)
+          .addField(`Toplam Shard`, bot.shard.count, true)
           .addField(`Bulunduğum Shard`, shardi, true)
-          .addField(`Genel Shard`, `${shardi}/${bot.shard.count}`, true)*/
+          .addField(`Genel Shard`, `${shardi}/${bot.shard.count}`, true)
           .addField(
             `Destek Sunucusu`,
             `[Tıkla!](https://discord.gg/7cbNRQF)`,
@@ -66,12 +58,12 @@ module.exports.run = async (bot, message) => {
           .addField(`Activity Time`, duration, true)
           .addField(
             `Guilds`,
-            bot.guilds.size.toLocaleString(),
+            results.reduce((prev, val) => prev + val, 0).toLocaleString(),
             true
           )
           .addField(
             `Members`,
-            bot.users.size.toLocaleString(),
+            results2.reduce((prev, val) => prev + val, 0).toLocaleString(),
             true
           )
           .addField(`Ping`, bot.ping + "ms", true)
@@ -80,9 +72,9 @@ module.exports.run = async (bot, message) => {
             `%${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}`,
             true
           )
-          /*.addField(`Shard Count`, bot.shard.count, true)
+          .addField(`Shard Count`, bot.shard.count, true)
           .addField(`Shard İd`, shardi, true)
-          .addField(`General View`, `${shardi}/${bot.shard.count}`, true)*/
+          .addField(`General View`, `${shardi}/${bot.shard.count}`, true)
           .addField(
             `Support Server`,
             `[Click!](https://discord.gg/7cbNRQF)`,
@@ -97,8 +89,8 @@ module.exports.run = async (bot, message) => {
           .setFooter(bot.user.username, bot.user.avatarURL);
         message.channel.send(embed);
       }
-    /*});
-  });*/
+    });
+  });
 };
 
 module.exports.conf = {
