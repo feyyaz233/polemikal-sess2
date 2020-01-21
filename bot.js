@@ -1,14 +1,14 @@
 /**/
 // -------------------------------------------------------------
-
-/*const keep_alive = require("./keep_alive.js");
+const http = require("http");
+const keep_alive = require("./keep_alive.js");
 
 http
   .createServer(function(req, res) {
     res.write("OK!");
     res.end();
   })
-  .listen(8080);*/
+  .listen(8080);
 //
 
 const Discord = require("discord.js");
