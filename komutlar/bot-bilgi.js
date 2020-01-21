@@ -37,7 +37,7 @@ module.exports.run = async (bot, message) => {
           .addField(`Genel Shard`, `${shardi}/${bot.shard.count}`, true)
           .addField(
             `Destek Sunucusu`,
-            `[Tıkla!](https://discord.gg/7cbNRQF)`,
+            `[Tıkla!](https://discord.gg/BxKehnS)`,
             true
           )
           .addField(
@@ -77,7 +77,7 @@ module.exports.run = async (bot, message) => {
           .addField(`General View`, `${shardi}/${bot.shard.count}`, true)
           .addField(
             `Support Server`,
-            `[Click!](https://discord.gg/7cbNRQF)`,
+            `[Click!](https://discord.gg/BxKehnS)`,
             true
           )
           .addField(
