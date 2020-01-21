@@ -548,41 +548,6 @@ client.on("roleCreate", async role => {
     }
   }
 });
-client.on("roleCreate", async role => {
-  let kontrol = await db.fetch(`dil_${role.guild.id}`);
-  let kanal = await db.fetch(`rolk_${role.guild.id}`);
-  if (!kanal) return;
-  if (kontrol == "TR_tr") {
-    const entry = await role.guild
-      .fetchAuditLogs({ type: "ROLE_CREATE" })
-      .then(audit => audit.entries.first());
-    if (entry.executor.id == client.user.id) return;
-    if (entry.executor.id == role.guild.owner.id) return;
-    role.delete();
-    const embed = new Discord.RichEmbed()
-      .setTitle(`Bir Rol Açıldı!`)
-      .setColor("BLACK")
-
-      .addField(`Açan`, entry.executor.tag)
-      .addField(`Açılan Rol`, role.name)
-      .addField(`Sonuç`, `Rol Geri Silindi!`);
-    client.channels.get(kanal).send(embed);
-  } else {
-    const entry = await role.guild
-      .fetchAuditLogs({ type: "ROLE_CREATE" })
-      .then(audit => audit.entries.first());
-    if (entry.executor.id == client.user.id) return;
-    if (entry.executor.id == role.guild.owner.id) return;
-    role.delete();
-    const embed = new Discord.RichEmbed()
-      .setTitle(`A Role Was Created!`)
-      .setColor("BLACK")
-      .addField(`Role Creator`, entry.executor.tag)
-      .addField(`Created Role`, role.name)
-      .addField(`Result`, `Role Back Deleted!`);
-    client.channels.get(kanal).send(embed);
-  }
-});
 
 client.on("channelDelete", async channel => {
   let kontrol = await db.fetch(`dil_${channel.guild.id}`);
