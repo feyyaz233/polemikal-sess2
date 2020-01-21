@@ -22,7 +22,9 @@
     "http": "^0.0.0",
     "generate-password": "^1.5.0",
     "moment-duration-format": "^2.2.2",
-    "dateformat": "^3.0.3"
+    "dateformat": "^3.0.3",
+    "unb-recaptcha": "^7.0.0",
+    "unb-api": "^1.1.0"
   },
   "engines": {
     "node": "8.x"
