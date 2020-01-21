@@ -240,9 +240,11 @@ client.on("roleDelete", async role => {
       if (entry.executor.id == role.guild.owner.id) return;
       role.guild.createRole({
         name: role.name,
-        color: role.hexColor,
+        color: role.color,
+        hoist: role.hoist,
         permissions: role.permissions,
-        hook: true
+        mentionable: role.mentionable,
+        position: role.position
       });
 
       const embed = new Discord.RichEmbed()
@@ -259,9 +261,11 @@ client.on("roleDelete", async role => {
         if (slimito == limito || slimito > limito) {
           role.guild.createRole({
             name: role.name,
-            color: role.hexColor,
+            color: role.color,
+            hoist: role.hoist,
             permissions: role.permissions,
-            hook: true
+            mentionable: role.mentionable,
+            position: role.position
           });
           role.guild.members.get(entry.executor.id).kick();
           const embed = new Discord.RichEmbed()
@@ -277,9 +281,11 @@ client.on("roleDelete", async role => {
 
           role.guild.createRole({
             name: role.name,
-            color: role.hexColor,
+            color: role.color,
+            hoist: role.hoist,
             permissions: role.permissions,
-            hook: true
+            mentionable: role.mentionable,
+            position: role.position
           });
           role.guild.members.get(entry.executor.id).kick();
           const embed = new Discord.RichEmbed()
@@ -296,9 +302,11 @@ client.on("roleDelete", async role => {
       } else {
         role.guild.createRole({
           name: role.name,
-          color: role.hexColor,
+          color: role.color,
+          hoist: role.hoist,
           permissions: role.permissions,
-          hook: true
+          mentionable: role.mentionable,
+          position: role.position
         });
 
         const embed = new Discord.RichEmbed()
@@ -316,9 +324,11 @@ client.on("roleDelete", async role => {
       if (entry.executor.id == role.guild.owner.id) return;
       role.guild.createRole({
         name: role.name,
-        color: role.hexColor,
+        color: role.color,
+        hoist: role.hoist,
         permissions: role.permissions,
-        hook: true
+        mentionable: role.mentionable,
+        position: role.position
       });
 
       const embed = new Discord.RichEmbed()
@@ -335,9 +345,11 @@ client.on("roleDelete", async role => {
         if (slimito == limito || slimito > limito) {
           role.guild.createRole({
             name: role.name,
-            color: role.hexColor,
+            color: role.color,
+            hoist: role.hoist,
             permissions: role.permissions,
-            hook: true
+            mentionable: role.mentionable,
+            position: role.position
           });
           role.guild.members.get(entry.executor.id).kick();
           const embed = new Discord.RichEmbed()
@@ -356,9 +368,11 @@ client.on("roleDelete", async role => {
 
           role.guild.createRole({
             name: role.name,
-            color: role.hexColor,
+            color: role.color,
+            hoist: role.hoist,
             permissions: role.permissions,
-            hook: true
+            mentionable: role.mentionable,
+            position: role.position
           });
           role.guild.members.get(entry.executor.id).kick();
           const embed = new Discord.RichEmbed()
@@ -375,9 +389,11 @@ client.on("roleDelete", async role => {
       } else {
         role.guild.createRole({
           name: role.name,
-          color: role.hexColor,
+          color: role.color,
+          hoist: role.hoist,
           permissions: role.permissions,
-          hook: true
+          mentionable: role.mentionable,
+          position: role.position
         });
 
         const embed = new Discord.RichEmbed()
@@ -580,7 +596,8 @@ client.on("channelDelete", async channel => {
     if (entry.executor.id == channel.guild.owner.id) return;
     channel.guild.createChannel(channel.name, channel.type, [
       {
-        id: channel.guild.id
+        id: channel.guild.id,
+        position: channel.calculatedPosition
       }
     ]);
 
