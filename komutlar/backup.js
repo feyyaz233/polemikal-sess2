@@ -16,42 +16,20 @@ module.exports.run = async (client, message, args) => {
       let warning = client.emojis.get("656030540310380574") || "⚠️"; //https://cdn.discordapp.com/emojis/656030540310380574.png?v=1
 
       let guildsonlyEmbed = new RichEmbed()
-        .setTitle(`${error} Error`)
+        .setTitle(`${error} Hata!`)
         .setDescription(
-          `This command **can't be used** in **private** messages
+          `Bu komutu özel mesajlarda kullanamazsın.
             
-            [Support](https://discord.gg/BxKehnS)`
+            [Destek](https://discord.gg/BxKehnS)`
         )
         .setColor("BLACK");
       if (message.channel.type === "dm")
         return message.channel.send(guildsonlyEmbed);
-      if (args[0] === "create") {
-        await message.guild.roles
-          .filter(
-            r =>
-              r.name !== message.guild.member(client.user.id).highestRole.name
-          )
-          .forEach(r => {
-            if (
-              r.comparePositionTo(
-                message.guild.member(client.user.id).highestRole
-              ) > 0
-            ) {
-              let havnthighest = new RichEmbed()
-                .setTitle(`${warning}  Warning`)
-                .setDescription(
-                  `The "Guard Bot" Role Is Not The Highest Role In The Server, This May Cause Some Errors When Loading The Backup!
-                            
-                            [Support](https://discord.gg/BxKehnS)`
-                )
-                .setColor("BLACK");
-              return message.channel.send(havnthighest);
-            }
-          });
+      if (args[0] === "al") {
 
         let creatingEmbed = new RichEmbed()
-          .setTitle(`${waiting}  Please wait ...`)
-          .setDescription("Creating backup ...");
+          .setTitle(`${waiting} Lütfen bekleyin...`)
+          .setDescription("Yedek oluşturuluyor...");
         message.channel.send(creatingEmbed).then(m => {
           let id = makeid(16);
 
@@ -103,7 +81,7 @@ module.exports.run = async (client, message, args) => {
           let result = new RichEmbed()
             .setTitle(`${info}  Info`)
             .setDescription(
-              `Created backup of **${message.guild.name}** with the backup id \`${id}\``
+              `Bir yedek oluşturuldu! **${message.guild.name}** sunucusunun yedek idsi \`${id}\``
             )
             .addField(
               "Kullanım",
@@ -162,7 +140,7 @@ module.exports.run = async (client, message, args) => {
         message.channel.send(deletedsuc);
       }
 
-      if (args[0] === "load") {
+      if (args[0] === "yükle") {
         let error = client.emojis.get("655704809483141141") || "❌";
         let code = args[1];
         let errorEmbed = new RichEmbed().setTitle(`${error} Hata`)
@@ -229,7 +207,7 @@ module.exports.run = async (client, message, args) => {
         message.guild.setIcon(backups[message.author.id][code].icon);
       }
 
-      if (args[0] === "info") {
+      if (args[0] === "bilgi") {
         let id = args[1];
         let MissingbackupinfoEmbed = new RichEmbed()
           .setTitle(`${error} Hata`)
@@ -314,7 +292,7 @@ module.exports.run = async (client, message, args) => {
         }
       }
 
-      if (args[0] === "purge") {
+      if (args[0] === "temizle") {
         let errorEmbed = new RichEmbed()
           .setTitle(`${error}  Error`)
           .setDescription(
