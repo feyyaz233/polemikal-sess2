@@ -26,7 +26,6 @@ module.exports.run = async (client, message, args) => {
       if (message.channel.type === "dm")
         return message.channel.send(guildsonlyEmbed);
       if (args[0] === "al") {
-
         let creatingEmbed = new RichEmbed()
           .setTitle(`${waiting} Lütfen bekleyin...`)
           .setDescription("Yedek oluşturuluyor...");
@@ -212,8 +211,8 @@ module.exports.run = async (client, message, args) => {
         let MissingbackupinfoEmbed = new RichEmbed()
           .setTitle(`${error} Hata`)
           .setDescription(
-            `Lütfen bir yedeklenen sunucu **id**'si giriniz.   
-                    [Support](https://discord.gg/BxKehnS)`
+            `Lütfen bir yedeklenen sunucunun yedek **id**'si giriniz.   
+                    [Destek](https://discord.gg/BxKehnS)`
           )
           .setColor("BLACK");
         if (!id) return message.channel.send(MissingbackupinfoEmbed);
@@ -237,8 +236,15 @@ module.exports.run = async (client, message, args) => {
               `<@${backups[message.author.id][id].owner}>`,
               true
             )
-            .addField("Kullanıcılar", backups[message.author.id][id].members, true)
-            .addField("Oluşturulma Tarihi", backups[message.author.id][id].createdAt)
+            .addField(
+              "Kullanıcılar",
+              backups[message.author.id][id].members,
+              true
+            )
+            .addField(
+              "Oluşturulma Tarihi",
+              backups[message.author.id][id].createdAt
+            )
             .addField(
               "Kanallar",
               `\`\`\`${backups[message.author.id][id].channels
@@ -399,29 +405,6 @@ __**Komutlar**__
       if (message.channel.type === "dm")
         return message.channel.send(guildsonlyEmbed);
       if (args[0] === "create") {
-        await message.guild.roles
-          .filter(
-            r =>
-              r.name !== message.guild.member(client.user.id).highestRole.name
-          )
-          .forEach(r => {
-            if (
-              r.comparePositionTo(
-                message.guild.member(client.user.id).highestRole
-              ) > 0
-            ) {
-              let havnthighest = new RichEmbed()
-                .setTitle(`${warning}  Warning`)
-                .setDescription(
-                  `The "Guard Bot" Role Is Not The Highest Role In The Server, This May Cause Some Errors When Loading The Backup!
-                            
-                            [Support](https://discord.gg/BxKehnS)`
-                )
-                .setColor("BLACK");
-              return message.channel.send(havnthighest);
-            }
-          });
-
         let creatingEmbed = new RichEmbed()
           .setTitle(`${waiting}  Please wait ...`)
           .setDescription("Creating backup ...");
