@@ -384,7 +384,7 @@ __**Komutlar**__
         });
       }
     } catch (e) {
-      throw e;
+      message.channel.send(e)
     }
   } else {
     try {
@@ -755,7 +755,7 @@ __**Commands**__
         });
       }
     } catch (e) {
-      throw e;
+      message.channel.send(e);
     }
   }
 };
