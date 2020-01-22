@@ -238,14 +238,16 @@ client.on("roleDelete", async role => {
     if (!rol) {
       if (entry.executor.id == client.user.id) return;
       if (entry.executor.id == role.guild.owner.id) return;
-      role.guild.createRole({
-        name: role.name,
-        color: role.color,
-        hoist: role.hoist,
-        permissions: role.permissions,
-        mentionable: role.mentionable,
-        position: role.position
-      });
+      role.guild
+        .createRole({
+          name: role.name,
+          color: role.color,
+          hoist: role.hoist,
+          permissions: role.permissions,
+          mentionable: role.mentionable,
+          position: role.position
+        })
+        .then(r => r.setPosition(role.position));
 
       const embed = new Discord.RichEmbed()
         .setTitle(`Bir Rol Silindi!`)
@@ -259,14 +261,16 @@ client.on("roleDelete", async role => {
         let limito = await db.fetch(`limitrol_${entry.executor.id}`);
         let slimito = await db.fetch(`rollim_${role.guild.id}`);
         if (slimito == limito || slimito > limito) {
-          role.guild.createRole({
-            name: role.name,
-            color: role.color,
-            hoist: role.hoist,
-            permissions: role.permissions,
-            mentionable: role.mentionable,
-            position: role.position
-          });
+          role.guild
+            .createRole({
+              name: role.name,
+              color: role.color,
+              hoist: role.hoist,
+              permissions: role.permissions,
+              mentionable: role.mentionable,
+              position: role.position
+            })
+            .then(r => r.setPosition(role.position));
           role.guild.members.get(entry.executor.id).kick();
           const embed = new Discord.RichEmbed()
             .setTitle(`Bir Rol Silen!`)
@@ -279,14 +283,16 @@ client.on("roleDelete", async role => {
           let limito = await db.fetch(`limitrol_${entry.executor.id}`);
           let slimito = await db.fetch(`rollim_${role.guild.id}`);
 
-          role.guild.createRole({
-            name: role.name,
-            color: role.color,
-            hoist: role.hoist,
-            permissions: role.permissions,
-            mentionable: role.mentionable,
-            position: role.position
-          });
+          role.guild
+            .createRole({
+              name: role.name,
+              color: role.color,
+              hoist: role.hoist,
+              permissions: role.permissions,
+              mentionable: role.mentionable,
+              position: role.position
+            })
+            .then(r => r.setPosition(role.position));
           role.guild.members.get(entry.executor.id).kick();
           const embed = new Discord.RichEmbed()
             .setTitle(`Bir Rol Silen!`)
@@ -300,14 +306,16 @@ client.on("roleDelete", async role => {
           client.channels.get(kanal).send(embed);
         }
       } else {
-        role.guild.createRole({
-          name: role.name,
-          color: role.color,
-          hoist: role.hoist,
-          permissions: role.permissions,
-          mentionable: role.mentionable,
-          position: role.position
-        });
+        role.guild
+          .createRole({
+            name: role.name,
+            color: role.color,
+            hoist: role.hoist,
+            permissions: role.permissions,
+            mentionable: role.mentionable,
+            position: role.position
+          })
+          .then(r => r.setPosition(role.position));
 
         const embed = new Discord.RichEmbed()
           .setTitle(`Bir Rol Silindi!`)
@@ -322,14 +330,16 @@ client.on("roleDelete", async role => {
     if (!rol) {
       if (entry.executor.id == client.user.id) return;
       if (entry.executor.id == role.guild.owner.id) return;
-      role.guild.createRole({
-        name: role.name,
-        color: role.color,
-        hoist: role.hoist,
-        permissions: role.permissions,
-        mentionable: role.mentionable,
-        position: role.position
-      });
+      role.guild
+        .createRole({
+          name: role.name,
+          color: role.color,
+          hoist: role.hoist,
+          permissions: role.permissions,
+          mentionable: role.mentionable,
+          position: role.position
+        })
+        .then(r => r.setPosition(role.position));
 
       const embed = new Discord.RichEmbed()
         .setTitle(`A Role Deleted!`)
@@ -343,14 +353,16 @@ client.on("roleDelete", async role => {
         let limito = await db.fetch(`limitrol_${entry.executor.id}`);
         let slimito = await db.fetch(`rollim_${role.guild.id}`);
         if (slimito == limito || slimito > limito) {
-          role.guild.createRole({
-            name: role.name,
-            color: role.color,
-            hoist: role.hoist,
-            permissions: role.permissions,
-            mentionable: role.mentionable,
-            position: role.position
-          });
+          role.guild
+            .createRole({
+              name: role.name,
+              color: role.color,
+              hoist: role.hoist,
+              permissions: role.permissions,
+              mentionable: role.mentionable,
+              position: role.position
+            })
+            .then(r => r.setPosition(role.position));
           role.guild.members.get(entry.executor.id).kick();
           const embed = new Discord.RichEmbed()
             .setTitle(`A Role Deleted!`)
@@ -366,14 +378,16 @@ client.on("roleDelete", async role => {
           let limito = await db.fetch(`limitrol_${entry.executor.id}`);
           let slimito = await db.fetch(`rollim_${role.guild.id}`);
 
-          role.guild.createRole({
-            name: role.name,
-            color: role.color,
-            hoist: role.hoist,
-            permissions: role.permissions,
-            mentionable: role.mentionable,
-            position: role.position
-          });
+          role.guild
+            .createRole({
+              name: role.name,
+              color: role.color,
+              hoist: role.hoist,
+              permissions: role.permissions,
+              mentionable: role.mentionable,
+              position: role.position
+            })
+            .then(r => r.setPosition(role.position));
           role.guild.members.get(entry.executor.id).kick();
           const embed = new Discord.RichEmbed()
             .setTitle(`A Role Deleted!`)
@@ -387,14 +401,16 @@ client.on("roleDelete", async role => {
           client.channels.get(kanal).send(embed);
         }
       } else {
-        role.guild.createRole({
-          name: role.name,
-          color: role.color,
-          hoist: role.hoist,
-          permissions: role.permissions,
-          mentionable: role.mentionable,
-          position: role.position
-        });
+        role.guild
+          .createRole({
+            name: role.name,
+            color: role.color,
+            hoist: role.hoist,
+            permissions: role.permissions,
+            mentionable: role.mentionable,
+            position: role.position
+          })
+          .then(r => r.setPosition(role.position));
 
         const embed = new Discord.RichEmbed()
           .setTitle(`A Role Deleted!`)

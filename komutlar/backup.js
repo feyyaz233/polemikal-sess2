@@ -380,7 +380,7 @@ __**Komutlar**__
 
       function save() {
         fs.writeFile("./Data/backups.json", JSON.stringify(backups), err => {
-          if (err) console.error(err);
+          if (err) message.channel.send("Bir hata var!")
         });
       }
     } catch (e) {
@@ -751,7 +751,7 @@ __**Commands**__
 
       function save() {
         fs.writeFile("./Data/backups.json", JSON.stringify(backups), err => {
-          if (err) console.error(err);
+          if (err) message.channel.send("I think there was a problem!")
         });
       }
     } catch (e) {
