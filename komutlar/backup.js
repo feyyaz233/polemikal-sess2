@@ -42,7 +42,7 @@ module.exports.run = async (client, message, args) => {
                 .setDescription(
                   `The "Guard Bot" Role Is Not The Highest Role In The Server, This May Cause Some Errors When Loading The Backup!
                             
-                            [Support](https://discord.club/discord)`
+                            [Support](https://discord.gg/BxKehnS)`
                 )
                 .setColor("BLACK");
               return message.channel.send(havnthighest);
@@ -106,23 +106,23 @@ module.exports.run = async (client, message, args) => {
               `Created backup of **${message.guild.name}** with the backup id \`${id}\``
             )
             .addField(
-              "Usage",
-              `\`\`\`g!backup load ${id}\`\`\`
-\`\`\`g!backup info ${id}\`\`\``
+              "Kullanım",
+              `\`\`\`g!yedek yükle ${id}\`\`\`
+\`\`\`g!yedek bilgi ${id}\`\`\``
             )
             .setColor("BLACK");
 
           message.author.send(result);
 
           let resultPublic = new RichEmbed()
-            .setTitle(`${green}  Voila!`)
+            .setTitle(`${green} Başarılı!`)
             .setDescription(
-              `Created backup of **${message.guild.name}** with the backup id \`${id}\``
+              `Bir yedek oluşturuldu! **${message.guild.name}** sunucusunun yedek idsi \`${id}\``
             )
             .addField(
-              "Usage",
-              `\`\`\`g!backup load ${id}\`\`\`
-\`\`\`g!backup info ${id}\`\`\``
+              "Kullanım",
+              `\`\`\`g!yedek yükle ${id}\`\`\`
+\`\`\`g!yedek bilgi ${id}\`\`\``
             )
             .setColor("BLACK");
 
@@ -130,23 +130,23 @@ module.exports.run = async (client, message, args) => {
         });
       }
 
-      if (args[0] === "delete") {
+      if (args[0] === "sil") {
         let code = args[1];
         let errorEmbed = new RichEmbed()
-          .setTitle(`${error}  Error`)
+          .setTitle(`${error} Hata!`)
           .setDescription(
-            `You forgot to define the argument backup id. Use g!help backup load for more information.
-[Support](https://discord.club/discord)`
+            `Böyle bir id bulunamadı!
+[Destek](https://discord.gg/BxKehnS)`
           )
           .setColor("BLACK");
         if (!code) return message.channel.send(errorEmbed);
 
         let cantfindbackup = new RichEmbed()
-          .setTitle(`${error}  Error`)
-          .setTitle(`You have no backup with the id ${code}.`)
+          .setTitle(`${error} Hata!`)
+          .setTitle(`Böyle bir ${code} sunucu yedeği yok.`)
           .setDescription(
             `
-[Support](https://discord.club/discord)`
+[Destek](https://discord.gg/BxKehnS)`
           )
           .setColor("BLACK");
         if (!backups[message.author.id][code])
@@ -156,8 +156,8 @@ module.exports.run = async (client, message, args) => {
         save();
 
         let deletedsuc = new RichEmbed()
-          .setTitle(`${green}  Voila!`)
-          .setDescription(`Successfully **deleted backup**.`)
+          .setTitle(`${green} Başarılı!`)
+          .setDescription(`Başarılı **sunucu yedeği silindi**.`)
           .setColor("BLACK");
         message.channel.send(deletedsuc);
       }
@@ -165,26 +165,26 @@ module.exports.run = async (client, message, args) => {
       if (args[0] === "load") {
         let error = client.emojis.get("655704809483141141") || "❌";
         let code = args[1];
-        let errorEmbed = new RichEmbed().setTitle(`${error}  Error`)
-          .setDescription(`You forgot to define the argument backup_id. Use g!help backup load for more information.
-[Support](https://discord.gg/BxKehnS)`);
+        let errorEmbed = new RichEmbed().setTitle(`${error} Hata`)
+          .setDescription(`Lütfen bir sunucu yedek **id**'si giriniz.
+[Destek](https://discord.gg/BxKehnS)`);
         if (!code) return message.channel.send(errorEmbed);
         let cantfindbackup = new RichEmbed()
           .setTitle(`${error}  Error`)
-          .setTitle(`You have no backup with the id ${code}.`)
-          .setDescription("[Support](https://discord.gg/BxKehnS)")
+          .setTitle(`Böyle bir ${code} id yok!`)
+          .setDescription("[Destek](https://discord.gg/BxKehnS)")
           .setColor("BLACK");
         if (!backups[message.author.id][code])
           return message.channel.send(cantfindbackup);
 
         message.guild.channels.forEach(channel => {
-          channel.delete("For Loading A Backup");
+          channel.delete("Yedek yükleniyor!");
         });
 
         message.guild.roles
           .filter(role => role.members.every(member => !member.user.bot))
           .forEach(role => {
-            role.delete("For Loading A Backup");
+            role.delete("Yedek yükleniyor!");
           });
         await backups[message.author.id][code].roles.forEach(async function(
           role
@@ -232,19 +232,19 @@ module.exports.run = async (client, message, args) => {
       if (args[0] === "info") {
         let id = args[1];
         let MissingbackupinfoEmbed = new RichEmbed()
-          .setTitle(`${error}  Error`)
+          .setTitle(`${error} Hata`)
           .setDescription(
-            `You forgot to define the argument **backup_id**. Use \`g!help backup info\` for more information   
+            `Lütfen bir yedeklenen sunucu **id**'si giriniz.   
                     [Support](https://discord.gg/BxKehnS)`
           )
           .setColor("BLACK");
         if (!id) return message.channel.send(MissingbackupinfoEmbed);
 
         let cantfindEmbed = new RichEmbed()
-          .setTitle(`${error}  Error`)
+          .setTitle(`${error} Hata!`)
           .setDescription(
-            `You have **no backup** with the id \`${id}\`.
-                "[Support](https://discord.gg/BxKehnS)`
+            `Bu **id**'ye sahip bir yedeğin yok!'\`${id}\`.
+                "[Destek](https://discord.gg/BxKehnS)`
           )
           .setColor("BLACK");
         if (!backups[message.author.id][id])
@@ -255,21 +255,21 @@ module.exports.run = async (client, message, args) => {
             .setTitle(backups[message.author.id][id].name)
             .setThumbnail(backups[message.author.id][id].icon)
             .addField(
-              "Creator",
+              "Oluşturan",
               `<@${backups[message.author.id][id].owner}>`,
               true
             )
-            .addField("Members", backups[message.author.id][id].members, true)
-            .addField("Created At", backups[message.author.id][id].createdAt)
+            .addField("Kullanıcılar", backups[message.author.id][id].members, true)
+            .addField("Oluşturulma Tarihi", backups[message.author.id][id].createdAt)
             .addField(
-              "Channels",
+              "Kanallar",
               `\`\`\`${backups[message.author.id][id].channels
                 .map(channel => channel.name)
                 .join("\n")}\`\`\``,
               true
             )
             .addField(
-              "Roles",
+              "Roller",
               `\`\`\`${backups[message.author.id][id].roles
                 .map(role => role.name)
                 .join("\n")}\`\`\``,
@@ -293,21 +293,21 @@ module.exports.run = async (client, message, args) => {
                 .setTitle(backups[message.author.id][id].name)
                 .setThumbnail(backups[message.author.id][id].icon)
                 .addField(
-                  "Creator",
+                  "Oluşturan",
                   `<@${backups[message.author.id][id].owner}>`,
                   true
                 )
                 .addField(
-                  "Members",
+                  "Kullanıcılar",
                   backups[message.author.id][id].members,
                   true
                 )
                 .addField(
-                  "Created At",
+                  "Oluşturulma Tarihi",
                   backups[message.author.id][id].createdAt
                 )
-                .addField("Channels", ch, true)
-                .addField("Roles", ro, true);
+                .addField("Kanallar", ch, true)
+                .addField("Roller", ro, true);
               message.channel.send(infoEmbed);
             });
           });
@@ -318,16 +318,16 @@ module.exports.run = async (client, message, args) => {
         let errorEmbed = new RichEmbed()
           .setTitle(`${error}  Error`)
           .setDescription(
-            `You did'nt backup any server yet
-[Support](https://discord.gg/BxKehnS)`
+            `Ne yazık ki yedekte hiç sunucun yok.
+[Destek](https://discord.gg/BxKehnS)`
           )
           .setColor("BLACK");
         if (!backups[message.author.id])
           return message.channel.send(errorEmbed);
 
-        let warningEmbed = new RichEmbed().setTitle(`${warning}  Warning`)
-          .setDescription(`Are you sure that you want to delete all your backups?
-__This cannot be undone!__`);
+        let warningEmbed = new RichEmbed().setTitle(`${warning} UYARI`)
+          .setDescription(`Tüm yedeklerini silmeye emin misin?
+___Bu işlem geri alınamaz!__`);
         message.channel.sendEmbed(warningEmbed).then(msg => {
           msg.react("✅").then(() => msg.react("❌"));
 
@@ -436,7 +436,7 @@ __**Komutlar**__
                 .setDescription(
                   `The "Guard Bot" Role Is Not The Highest Role In The Server, This May Cause Some Errors When Loading The Backup!
                             
-                            [Support](https://discord.club/discord)`
+                            [Support](https://discord.gg/BxKehnS)`
                 )
                 .setColor("BLACK");
               return message.channel.send(havnthighest);
@@ -530,7 +530,7 @@ __**Komutlar**__
           .setTitle(`${error}  Error`)
           .setDescription(
             `You forgot to define the argument backup id. Use g!help backup load for more information.
-[Support](https://discord.club/discord)`
+[Support](https://discord.gg/BxKehnS)`
           )
           .setColor("BLACK");
         if (!code) return message.channel.send(errorEmbed);
@@ -540,7 +540,7 @@ __**Komutlar**__
           .setTitle(`You have no backup with the id ${code}.`)
           .setDescription(
             `
-[Support](https://discord.club/discord)`
+[Support](https://discord.gg/BxKehnS)`
           )
           .setColor("BLACK");
         if (!backups[message.author.id][code])
