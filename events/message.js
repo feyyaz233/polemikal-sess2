@@ -8,7 +8,7 @@ module.exports = async message => {
   talkedRecently.add(message.author.id);
   setTimeout(() => {
     talkedRecently.delete(message.author.id);
-  }, 2500);
+  }, 500);
   let client = message.client;
   let prefix = ayarlar.prefix;
   if (message.author.bot) return;
