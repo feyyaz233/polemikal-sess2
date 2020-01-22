@@ -350,7 +350,8 @@ __**Komutlar**__
                 g!yedek sil            Sunucu yedeğinizi silersiniz.
                 g!yedek bilgi          Sunucu yedeğiniz hakkında bilgi alırsınız.
                 g!yedek yükle          Sunucu yedeğinizi yüklersiniz.
-                g!yedek temizle        Tüm yedeklerinizi silersiniz.`
+                g!yedek temizle        Tüm yedeklerinizi silersiniz.
+`
           )
           .addBlankField()
           .setColor("BLACK");
