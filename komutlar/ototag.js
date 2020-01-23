@@ -78,7 +78,7 @@ exports.run = async (client, message, args) => {
         )
         .addField(
           "Additional `AUTOTAG` commands!",
-          `${prefix}autotag <#Channel> <Tag>\n${prefix}autotag-reset\n${prefix}autotag-name <İsim Düzeni>\n${prefix}autotag-name-reset`
+          `${prefix}autotag <#Channel> <Tag>\n${prefix}autotag-reset\n${prefix}autotag-name <Name Order>\n${prefix}autotag-name-reset`
         )
         .addField(
           `autotag-name command variables;`,
