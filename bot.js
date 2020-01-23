@@ -430,6 +430,69 @@ client.on("roleDelete", async role => {
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
+client.on("guildMemberAdd", async member => {
+  let tag = await db.fetch(`ototag_${member.guild.id}`);
+  let kanal = await db.fetch(`ototagk_${member.guild.id}`);
+  let msj = await db.fetch(`ototagmsj_${member.guild.id}`);
+  let dil = await db.fetch(`dil_${member.guild.id}`);
+  if (!tag) return;
+  if (!kanal) return;
+  if (dil == "TR_tr") {
+    if (!msj) {
+      member.setNickname(`${tag} | ${member.user.username}`);
+      const embed = new Discord.RichEmbed()
+        .setColor("BLACK")
+        .setDescription(
+          `:loudspeaker: **@${member.user.tag}** adlı şahsa tag verildi!`
+        )
+        .setFooter(client.user.username, client.user.avatarURL);
+      client.channels.get(kanal).send(embed);
+      return;
+    } else {
+      var msj2 = msj
+        .replace(`-uye-`, `${member.user.username}`)
+        .replace(`-tag-`, tag)
+        .replace(`-sunucu-`, member.guild.name)
+        .replace(`-uyetag-`, member.user.tag);
+      member.setNickname(msj2);
+      const embed = new Discord.RichEmbed()
+        .setColor("BLACK")
+        .setDescription(
+          `:loudspeaker: **@${member.user.tag}** adlı şahsa tag verildi!`
+        )
+        .setFooter(client.user.username, client.user.avatarURL);
+      client.channels.get(kanal).send(embed);
+      return;
+    }
+  } else {
+    if (!msj) {
+      member.setNickname(`${tag} | ${member.user.username}`);
+      const embed = new Discord.RichEmbed()
+        .setColor("BLACK")
+        .setDescription(
+          `:loudspeaker: Tag was given to **@${member.user.tag}**!`
+        )
+        .setFooter(client.user.username, client.user.avatarURL);
+      client.channels.get(kanal).send(embed);
+      return;
+    } else {
+      var msj2 = msj
+        .replace(`-uye-`, `${member.user.username}`)
+        .replace(`-tag-`, `${tag}`)
+        .replace(`-sunucu-`, member.guild.name)
+        .replace(`-uyetag-`, member.user.tag);
+      member.setNickname(msj2);
+      const embed = new Discord.RichEmbed()
+        .setColor("BLACK")
+        .setDescription(
+          `:loudspeaker: Tag was given to **@${member.user.tag}**!`
+        )
+        .setFooter(client.user.username, client.user.avatarURL);
+      client.channels.get(kanal).send(embed);
+      return;
+    }
+  }
+});
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
