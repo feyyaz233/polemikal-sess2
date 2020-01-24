@@ -662,7 +662,8 @@ client.on("channelDelete", async channel => {
     if (entry.executor.id == channel.guild.owner.id) return;
     channel.guild.createChannel(channel.name, channel.type, [
       {
-        id: channel.guild.id
+        id: channel.guild.id,
+        position: channel.calculatedPosition
       }
     ]);
 
