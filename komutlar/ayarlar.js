@@ -89,7 +89,11 @@ module.exports.run = async (client, message, args) => {
     let seç = args[0];
     if (!seç)
       return message.channel.send(
-        "Lütfen bir seçeneği seçiniz!\n-----------------------------------\nSeçenekler; `genel`, `ototag`, `rol-koruma`, `kanal-koruma`, `ban-koruma`\n-----------------------------------"
+        new Discord.RichEmbed()
+          .setDescription(
+            "Lütfen bir seçeneği seçiniz!\n-----------------------------------\nSeçenekler; `genel`, `ototag`, `rol-koruma`, `kanal-koruma`, `ban-koruma`\n-----------------------------------"
+          )
+          .setColor("BLACK")
       );
     if (seç == "genel") {
       const embed = new Discord.RichEmbed()
@@ -108,6 +112,51 @@ module.exports.run = async (client, message, args) => {
         .setColor("BLACK")
         .setFooter(client.user.username, client.user.avatarURL);
       message.channel.send(embed);
+    } else if (seç == "ototag") {
+      const embed = new Discord.RichEmbed()
+
+        .addField(`Ototag`, ototag1, true)
+        .addField(`Ototag Kanal`, ototagk, true)
+        .addField(`Ototag İsim`, ototagk2, true)
+
+        .setColor("BLACK")
+        .setFooter(client.user.username, client.user.avatarURL);
+      message.channel.send(embed);
+    } else if (seç == "rol-koruma") {
+      const embed = new Discord.RichEmbed()
+
+        .addField(`Rol Koruma Log`, rolk, true)
+        .addField(`Rol Koruma Rol`, rolk2, true)
+        .addField(`Rol Koruma Limit`, rolkoruma3, true)
+
+        .setColor("BLACK")
+        .setFooter(client.user.username, client.user.avatarURL);
+      message.channel.send(embed);
+    } else if (seç == "kanal-koruma") {
+      const embed = new Discord.RichEmbed()
+
+        .addField(`Kanal Koruma Log`, kanalk, true)
+
+        .setColor("BLACK")
+        .setFooter(client.user.username, client.user.avatarURL);
+      message.channel.send(embed);
+    } else if (seç == "ban-koruma") {
+      const embed = new Discord.RichEmbed()
+
+        .addField(`Ban Koruma Log`, ban2, true)
+        .addField(`Ban Koruma Rol`, bank2, true)
+        .addField(`Ban Koruma Limit`, bank, true)
+        .setColor("BLACK")
+        .setFooter(client.user.username, client.user.avatarURL);
+      message.channel.send(embed);
+    } else {
+      message.channel.send(
+        new Discord.RichEmbed()
+          .setDescription(
+            "Lütfen bir seçeneği seçiniz!\n-----------------------------------\nSeçenekler; `genel`, `ototag`, `rol-koruma`, `kanal-koruma`, `ban-koruma`\n-----------------------------------"
+          )
+          .setColor("BLACK")
+      );
     }
   } else {
     let seç = args[0];
@@ -172,13 +221,21 @@ module.exports.run = async (client, message, args) => {
         .setColor("BLACK")
         .setFooter(client.user.username, client.user.avatarURL);
       message.channel.send(embed);
+    } else {
+      message.channel.send(
+        new Discord.RichEmbed()
+          .setDescription(
+            "Please select an option!\n-----------------------------------\nOptions; `general`, `autotag`, `role-protection`, `channel-protection`, `ban-protection`\n-----------------------------------"
+          )
+          .setColor("BLACK")
+      );
     }
   }
 };
 
 exports.conf = {
   enabled: true,
-  guildOnly: false,
+  guildOnly: true,
   aliases: ["settings"],
   permLevel: 0
 };

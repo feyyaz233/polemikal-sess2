@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
       .setDescription(
         `Bot sürümü; **v0.1**, Prefix: **${prefix}**, Dil: **${kontrol}**`
       )
-      .addField(`Bot`, `\`yardım\`, \`dil\`, \`bot-bilgi\``)
+      .addField(`Bot`, `\`yardım\`, \`dil\`, \`bot-bilgi\`, \`ayarlar\``)
       .addField(
         `Ototag Sistemi`,
         `\`ototag\`, \`ototag-sıfırla\`, \`ototag-isim\`, \`ototag-isim-sıfırla\``
@@ -39,7 +39,7 @@ module.exports.run = async (client, message, args) => {
       .setDescription(
         `Bot Version; **v0.1**, Prefix: **${prefix}**, Language: **${kontrol}**`
       )
-      .addField(`Bot`, `\`help\`, \`language\`, \`bot-info\``)
+      .addField(`Bot`, `\`help\`, \`language\`, \`bot-info\`, \`settings\``)
       .addField(
         `Autotag System`,
         `\`autotag\`, \`autotag-reset\`, \`autotag-name\`, \`autotag-name-reset\``
