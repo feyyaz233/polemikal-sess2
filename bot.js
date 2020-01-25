@@ -160,6 +160,8 @@ client.on("guildBanAdd", async (guild, user) => {
       }
     }
   }
+  
+  
   ///////////////////////////////////////
   else {
     const entry = await guild
