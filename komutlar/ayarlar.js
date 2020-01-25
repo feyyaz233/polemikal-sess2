@@ -97,6 +97,7 @@ module.exports.run = async (client, message, args) => {
       );
     if (seç == "genel") {
       const embed = new Discord.RichEmbed()
+        .setAuthor(`İşte ${message.guild.name} adlı sunucunun ayarları!`)
         .addField(`Dil`, kontrol, true)
         .addField(`Önek`, prefix, true)
         .addField(`Ototag`, ototag1, true)
@@ -114,6 +115,7 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
     } else if (seç == "ototag") {
       const embed = new Discord.RichEmbed()
+        .setAuthor(`İşte ${message.guild.name} adlı sunucunun ayarları!`)
 
         .addField(`Ototag`, ototag1, true)
         .addField(`Ototag Kanal`, ototagk, true)
@@ -124,6 +126,7 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
     } else if (seç == "rol-koruma") {
       const embed = new Discord.RichEmbed()
+        .setAuthor(`İşte ${message.guild.name} adlı sunucunun ayarları!`)
 
         .addField(`Rol Koruma Log`, rolk, true)
         .addField(`Rol Koruma Rol`, rolk2, true)
@@ -134,6 +137,7 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
     } else if (seç == "kanal-koruma") {
       const embed = new Discord.RichEmbed()
+        .setAuthor(`İşte ${message.guild.name} adlı sunucunun ayarları!`)
 
         .addField(`Kanal Koruma Log`, kanalk, true)
 
@@ -142,6 +146,7 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
     } else if (seç == "ban-koruma") {
       const embed = new Discord.RichEmbed()
+        .setAuthor(`İşte ${message.guild.name} adlı sunucunun ayarları!`)
 
         .addField(`Ban Koruma Log`, ban2, true)
         .addField(`Ban Koruma Rol`, bank2, true)
@@ -170,6 +175,7 @@ module.exports.run = async (client, message, args) => {
       );
     if (seç == "general") {
       const embed = new Discord.RichEmbed()
+        .setAuthor(`İşte ${message.guild.name} adlı sunucunun ayarları!`)
         .addField(`Language`, kontrol, true)
         .addField(`Prefix`, prefix, true)
         .addField(`Autotag`, ototag1, true)
@@ -188,6 +194,7 @@ module.exports.run = async (client, message, args) => {
       return;
     } else if (seç == "autotag") {
       const embed = new Discord.RichEmbed()
+        .setAuthor(`İşte ${message.guild.name} adlı sunucunun ayarları!`)
         .addField(`Autotag`, ototag1, true)
         .addField(`Autotag Channel`, ototagk, true)
         .addField(`Autotag Name`, ototagk2, true)
@@ -196,6 +203,7 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
     } else if (seç == "role-protection") {
       const embed = new Discord.RichEmbed()
+        .setAuthor(`İşte ${message.guild.name} adlı sunucunun ayarları!`)
 
         .addField(`Role Protection Log`, rolk, true)
         .addField(`Role Protection Role`, rolk2, true)
@@ -206,6 +214,7 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
     } else if (seç == "channel-protection") {
       const embed = new Discord.RichEmbed()
+        .setAuthor(`İşte ${message.guild.name} adlı sunucunun ayarları!`)
 
         .addField(`Channel Protection Log`, kanalk, true)
 
@@ -214,6 +223,7 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
     } else if (seç == "ban-protection") {
       const embed = new Discord.RichEmbed()
+        .setAuthor(`İşte ${message.guild.name} adlı sunucunun ayarları!`)
 
         .addField(`Ban Protection Log`, ban2, true)
         .addField(`Ban Protection Role`, bank2, true)
