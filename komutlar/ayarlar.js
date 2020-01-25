@@ -62,7 +62,7 @@ module.exports.run = async (client, message, args) => {
       rolk2 = ":x:";
     }
   } else {
-    rolk2 = `<@&${rolkoruma}>`;
+    rolk2 = `<@&${rolkoruma2}>`;
   }
   let bank2;
   if (!bankoruma2) {
@@ -113,7 +113,11 @@ module.exports.run = async (client, message, args) => {
     let seç = args[0];
     if (!seç)
       return message.channel.send(
-        "Please select an option!\n-----------------------------------Options; `general`, `autotag`, `role-protection`, `channel-protection`, `ban-protection`\n-----------------------------------"
+        new Discord.RichEmbed()
+          .setDescription(
+            "Please select an option!\n-----------------------------------\nOptions; `general`, `autotag`, `role-protection`, `channel-protection`, `ban-protection`\n-----------------------------------"
+          )
+          .setColor("BLACK")
       );
     if (seç == "general") {
       const embed = new Discord.RichEmbed()
@@ -128,11 +132,46 @@ module.exports.run = async (client, message, args) => {
         .addField(`Channel Protection Log`, kanalk, true)
         .addField(`Ban Protection Log`, ban2, true)
         .addField(`Ban Protection Role`, bank2, true)
-        .addField(`Ban Protection Limit`, rolkoruma3, true)
+        .addField(`Ban Protection Limit`, bank, true)
         .setColor("BLACK")
         .setFooter(client.user.username, client.user.avatarURL);
       message.channel.send(embed);
       return;
+    } else if (seç == "autotag") {
+      const embed = new Discord.RichEmbed()
+        .addField(`Autotag`, ototag1, true)
+        .addField(`Autotag Channel`, ototagk, true)
+        .addField(`Autotag Name`, ototagk2, true)
+        .setColor("BLACK")
+        .setFooter(client.user.username, client.user.avatarURL);
+      message.channel.send(embed);
+    } else if (seç == "role-protection") {
+      const embed = new Discord.RichEmbed()
+
+        .addField(`Role Protection Log`, rolk, true)
+        .addField(`Role Protection Role`, rolk2, true)
+        .addField(`Role Protection Limit`, rolkoruma3, true)
+
+        .setColor("BLACK")
+        .setFooter(client.user.username, client.user.avatarURL);
+      message.channel.send(embed);
+    } else if (seç == "channel-protection") {
+      const embed = new Discord.RichEmbed()
+
+        .addField(`Channel Protection Log`, kanalk, true)
+
+        .setColor("BLACK")
+        .setFooter(client.user.username, client.user.avatarURL);
+      message.channel.send(embed);
+    } else if (seç == "ban-protection") {
+      const embed = new Discord.RichEmbed()
+
+        .addField(`Ban Protection Log`, ban2, true)
+        .addField(`Ban Protection Role`, bank2, true)
+        .addField(`Ban Protection Limit`, bank, true)
+        .setColor("BLACK")
+        .setFooter(client.user.username, client.user.avatarURL);
+      message.channel.send(embed);
     }
   }
 };
