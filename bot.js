@@ -434,11 +434,11 @@ client.on("message", async message => {
   if (message.content === "<@!665232633529368576>") {
     if (dil == "TR_tr") {
       message.channel.send(
-        `Prefixim: \`${pref}\`\nEğer yardım istiyorsan; https://discord.gg/Dmm9t9`
+        `Prefixim: \`${pref}\`\nEğer yardım istiyorsan; https://discord.gg/mCd8tVC`
       );
     } else {
       message.channel.send(
-        `My prefix is: \`${pref}\`\nIf you want to get help; https://discord.gg/Dmm9t9`
+        `My prefix is: \`${pref}\`\nIf you want to get help; https://discord.gg/mCd8tVC`
       );
     }
   } else {
