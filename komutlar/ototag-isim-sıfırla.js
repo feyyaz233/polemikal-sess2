@@ -77,7 +77,7 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.conf = {
   aliases: ["autotag-name-reset"],
-  permLevel: 0,
+  permLevel: 3,
   enabled: true,
   guildOnly: true,
   kategori: "moderasyon"

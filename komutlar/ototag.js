@@ -119,7 +119,7 @@ exports.run = async (client, message, args) => {
 };
 exports.conf = {
   aliases: ["autotag"],
-  permLevel: 0,
+  permLevel: 3,
   enabled: true,
   guildOnly: true
 };
