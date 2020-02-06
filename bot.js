@@ -742,6 +742,25 @@ client.on("channelCreate", async channel => {
   }
 });
 
+client.on("guildCreate", async guild => {
+  const embed = new Discord.RichEmbed()
+    .setColor(`GREEN`)
+    .setTitle(`EKLENDİM/ADDED!`)
+    .setDescription(
+      `Sunucu Adı/Guild Name: ${guild.name}\nSunucu Id/Guild Id: ${guild.id}\nSunucu Sahibi/Guild Owner: ${guild.owner}\nSunucudaki Kişi Sayısı/Guild Member Count: ${guild.memberCount}\nSunucu Oluşturulma Zamanı/Guild Created Time: ${guild.createdAt}\nDoğrulama Seviyesi\nVerifection Level: ${guild.verificationLevel}`
+    );
+  client.channels.get(`675041940634468353`).send(embed);
+});
+client.on("guildDelete", async guild => {
+  const embed = new Discord.RichEmbed()
+    .setColor(`RED`)
+    .setTitle(`ATILDIM/REMOVED!`)
+    .setDescription(
+      `Sunucu Adı/Guild Name: ${guild.name}\nSunucu Id/Guild Id: ${guild.id}\nSunucu Sahibi/Guild Owner: ${guild.owner}\nSunucudaki Kişi Sayısı/Guild Member Count: ${guild.memberCount}\nSunucu Oluşturulma Zamanı/Guild Created Time: ${guild.createdAt}\nDoğrulama Seviyesi\nVerifection Level: ${guild.verificationLevel}`
+    );
+  client.channels.get(`675041940634468353`).send(embed);
+});
+
 client.elevation = message => {
   if (!message.guild) {
     return;
