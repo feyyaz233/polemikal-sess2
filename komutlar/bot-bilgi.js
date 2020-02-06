@@ -35,7 +35,7 @@ module.exports.run = async (bot, message) => {
         `[Tıkla!](https://discordapp.com/oauth2/authorize?client_id=665232633529368576&scope=bot&permissions=8)`,
         true
       )
-      .addField(`Bota Oy Verin`, `Yakında`, true)
+      .addField(`Bota Oy Verin`, `[Tıkla!](https://top.gg/bot/665232633529368576/vote)`, true)
       .setFooter(bot.user.username, bot.user.avatarURL);
     message.channel.send(embed);
   } else {
@@ -67,7 +67,7 @@ module.exports.run = async (bot, message) => {
         `[Click!](https://discordapp.com/oauth2/authorize?client_id=665232633529368576&scope=bot&permissions=8)`,
         true
       )
-      .addField(`Vote The Bot`, `Coming Soon!`, true)
+      .addField(`Vote The Bot`, `[Click!](https://top.gg/bot/665232633529368576/vote)`, true)
       .setFooter(bot.user.username, bot.user.avatarURL);
     message.channel.send(embed);
   }

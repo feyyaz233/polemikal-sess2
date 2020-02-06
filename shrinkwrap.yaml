@@ -1,6 +1,7 @@
 dependencies:
   chalk: 3.0.0
   dateformat: 3.0.3
+  dblapi.js: 2.3.1
   discord.js: 11.5.1
   express: 4.17.1
   fs: 0.0.2
@@ -415,6 +416,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==
+  /dblapi.js/2.3.1:
+    dev: false
+    resolution:
+      integrity: sha512-SmaEknbWCPPyPX269hD2EARdkGlMp2PFsgjF8FsnaTLkWagQKtXO+K+aVF6FZqJvRrLIrpjv3y1bhK9KWq+coA==
   /debug/2.6.9:
     dependencies:
       ms: 2.0.0
@@ -1518,6 +1523,7 @@ shrinkwrapVersion: 3
 specifiers:
   chalk: ^3.0.0
   dateformat: ^3.0.3
+  dblapi.js: ^2.3.0
   discord.js: ^11.5.1
   express: ^4.17.1
   fs: ^0.0.2

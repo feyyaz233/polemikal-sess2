@@ -25,7 +25,8 @@
     "dateformat": "^3.0.3",
     "unb-recaptcha": "^7.0.0",
     "unb-api": "^1.1.0",
-    "hastebin-gen": "^2.0.5"
+    "hastebin-gen": "^2.0.5",
+    "dblapi.js": "^2.3.0"
   },
   "engines": {
     "node": "8.x"
