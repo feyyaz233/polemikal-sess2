@@ -7,6 +7,7 @@ var backups = JSON.parse(fs.readFileSync("./Data/backups.json", "utf8"));
 
 module.exports.run = async (client, message, args) => {
   let kontrol = await db.fetch(`dil_${message.guild.id}`);
+    let prefix = await db.fetch(`prefix_${message.guild.id}`) || "g!"
   if (kontrol == "TR_tr") {
     try {
       let info = client.emojis.get("655091815401127966") || "ℹ️"; //https://cdn.discordapp.com/emojis/655091815401127966.png?v=1
@@ -352,11 +353,11 @@ __**Komutlar**__
           )
           .setDescription(
             `
-                g!yedek al             Sunucunuzu yedek alırsınız.
-                g!yedek sil            Sunucu yedeğinizi silersiniz.
-                g!yedek bilgi          Sunucu yedeğiniz hakkında bilgi alırsınız.
-                g!yedek yükle          Sunucu yedeğinizi yüklersiniz.
-                g!yedek temizle        Tüm yedeklerinizi silersiniz.
+                ${prefix}yedek al             Sunucunuzu yedek alırsınız.
+                ${prefix}yedek sil            Sunucu yedeğinizi silersiniz.
+                ${prefix}yedek bilgi          Sunucu yedeğiniz hakkında bilgi alırsınız.
+                ${prefix}yedek yükle          Sunucu yedeğinizi yüklersiniz.
+                ${prefix}yedek temizle        Tüm yedeklerinizi silersiniz.
 `
           )
           .addBlankField()
@@ -724,11 +725,11 @@ __**Commands**__
           )
           .setDescription(
             `
-                g!backup create        Create a backup
-                g!backup delete        Delete one of your backups
-                g!backup info          Get information about a backup
-                g!backup load          Load a backup
-                g!backup purge         Delete all your backups`
+                ${prefix}backup create        Create a backup
+                ${prefix}backup delete        Delete one of your backups
+                ${prefix}backup info          Get information about a backup
+                ${prefix}backup load          Load a backup
+                ${prefix}backup purge         Delete all your backups`
           )
           .addBlankField()
           .setColor("BLACK");

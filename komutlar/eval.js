@@ -3,7 +3,7 @@ const util = require('util');
 const tokenuyari = `NAH!`
 
 exports.run = async (client, message, args) => {
-   let prefix = "!" //Kendi prefiziniz
+   let prefix = "g!" //Kendi prefiziniz
 	if(!args[0]) {
 		const embed = new Discord.RichEmbed()
 			.setDescription(`Kod Yazmalısınız`)
