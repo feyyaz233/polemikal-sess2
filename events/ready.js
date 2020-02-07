@@ -14,10 +14,7 @@ module.exports = async bot => {
         "Version: v0.1",
         "g!help | g!invite | g!prefix",
         `Shard: ${shardi}/${bot.shard.count}`,
-        `${results.reduce(
-          (prev, val) => prev + val,
-          0
-        )} Guilds! ${bot.guilds.reduce((a, b) => a + b.memberCount, 0).toLocaleString()} Members!`
+        `${bot.guilds.size.toLocaleString()} Guilds! ${bot.guilds.reduce((a, b) => a + b.memberCount, 0).toLocaleString()} Members!`
       ];
 
       setInterval(async () => {
