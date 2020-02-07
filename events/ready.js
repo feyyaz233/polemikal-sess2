@@ -17,7 +17,7 @@ module.exports = async bot => {
         `${results.reduce(
           (prev, val) => prev + val,
           0
-        )} Guilds! ${results2.reduce((prev, val) => prev + val, 0)} Members!`
+        )} Guilds! ${bot.guilds.reduce((a, b) => a + b.memberCount, 0).toLocaleString()} Members!`
       ];
 
       setInterval(async () => {
