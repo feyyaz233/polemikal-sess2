@@ -10,7 +10,7 @@ module.exports = async message => {
     talkedRecently.delete(message.author.id);
   }, 5000);
   let client = message.client;
-  let prefix = ayarlar.prefix;
+  let prefix = await db.fetch(`prefix_${message.guild.id}`) || ayarlar.prefix
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
   let command = message.content.split(" ")[0].slice(prefix.length);
