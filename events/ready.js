@@ -5,15 +5,15 @@ const ayarlar = require("../ayarlar.json");
 var prefix = ayarlar.prefix;
 
 module.exports = async bot => {
-  bot.shard.fetchClientValues("guilds.size").then(async results => {
-    bot.shard.fetchClientValues("users.size").then(async results2 => {
+  //bot.shard.fetchClientValues("guilds.size").then(async results => {
+    //bot.shard.fetchClientValues("users.size").then(async results2 => {
       let shardi = bot.shard.id + 1
       var oyun = [
         "Life with Guard Bot beautiful!",
         "Hayat Guard Bot ile güzel!",
         "Version: v0.1",
         "g!help | g!invite | g!prefix",
-        `Shard: ${shardi}/${bot.shard.count}`,
+        //`Shard: ${shardi}/${bot.shard.count}`,
         `${bot.guilds.size.toLocaleString()} Guilds! ${bot.guilds.reduce((a, b) => a + b.memberCount, 0).toLocaleString()} Members!`
       ];
 
@@ -23,6 +23,6 @@ module.exports = async bot => {
         bot.user.setActivity(oyun[random], { type: "WATCHING" });
       }, 12000);
       bot.user.setStatus("online");
-    });
-  });
+    //});
+  //});
 };

@@ -4,7 +4,7 @@ const moment = require("moment");
 require("moment-duration-format");
 module.exports.run = async (bot, message) => {
   let kontrol = await db.fetch(`dil_${message.guild.id}`);
-  let shardi = bot.shard.id + 1;
+  //let shardi = bot.shard.id + 1;
 
   if (kontrol == "TR_tr") {
     const duration = moment
@@ -26,9 +26,9 @@ module.exports.run = async (bot, message) => {
         `%${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}`,
         true
       )
-      .addField(`Toplam Shard`, bot.shard.count, true)
-      .addField(`Bulunduğum Shard`, shardi, true)
-      .addField(`Genel Shard`, `${shardi}/${bot.shard.count}`, true)
+      //.addField(`Toplam Shard`, bot.shard.count, true)
+      //.addField(`Bulunduğum Shard`, shardi, true)
+      //.addField(`Genel Shard`, `${shardi}/${bot.shard.count}`, true)
       .addField(`Destek Sunucusu`, `[Tıkla!](https://discord.gg/VbMuaVe)`, true)
       .addField(
         `Botu Ekleyin`,
@@ -58,9 +58,9 @@ module.exports.run = async (bot, message) => {
         `%${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}`,
         true
       )
-      .addField(`Shard Count`, bot.shard.count, true)
-      .addField(`Shard İd`, shardi, true)
-      .addField(`General View`, `${shardi}/${bot.shard.count}`, true)
+     // .addField(`Shard Count`, bot.shard.count, true)
+      //.addField(`Shard İd`, shardi, true)
+      //.addField(`General View`, `${shardi}/${bot.shard.count}`, true)
       .addField(`Support Server`, `[Click!](https://discord.gg/VbMuaVe)`, true)
       .addField(
         `Add Bot`,
