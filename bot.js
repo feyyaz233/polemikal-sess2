@@ -446,15 +446,105 @@ client.on("message", async message => {
   if (message.content === "<@!665232633529368576>") {
     if (dil == "TR_tr") {
       message.channel.send(
-        `Prefixim: \`${pref}\`\nEğer yardım istiyorsan; https://discord.gg/mCd8tVC`
+        `Prefixim: \`${pref}\`\nEğer yardım istiyorsan; https://discord.gg/hKbv2RY`
       );
     } else {
       message.channel.send(
-        `My prefix is: \`${pref}\`\nIf you want to get help; https://discord.gg/mCd8tVC`
+        `My prefix is: \`${pref}\`\nIf you want to get help; https://discord.gg/hKbv2RY`
       );
     }
   } else {
     return;
+  }
+});
+
+client.on("guildMemberAdd", async member => {
+  let user = member.guild.members.get(member.id);
+
+  let kanal = await db.fetch(`güvenlik_${member.guild.id}`);
+  let d = await db.fetch(`dil_${member.guild.id}`);
+
+  if (!kanal) return;
+  if (d == "TR_tr") {
+    const kurulus = new Date().getTime() - user.createdAt.getTime();
+    const gün = moment(kurulus).format("dddd");
+    var kontrol;
+    if (kurulus > 1296000000) kontrol = "15 günden sonra oluşturulmuş!";
+    if (kurulus < 1296000000) kontrol = "15 günden önce oluşturulmuş!";
+    if (kontrol == "15 günden sonra oluşturulmuş!") {
+      const embed = new Discord.RichEmbed().setDescription(
+        `${member} sunucuya katıldı! Hesabı; ${kontrol}`
+      );
+      client.channels.get(kanal).send(embed);
+      let rol1 = await db.fetch(`güvenlikalınacak_${member.guild.id}`);
+      let rol2 = await db.fetch(`güvenlikverilecek_${member.guild.id}`);
+      if (!rol1) {
+        if (!rol2) {
+          return;
+        } else {
+          member.addRole(rol2);
+          return;
+        }
+      } else {
+        member.removeRole(rol1);
+        if (!rol2) {
+          return;
+        } else {
+          member.addRole(rol2);
+          return;
+        }
+      }
+    } else {
+      const embed = new Discord.RichEmbed().setDescription(
+        `${member} sunucuya katıldı! Hesabı; ${kontrol}`
+      );
+      client.channels.get(kanal).send(embed);
+      let rol1 = await db.fetch(`güvenlikfake_${member.guild.id}`);
+      if (!rol1) return;
+      else {
+        member.addRole(rol1);
+      }
+    }
+  } else {
+    const kurulus = new Date().getTime() - user.createdAt.getTime();
+    const gün = moment(kurulus).format("dddd");
+    var kontrol;
+    if (kurulus > 1296000000) kontrol = "Created after 15 days!";
+    if (kurulus < 1296000000) kontrol = "Created before 15 days!";
+    if (kontrol == "Created after 15 days!") {
+      const embed = new Discord.RichEmbed().setDescription(
+        `${member} has joined the server! Account; ${kontrol}`
+      );
+      client.channels.get(kanal).send(embed);
+      let rol1 = await db.fetch(`güvenlikalınacak_${member.guild.id}`);
+      let rol2 = await db.fetch(`güvenlikverilecek_${member.guild.id}`);
+      if (!rol1) {
+        if (!rol2) {
+          return;
+        } else {
+          member.addRole(rol2);
+          return;
+        }
+      } else {
+        member.removeRole(rol1);
+        if (!rol2) {
+          return;
+        } else {
+          member.addRole(rol2);
+          return;
+        }
+      }
+    } else {
+      const embed = new Discord.RichEmbed().setDescription(
+        `${member} has joined the server! Account; ${kontrol}`
+      );
+      client.channels.get(kanal).send(embed);
+      let rol1 = await db.fetch(`güvenlikfake_${member.guild.id}`);
+      if (!rol1) return;
+      else {
+        member.addRole(rol1);
+      }
+    }
   }
 });
 ///////////////////////////////////////////////////////////////////////////////////////

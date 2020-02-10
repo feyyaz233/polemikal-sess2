@@ -13,6 +13,10 @@ module.exports.run = async (client, message, args) => {
         `Bot sürümü; **v0.1**, Prefix: **${prefix}**, Dil: **${kontrol}**`
       )
       .addField(`Bot`, `\`yardım\`, \`dil\`, \`bot-bilgi\`, \`ayarlar\`, \`reboot\`, \`prefix\`, \`prefix-sıfırla\``)
+    .addField(
+        `Güvenlik Sistemi`,
+        `\`güvenlik\`, \`güvenlik-sıfırla\`, \`güvenlik-verilecek-rol\`, \`güvenlik-verilecek-rol-sıfırla\`, \`güvenlik-alınacak-rol\`, \`güvenlik-alınacak-rol-sıfırla\`, \`güvenlik-sahte-rol\`, \`güvenlik-sahte-rol-sıfırla\``
+      )
       .addField(
         `Ototag Sistemi`,
         `\`ototag\`, \`ototag-sıfırla\`, \`ototag-isim\`, \`ototag-isim-sıfırla\``
@@ -40,6 +44,10 @@ module.exports.run = async (client, message, args) => {
         `Bot Version; **v0.1**, Prefix: **${prefix}**, Language: **${kontrol}**`
       )
       .addField(`Bot`, `\`help\`, \`language\`, \`bot-info\`, \`settings\`, \`reboot\`, \`prefix\`, \`prefix-reset\``)
+    .addField(
+        `Security System`,
+        `\`security\`, \`security-reset\`, \`security-add-role\`, \`security-addd-role-reset\`, \`security-remove-role\`, \`security-add-role-reset\`, \`security-fake-role\`, \`security-fake-role-reset\``
+      )
       .addField(
         `Autotag System`,
         `\`autotag\`, \`autotag-reset\`, \`autotag-name\`, \`autotag-name-reset\``
