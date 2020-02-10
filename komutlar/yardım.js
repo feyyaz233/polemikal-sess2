@@ -10,10 +10,13 @@ module.exports.run = async (client, message, args) => {
   if (kontrol == "TR_tr") {
     const embed = new Discord.RichEmbed()
       .setDescription(
-        `Bot sürümü; **v0.1**, Prefix: **${prefix}**, Dil: **${kontrol}**`
+        `Bot sürümü; **v0.1**, Prefix: **${prefix}**, Dil: **${kontrol}**\nOy vermek için; [Tıkla!](https://top.gg/bot/665232633529368576/vote)`
       )
-      .addField(`Bot`, `\`yardım\`, \`dil\`, \`bot-bilgi\`, \`ayarlar\`, \`reboot\`, \`prefix\`, \`prefix-sıfırla\``)
-    .addField(
+      .addField(
+        `Bot`,
+        `\`yardım\`, \`dil\`, \`bot-bilgi\`, \`ayarlar\`, \`reboot\`, \`prefix\`, \`prefix-sıfırla\``
+      )
+      .addField(
         `Güvenlik Sistemi`,
         `\`güvenlik\`, \`güvenlik-sıfırla\`, \`güvenlik-verilecek-rol\`, \`güvenlik-verilecek-rol-sıfırla\`, \`güvenlik-alınacak-rol\`, \`güvenlik-alınacak-rol-sıfırla\`, \`güvenlik-sahte-rol\`, \`güvenlik-sahte-rol-sıfırla\``
       )
@@ -41,10 +44,13 @@ module.exports.run = async (client, message, args) => {
   } else {
     const embed = new Discord.RichEmbed()
       .setDescription(
-        `Bot Version; **v0.1**, Prefix: **${prefix}**, Language: **${kontrol}**`
+        `Bot Version; **v0.1**, Prefix: **${prefix}**, Language: **${kontrol}**\nVote to bot; [Click!](Https://top.gg/bot/665232633529368576/vote)`
       )
-      .addField(`Bot`, `\`help\`, \`language\`, \`bot-info\`, \`settings\`, \`reboot\`, \`prefix\`, \`prefix-reset\``)
-    .addField(
+      .addField(
+        `Bot`,
+        `\`help\`, \`language\`, \`bot-info\`, \`settings\`, \`reboot\`, \`prefix\`, \`prefix-reset\``
+      )
+      .addField(
         `Security System`,
         `\`security\`, \`security-reset\`, \`security-add-role\`, \`security-addd-role-reset\`, \`security-remove-role\`, \`security-add-role-reset\`, \`security-fake-role\`, \`security-fake-role-reset\``
       )

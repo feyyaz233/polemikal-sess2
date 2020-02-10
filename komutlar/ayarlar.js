@@ -14,6 +14,54 @@ module.exports.run = async (client, message, args) => {
   let rolkoruma3 = (await db.fetch(`rollim_${message.guild.id}`)) || ":x:";
   let bank = (await db.fetch(`slimido_${message.guild.id}`)) || ":x:";
   let kanalkoruma = await db.fetch(`kanalk_${message.guild.id}`);
+  let k = await db.fetch(`güvenlik_${message.guild.id}`);
+  let c = await db.fetch(`güvenlikverilecek_${message.guild.id}`);
+  let d = await db.fetch(`güvenlikalınacak_${message.guild.id}`);
+  let cd = await db.fetch(`güvenlikfake_${message.guild.id}`);
+
+  let sce4;
+  if (!cd) {
+    if (kontrol === "TR_tr") {
+      sce4 = ":x:";
+    } else {
+      sce4 = ":x:";
+    }
+  } else {
+    sce4 = `<@&${cd}>`;
+  }
+
+  let sce3;
+  if (!d) {
+    if (kontrol === "TR_tr") {
+      sce3 = ":x:";
+    } else {
+      sce3 = ":x:";
+    }
+  } else {
+    sce3 = `<@&${d}>`;
+  }
+  let sce2;
+  if (!c) {
+    if (kontrol === "TR_tr") {
+      sce2 = ":x:";
+    } else {
+      sce2 = ":x:";
+    }
+  } else {
+    sce2 = `<@&${c}>`;
+  }
+
+  let sce;
+  if (!k) {
+    if (kontrol === "TR_tr") {
+      sce = ":x:";
+    } else {
+      sce = ":x:";
+    }
+  } else {
+    sce = `<#${k}>`;
+  }
+
   let ototagk;
   if (!ototag2) {
     if (kontrol === "TR_tr") {
@@ -110,6 +158,10 @@ module.exports.run = async (client, message, args) => {
         .addField(`Ban Koruma Log`, ban2, true)
         .addField(`Ban Koruma Rol`, bank2, true)
         .addField(`Ban Koruma Limit`, bank, true)
+        .addField(`Güvenlik Log`, sce, true)
+        .addField(`Güvenlik Eklenecek Rol`, sce2, true)
+        .addField(`Güvenlik Alınacak Rol`, sce3, true)
+        .addField(`Güvenlik Sahte Rol`, sce4, true)
         .setColor("BLACK")
         .setFooter(client.user.username, client.user.avatarURL);
       message.channel.send(embed);
@@ -154,11 +206,22 @@ module.exports.run = async (client, message, args) => {
         .setColor("BLACK")
         .setFooter(client.user.username, client.user.avatarURL);
       message.channel.send(embed);
+    } else if (seç == "güvenlik") {
+      const embed = new Discord.RichEmbed()
+        .setAuthor(`İşte ${message.guild.name} adlı sunucunun ayarları!`)
+
+        .addField(`Güvenlik Log`, sce, true)
+        .addField(`Güvenlik Eklenecek Rol`, sce2, true)
+        .addField(`Güvenlik Alınacak Rol`, sce3, true)
+        .addField(`Güvenlik Sahte Rol`, sce4, true)
+        .setColor("BLACK")
+        .setFooter(client.user.username, client.user.avatarURL);
+      message.channel.send(embed);
     } else {
       message.channel.send(
         new Discord.RichEmbed()
           .setDescription(
-            "Lütfen bir seçeneği seçiniz!\n-----------------------------------\nSeçenekler; `genel`, `ototag`, `rol-koruma`, `kanal-koruma`, `ban-koruma`\n-----------------------------------"
+            "Lütfen bir seçeneği seçiniz!\n-----------------------------------\nSeçenekler; `genel`, `ototag`, `rol-koruma`, `kanal-koruma`, `ban-koruma`, `güvenlik`\n-----------------------------------"
           )
           .setColor("BLACK")
       );
@@ -169,13 +232,15 @@ module.exports.run = async (client, message, args) => {
       return message.channel.send(
         new Discord.RichEmbed()
           .setDescription(
-            "Please select an option!\n-----------------------------------\nOptions; `general`, `autotag`, `role-protection`, `channel-protection`, `ban-protection`\n-----------------------------------"
+            "Please select an option!\n-----------------------------------\nOptions; `general`, `autotag`, `role-protection`, `channel-protection`, `ban-protection`, `security-protection`\n-----------------------------------"
           )
           .setColor("BLACK")
       );
     if (seç == "general") {
       const embed = new Discord.RichEmbed()
-        .setAuthor(`İşte ${message.guild.name} adlı sunucunun ayarları!`)
+        .setAuthor(
+          `Here are the settings of the server named ${message.guild.name}!`
+        )
         .addField(`Language`, kontrol, true)
         .addField(`Prefix`, prefix, true)
         .addField(`Autotag`, ototag1, true)
@@ -188,13 +253,19 @@ module.exports.run = async (client, message, args) => {
         .addField(`Ban Protection Log`, ban2, true)
         .addField(`Ban Protection Role`, bank2, true)
         .addField(`Ban Protection Limit`, bank, true)
+        .addField(`Security Protection Log`, sce, true)
+        .addField(`Security Add Role`, sce2, true)
+        .addField(`Security Remove Role`, sce3, true)
+        .addField(`Security Fake Role`, sce4, true)
         .setColor("BLACK")
         .setFooter(client.user.username, client.user.avatarURL);
       message.channel.send(embed);
       return;
     } else if (seç == "autotag") {
       const embed = new Discord.RichEmbed()
-        .setAuthor(`İşte ${message.guild.name} adlı sunucunun ayarları!`)
+        .setAuthor(
+          `Here are the settings of the server named ${message.guild.name}!`
+        )
         .addField(`Autotag`, ototag1, true)
         .addField(`Autotag Channel`, ototagk, true)
         .addField(`Autotag Name`, ototagk2, true)
@@ -203,7 +274,9 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
     } else if (seç == "role-protection") {
       const embed = new Discord.RichEmbed()
-        .setAuthor(`İşte ${message.guild.name} adlı sunucunun ayarları!`)
+        .setAuthor(
+          `Here are the settings of the server named ${message.guild.name}!`
+        )
 
         .addField(`Role Protection Log`, rolk, true)
         .addField(`Role Protection Role`, rolk2, true)
@@ -214,7 +287,9 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
     } else if (seç == "channel-protection") {
       const embed = new Discord.RichEmbed()
-        .setAuthor(`İşte ${message.guild.name} adlı sunucunun ayarları!`)
+        .setAuthor(
+          `Here are the settings of the server named ${message.guild.name}!`
+        )
 
         .addField(`Channel Protection Log`, kanalk, true)
 
@@ -223,7 +298,9 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(embed);
     } else if (seç == "ban-protection") {
       const embed = new Discord.RichEmbed()
-        .setAuthor(`İşte ${message.guild.name} adlı sunucunun ayarları!`)
+        .setAuthor(
+          `Here are the settings of the server named ${message.guild.name}!`
+        )
 
         .addField(`Ban Protection Log`, ban2, true)
         .addField(`Ban Protection Role`, bank2, true)
@@ -231,11 +308,24 @@ module.exports.run = async (client, message, args) => {
         .setColor("BLACK")
         .setFooter(client.user.username, client.user.avatarURL);
       message.channel.send(embed);
+    } else if (seç == "security-protection") {
+      const embed = new Discord.RichEmbed()
+        .setAuthor(
+          `Here are the settings of the server named ${message.guild.name}!`
+        )
+
+        .addField(`Security Protection Log`, sce, true)
+        .addField(`Security Add Role`, sce2, true)
+        .addField(`Security Remove Role`, sce3, true)
+        .addField(`Security Fake Role`, sce4, true)
+        .setColor("BLACK")
+        .setFooter(client.user.username, client.user.avatarURL);
+      message.channel.send(embed);
     } else {
       message.channel.send(
         new Discord.RichEmbed()
           .setDescription(
-            "Please select an option!\n-----------------------------------\nOptions; `general`, `autotag`, `role-protection`, `channel-protection`, `ban-protection`\n-----------------------------------"
+            "Please select an option!\n-----------------------------------\nOptions; `general`, `autotag`, `role-protection`, `channel-protection`, `ban-protection`, ``security-protection\n-----------------------------------"
           )
           .setColor("BLACK")
       );
