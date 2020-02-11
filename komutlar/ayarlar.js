@@ -139,7 +139,7 @@ module.exports.run = async (client, message, args) => {
       return message.channel.send(
         new Discord.RichEmbed()
           .setDescription(
-            "Lütfen bir seçeneği seçiniz!\n-----------------------------------\nSeçenekler; `genel`, `ototag`, `rol-koruma`, `kanal-koruma`, `ban-koruma`\n-----------------------------------"
+            "Lütfen bir seçeneği seçiniz!\n-----------------------------------\nSeçenekler; `genel`, `ototag`, `rol-koruma`, `kanal-koruma`, `ban-koruma`, `güvenlik`\n-----------------------------------"
           )
           .setColor("BLACK")
       );
@@ -325,7 +325,7 @@ module.exports.run = async (client, message, args) => {
       message.channel.send(
         new Discord.RichEmbed()
           .setDescription(
-            "Please select an option!\n-----------------------------------\nOptions; `general`, `autotag`, `role-protection`, `channel-protection`, `ban-protection`, ``security-protection\n-----------------------------------"
+            "Please select an option!\n-----------------------------------\nOptions; `general`, `autotag`, `role-protection`, `channel-protection`, `ban-protection`, `security-protection`\n-----------------------------------"
           )
           .setColor("BLACK")
       );
