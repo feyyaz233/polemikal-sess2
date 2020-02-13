@@ -446,11 +446,11 @@ client.on("message", async message => {
   if (message.content === "<@!665232633529368576>") {
     if (dil == "TR_tr") {
       message.channel.send(
-        `Prefixim: \`${pref}\`\nEğer yardım istiyorsan; https://discord.gg/hKbv2RY`
+        `Prefixim: \`${pref}\`\nEğer yardım istiyorsan; https://discord.gg/6Cc3fNM`
       );
     } else {
       message.channel.send(
-        `My prefix is: \`${pref}\`\nIf you want to get help; https://discord.gg/hKbv2RY`
+        `My prefix is: \`${pref}\`\nIf you want to get help; https://discord.gg/6Cc3fNM`
       );
     }
   } else {
@@ -832,7 +832,7 @@ client.on("channelCreate", async channel => {
   }
 });
 
-client.on("guildCreate", async guild => {
+/*client.on("guildCreate", async guild => {
   const embed = new Discord.RichEmbed()
     .setColor(`GREEN`)
     .setTitle(`EKLENDİM/ADDED!`)
@@ -849,7 +849,7 @@ client.on("guildDelete", async guild => {
       `Sunucu Adı/Guild Name: ${guild.name}\nSunucu Id/Guild Id: ${guild.id}\nSunucu Sahibi/Guild Owner: ${guild.owner}\nSunucudaki Kişi Sayısı/Guild Member Count: ${guild.memberCount}\nSunucu Oluşturulma Zamanı/Guild Created Time: ${guild.createdAt}\nDoğrulama Seviyesi\nVerifection Level: ${guild.verificationLevel}`
     );
   client.channels.get(`675041940634468353`).send(embed);
-});
+});*/
 
 client.elevation = message => {
   if (!message.guild) {
