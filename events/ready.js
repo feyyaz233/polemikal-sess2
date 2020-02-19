@@ -7,7 +7,7 @@ var prefix = ayarlar.prefix;
 module.exports = async bot => {
   //bot.shard.fetchClientValues("guilds.size").then(async results => {
   //bot.shard.fetchClientValues("users.size").then(async results2 => {
-  let shardi = bot.shard.id + 1;
+//  let shardi = bot.shard.id + 1;
   var oyun = [
     "Life with Guard Bot beautiful!",
     "Hayat Guard Bot ile güzel!",

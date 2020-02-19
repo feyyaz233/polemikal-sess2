@@ -5,7 +5,7 @@ dependencies:
   discord.js: 11.5.1
   express: 4.17.1
   fs: 0.0.2
-  generate-password: 1.5.0
+  generate-password: 1.5.1
   hastebin-gen: 2.0.5
   http: 0.0.0
   moment: 2.24.0
@@ -15,7 +15,7 @@ dependencies:
   simple-youtube-api: 5.2.1
   unb-api: 1.1.1
   unb-recaptcha: 7.0.0
-  ytdl-core: 1.0.7
+  ytdl-core: 1.0.9
 packages:
   /@angular/animations/7.2.16/@angular!core@7.2.16:
     dependencies:
@@ -459,7 +459,7 @@ packages:
       long: 4.0.0
       prism-media: 0.0.3
       snekfetch: 3.6.4
-      tweetnacl: 1.0.1
+      tweetnacl: 1.0.3
       ws: 6.2.1
     dev: false
     engines:
@@ -679,10 +679,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-4fJE7zkzwbKmS9R5kTYGDQ9ZFPg=
-  /generate-password/1.5.0:
+  /generate-password/1.5.1:
     dev: false
     resolution:
-      integrity: sha512-rGb6xNK6BRdShUQ1FDPD6WgjrrIaBHZm+dhRlw7XjoBXciEn9RiNMNitIRC2ffSSVm3q9mt+ygetJK7450W/uA==
+      integrity: sha512-XdsyfiF4mKoOEuzA44w9jSNav50zOurdWOV3V8DbA7SJIxR3Xm9ob14HKYTnMQOPX3ylqiJMnQF0wEa8gXZIMw==
   /getpass/0.1.7:
     dependencies:
       assert-plus: 1.0.0
@@ -863,7 +863,7 @@ packages:
     dev: false
     resolution:
       integrity: sha512-XsP+KhQif4bjX1kbuSiySJFNAehNxgLb6hPRGJ9QsUr8ajHkuXGdrHmFUTUUXhDwVX2R5bY4JNZEwbUiMhV+MA==
-  /m3u8stream/0.6.4:
+  /m3u8stream/0.6.5:
     dependencies:
       miniget: 1.6.1
       sax: 1.2.4
@@ -871,7 +871,7 @@ packages:
     engines:
       node: '>=6'
     resolution:
-      integrity: sha512-9WLF1VAtbVij03HWJKbVZ8L0orsoZiP53UljR5EwaDrozQFMsTGRDPe3PbzWV73He8a+j5H/hWZNoI2VkUSsiw==
+      integrity: sha512-QZCzhcfUliZfsOboi68QkNcMejPKTEhxE+s1TApvHubDeR8ythm4ViWuYFqgUwZeoHe8q0nsPxOvA3lQvdSzyg==
   /media-typer/0.3.0:
     dev: false
     engines:
@@ -952,6 +952,11 @@ packages:
     resolution:
       integrity: sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
   /node-opus/0.3.3:
+    cpu:
+      - x64
+      - arm
+      - arm64
+      - ia32
     dependencies:
       bindings: 1.2.1
       commander: 2.20.3
@@ -961,6 +966,12 @@ packages:
       node: '>=5.10.0'
     optionalDependencies:
       ogg-packet: 1.0.1
+    os:
+      - linux
+      - darwin
+      - win32
+      - freebsd
+      - android
     requiresBuild: true
     resolution:
       integrity: sha512-ZQniA8iJ6y/qOTmW6eyzM9m8odt4CIGV0NM9/U03/pYLhGyxy18QXO25WfrWd8XsUYx57tnxll2xxj54CN08uQ==
@@ -1035,10 +1046,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-5NsSEDv8zY70ScRnOTn7bK7eanl2MvFrOrS/R6x+dBt5g1ghnj9Zv90kO8GwT8gxcu2ANyFprnFYB85IogIJOQ==
-  /punycode/1.4.1:
-    dev: false
-    resolution:
-      integrity: sha1-wNWmOycYgArY4esPpSachN1BhF4=
   /punycode/2.1.1:
     dev: false
     engines:
@@ -1103,7 +1110,7 @@ packages:
     requiresBuild: true
     resolution:
       integrity: sha512-2cBCniTtxcGUjDpvFfVpw323a83/0RLSGJJY5l5lcomZWhYpU2cuLdsvYqMixvsdLJ9+sTdzEkju8J8ZHDM2nA==
-  /request/2.88.0:
+  /request/2.88.2:
     dependencies:
       aws-sign2: 0.7.0
       aws4: 1.9.1
@@ -1122,14 +1129,15 @@ packages:
       performance-now: 2.1.0
       qs: 6.5.2
       safe-buffer: 5.2.0
-      tough-cookie: 2.4.3
+      tough-cookie: 2.5.0
       tunnel-agent: 0.6.0
       uuid: 3.4.0
+    deprecated: 'request has been deprecated, see https://github.com/request/request/issues/3142'
     dev: false
     engines:
-      node: '>= 4'
+      node: '>= 6'
     resolution:
-      integrity: sha512-NAqBSrijGLZdM0WZNsInLJpkJokL72XYjUpnB0iwsRgxh7dB6COrHnTBNwN0E+lHDAJzu7kLAkDeY08z2/A0hg==
+      integrity: sha512-MsvtOrfG9ZcrOwAW+Qi+F6HbD0CWXEh9ou77uOb7FM2WPhwT7smM833PzanhJLsgXjN89Ir6V2PczXNnMpwKhw==
   /rxjs/6.3.3:
     dependencies:
       tslib: 1.10.0
@@ -1292,15 +1300,15 @@ packages:
       node: '>=0.6'
     resolution:
       integrity: sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
-  /tough-cookie/2.4.3:
+  /tough-cookie/2.5.0:
     dependencies:
       psl: 1.7.0
-      punycode: 1.4.1
+      punycode: 2.1.1
     dev: false
     engines:
       node: '>=0.8'
     resolution:
-      integrity: sha512-Q5srk/4vDM54WJsJio3XNn6K2sCG+CQ8G5Wz6bZhRZoAe/+TxjWB/GlFAnYEbkYVlON9FMk/fE3h2RLpPXo4lQ==
+      integrity: sha512-nlLsUzgm1kfLXSXfRZMc1KLAugd4hqJHDTvc2hDIwS3mZAfMEuMbc03SujMF+GEcpaX/qboeycw6iO8JwVv2+g==
   /tslib/1.10.0:
     dev: false
     resolution:
@@ -1315,10 +1323,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-WuaBd/GS1EViadEIr6k/+HQ/T2Q=
-  /tweetnacl/1.0.1:
+  /tweetnacl/1.0.3:
     dev: false
     resolution:
-      integrity: sha512-kcoMoKTPYnoeS50tzoqjPY3Uv9axeuuFAZY9M/9zFnhoVvRfxz9K29IMPD7jGmt2c8SW7i3gT9WqDl2+nV7p4A==
+      integrity: sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw==
   /type-is/1.6.18:
     dependencies:
       media-typer: 0.3.0
@@ -1330,7 +1338,7 @@ packages:
       integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==
   /unb-api/1.1.1:
     dependencies:
-      request: 2.88.0
+      request: 2.88.2
     dev: false
     resolution:
       integrity: sha512-Pw/FG1LdvNus92uvNt1bTjkhP79OE7spiXxpW4U15yuCfCV7VXkF0zl7K8Brz3RoC3CkcoWsPQfqDiEXQTu/Fg==
@@ -1502,17 +1510,17 @@ packages:
     dev: false
     resolution:
       integrity: sha1-AI4G2AlDIMNy28L47XagymyKxBk=
-  /ytdl-core/1.0.7:
+  /ytdl-core/1.0.9:
     dependencies:
       html-entities: 1.2.1
-      m3u8stream: 0.6.4
+      m3u8stream: 0.6.5
       miniget: 1.6.1
       sax: 1.2.4
     dev: false
     engines:
       node: '>=6'
     resolution:
-      integrity: sha512-gECPN5g5JnSy8hIq11xHIGe1T/Xzy0mWxQin3zhlJ3nG/YjPcEVEejrdd2XmA4Vv2Zw3+b1ZyDjmt37XfZri6A==
+      integrity: sha512-HhFeLfjXU34h0FNHmSkSpKygdaYijSt8VNsC770VYBRFb+dyUKcm11cIKxu2MUSwT9znISZ0k1wFdaV/N5VW+Q==
   /zone.js/0.8.29:
     dev: false
     resolution:
@@ -1537,4 +1545,4 @@ specifiers:
   simple-youtube-api: ^5.2.1
   unb-api: ^1.1.0
   unb-recaptcha: ^7.0.0
-  ytdl-core: ^1.0.7
+  ytdl-core: ^1.0.9
