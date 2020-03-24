@@ -12,7 +12,7 @@ module.exports = async bot => {
     "Life with Guard Bot beautiful!",
     "Hayat Guard Bot ile güzel!",
     "Güvenlik Sistemi!",
-    "Security System!",
+    "Faster Security System!",
     "Version: v0.1",
     "g!help | g!invite | g!prefix",
     //`Shard: ${shardi}/${bot.shard.count}`,
