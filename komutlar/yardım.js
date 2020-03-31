@@ -6,7 +6,7 @@ module.exports.run = async (client, message, args) => {
   if (kontrol == null) {
     kontrol = "EN_us";
   }
-  let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "g!";
+  let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "c+";
   if (kontrol == "TR_tr") {
     const embed = new Discord.RichEmbed()
       .setDescription(

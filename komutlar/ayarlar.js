@@ -3,7 +3,7 @@ const Discord = require("discord.js"),
 
 module.exports.run = async (client, message, args) => {
   let kontrol = (await db.fetch(`dil_${message.guild.id}`)) || "EN_us";
-  let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "g!";
+  let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "c+";
   let ototag1 = (await db.fetch(`ototag_${message.guild.id}`)) || ":x:";
   let ototag2 = await db.fetch(`ototagk_${message.guild.id}`);
   let ototag3 = await db.fetch(`ototagmsj_${message.guild.id}`);

@@ -9,12 +9,13 @@ module.exports = async bot => {
   //bot.shard.fetchClientValues("users.size").then(async results2 => {
 //  let shardi = bot.shard.id + 1;
   var oyun = [
-    "Life with Guard Bot beautiful!",
-    "Hayat Guard Bot ile güzel!",
-    "Güvenlik Sistemi!",
+    "Wishing you plenty of tea ...",
+    "Bol çay içme dileğiyle...",
+    "En iyi sistemle güvenlik sistemleri!",
     "Faster Security System!",
-    "Version: v0.1",
-    "g!help | g!invite | g!prefix",
+    "Version: v0.5",
+    "c+help | c+invite | c+prefix",
+    "c+yardım | c+invite | c+prefix",
     //`Shard: ${shardi}/${bot.shard.count}`,
     `${bot.guilds.size.toLocaleString()} Guilds! ${bot.guilds
       .reduce((a, b) => a + b.memberCount, 0)

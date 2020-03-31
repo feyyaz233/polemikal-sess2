@@ -91,7 +91,7 @@ client.unload = command => {
 };
 
 const DBL = require("dblapi.js");
-const dbl = new DBL('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTIzMjYzMzUyOTM2ODU3NiIsImJvdCI6dHJ1ZSwiaWF0IjoxNTgxMDA5ODg0fQ.ZrLr1fZZ6m6iBmD_66N4rqeQ9fmtrV7pnLoc8IfVe_c', client);
+const dbl = new DBL('', client);
 
 // Optional events
 dbl.on('posted', () => {
@@ -441,12 +441,12 @@ client.on("roleDelete", async role => {
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 client.on("message", async message => {
-  let pref = (await db.fetch(`prefix_${message.guild.id}`)) || "g!";
+  let pref = (await db.fetch(`prefix_${message.guild.id}`)) || "c+";
   let dil = await db.fetch(`dil_${message.guild.id}`);
   if (message.content === "<@!665232633529368576>") {
     if (dil == "TR_tr") {
       message.channel.send(
-        `Prefixim: \`${pref}\`\nEğer yardım istiyorsan; https://discord.gg/6Cc3fNM`
+        `Prefixim: \`${pref}\`\nEğer yardım istiyorsan; `
       );
     } else {
       message.channel.send(
