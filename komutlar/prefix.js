@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args) => {
   if (kontrol == "TR_tr") {
     const DBL = require("dblapi.js");
     const dbl = new DBL(
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTIzMjYzMzUyOTM2ODU3NiIsImJvdCI6dHJ1ZSwiaWF0IjoxNTgxMDA5ODg0fQ.ZrLr1fZZ6m6iBmD_66N4rqeQ9fmtrV7pnLoc8IfVe_c",
+      "",
       client
     );
     dbl.hasVoted(message.author.id).then(voted => {
@@ -32,7 +32,7 @@ module.exports.run = async (client, message, args) => {
       } else {
         var embed = new Discord.RichEmbed()
           .setDescription(
-            "Bu komutu kullanmak için [oy](https://top.gg/bot/665232633529368576/vote) vermeniz gerekmektedir."
+            "Bu komutu kullanmak için [oy](https://top.gg/bot/vote) vermeniz gerekmektedir."
           )
           .setColor("BLACK");
         message.channel.send(embed);

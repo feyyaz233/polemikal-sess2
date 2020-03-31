@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const db = require("quick.db");
 module.exports.run = async (bot, message, args) => {
-  let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "g!";
+  let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "c+";
   let sa = (await db.fetch(`dil_${message.guild.id}`)) || "EN_us";
   if (sa == "TR_tr") {
     if (!message.member.hasPermission("KICK_MEMBERS")) {

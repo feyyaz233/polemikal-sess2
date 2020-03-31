@@ -3,7 +3,7 @@ const db = require("quick.db");
 
 exports.run = async (bot, message) => {
   let kontrol = await db.fetch(`dil_${message.guild.id}`);
-  let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "g!";
+  let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "c+";
   if (kontrol == "TR_tr") {
     let c = message.mentions.channels.first();
     if (!c) return message.channel.send("Lütfen bir kanal etiketleyiniz!");

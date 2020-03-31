@@ -7,7 +7,7 @@ var backups = JSON.parse(fs.readFileSync("./Data/backups.json", "utf8"));
 
 module.exports.run = async (client, message, args) => {
   let kontrol = await db.fetch(`dil_${message.guild.id}`);
-    let prefix = await db.fetch(`prefix_${message.guild.id}`) || "g!"
+    let prefix = await db.fetch(`prefix_${message.guild.id}`) || "c+"
   if (kontrol == "TR_tr") {
     try {
       let info = client.emojis.get("655091815401127966") || "ℹ️"; //https://cdn.discordapp.com/emojis/655091815401127966.png?v=1
@@ -99,8 +99,8 @@ module.exports.run = async (client, message, args) => {
             )
             .addField(
               "Kullanım",
-              `\`\`\`g!yedek yükle ${id}\`\`\`
-\`\`\`g!yedek bilgi ${id}\`\`\``
+              `\`\`\`c+yedek yükle ${id}\`\`\`
+\`\`\`c+yedek bilgi ${id}\`\`\``
             )
             .setColor("BLACK");
 
