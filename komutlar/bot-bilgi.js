@@ -29,10 +29,10 @@ module.exports.run = async (bot, message) => {
       //.addField(`Toplam Shard`, bot.shard.count, true)
       //.addField(`Bulunduğum Shard`, shardi, true)
       //.addField(`Genel Shard`, `${shardi}/${bot.shard.count}`, true)
-      .addField(`Destek Sunucusu`, `[Tıkla!](https://discord.gg/c5qmdNF)`, true)
+      .addField(`Destek Sunucusu`, `[Tıkla!](https://discord.gg/WWhEu2f`, true)
       .addField(
         `Botu Ekleyin`,
-        `[Tıkla!](https://discordapp.com/oauth2/authorize?client_id=680661490943918113&scope=bot&permissions=8)`,
+        `[Tıkla!](https://discordapp.com/oauth2/authorize?client_id=615075430445088773&scope=bot&permissions=8)`,
         true
       )
       .addField(`Bota Oy Verin`, `YAKINDA`, true)

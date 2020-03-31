@@ -10,11 +10,11 @@ module.exports.run = async (client, message, args) => {
   if (kontrol == "TR_tr") {
     const embed = new Discord.RichEmbed()
       .setDescription(
-        `Bot sürümü; **v0.1**, Prefix: **${prefix}**, Dil: **${kontrol}**\nOy vermek için; [Tıkla!](https://top.gg/bot/665232633529368576/vote)`
+        `Bot sürümü; **v0.5**, Prefix: **${prefix}**, Dil: **${kontrol}**\nOy vermek için; [Tıkla!]()`
       )
       .addField(
         `Bot`,
-        `\`yardım\`, \`dil\`, \`bot-bilgi\`, \`ayarlar\`, \`reboot\`, \`prefix\`, \`prefix-sıfırla\``
+        `\`yardım\`, \`dil\`, \`bot-bilgi\`, \`ayarlar\`, \`reboot\`, \`prefix\`, \`prefix-sıfırla\`,\`karaliste\`,\`beyazliste\``
       )
       .addField(
         `Güvenlik Sistemi`,
@@ -48,7 +48,7 @@ module.exports.run = async (client, message, args) => {
       )
       .addField(
         `Bot`,
-        `\`help\`, \`language\`, \`bot-info\`, \`settings\`, \`reboot\`, \`prefix\`, \`prefix-reset\``
+        `\`help\`, \`language\`, \`bot-info\`, \`settings\`, \`reboot\`, \`prefix\`, \`prefix-reset\`,\`blacklist\`,\`whitelist\``
       )
       .addField(
         `Security System`,
