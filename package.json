@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "discord.js": "^11.5.1",
-    "quick.db": "^6.3.2",
+    "discord.js": "^11.5.2",
+    "quick.db": "^7.0.0-b15",
     "ytdl-core": "^1.0.9",
     "simple-youtube-api": "^5.2.1",
     "chalk": "^3.0.0",

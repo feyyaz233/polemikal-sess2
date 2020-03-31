@@ -21,7 +21,7 @@ module.exports = async message => {
   if (db.has(`karalist_${message.author.id}`) === true) {
     let embed = new Discord.RichEmbed()
     .setColor("RANDOM")
-    .setDescription("Görünüşe göre Çay bottan engellenmişsiniz.Engelli olduğunuz sürece hiçbir")
+    .setDescription("Görünüşe göre Çay bottan engellenmişsiniz.Engelli olduğunuz sürece hiçbir komut aleyinize kullanılamayacaktır.")
     message.channel.send({embed: embed})
 
     return
