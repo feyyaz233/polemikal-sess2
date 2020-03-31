@@ -466,11 +466,11 @@ client.on("message", async message => {
 
     if (dil == "TR_tr") {
       message.channel.send(
-        "Galiba komut ismini unuttun, `c+yardım`` yazara"
+        "Galiba komut ismini unuttun, `c+yardım`` yazarak gerekli komutlara erişebilirsiniz."
       );
     } else {
       message.channel.send(
-        `My prefix is: \`${pref}\`\nIf you want to get help; https://discord.gg/WWhEu2f`
+        "I think you forgot the command name, you can access the necessary commands by typing `c+help`"
       );
     }
   } else {
