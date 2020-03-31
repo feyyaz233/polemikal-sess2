@@ -11,6 +11,7 @@ dependencies:
   moment: 2.24.0
   moment-duration-format: 2.3.2
   node-opus: 0.3.3
+  node-superfetch: 0.1.10
   quick.db: 7.0.0-b22
   simple-youtube-api: 5.2.1
   unb-api: 1.1.1
@@ -565,6 +566,16 @@ packages:
       node: '>= 0.12'
     resolution:
       integrity: sha512-1lLKB2Mu3aGP1Q/2eCOx0fNbRMe7XdwktwOruhfqqd0rIJWwN4Dh+E3hrPSlDCXnSR7UtZ1N38rVXm+6+MEhJQ==
+  /form-data/2.5.1:
+    dependencies:
+      asynckit: 0.4.0
+      combined-stream: 1.0.8
+      mime-types: 2.1.26
+    dev: false
+    engines:
+      node: '>= 0.12'
+    resolution:
+      integrity: sha512-m21N3WOmEEURgk6B9GLOE4RuWOFf28Lhh9qGYeNlGq4VDXUlJy2th2slBNU8Gp8EzloYZOibZJ7t5ecIrFSjVA==
   /forwarded/0.1.2:
     dev: false
     engines:
@@ -884,6 +895,15 @@ packages:
     requiresBuild: true
     resolution:
       integrity: sha512-ZQniA8iJ6y/qOTmW6eyzM9m8odt4CIGV0NM9/U03/pYLhGyxy18QXO25WfrWd8XsUYx57tnxll2xxj54CN08uQ==
+  /node-superfetch/0.1.10:
+    dependencies:
+      form-data: 2.5.1
+      node-fetch: 2.6.0
+    dev: false
+    engines:
+      node: '>=8'
+    resolution:
+      integrity: sha512-aM+4GmjwCSku1VLsVh/mjnxQHa3StRI8uB7eYSktstlMD6Dxvpk/tT6UFEg2NwlNPjLlwsFmexduNUahckCm2A==
   /oauth-sign/0.9.0:
     dev: false
     resolution:
@@ -1371,6 +1391,7 @@ specifiers:
   moment: ^2.24.0
   moment-duration-format: ^2.2.2
   node-opus: ^0.3.2
+  node-superfetch: ^0.1.9
   quick.db: ^7.0.0-b15
   simple-youtube-api: ^5.2.1
   unb-api: ^1.1.0

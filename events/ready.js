@@ -20,6 +20,9 @@ module.exports = async bot => {
     `${bot.guilds.size.toLocaleString()} Guilds! ${bot.guilds
       .reduce((a, b) => a + b.memberCount, 0)
       .toLocaleString()} Members!`
+    `${bot.guilds.size.toLocaleString()} sunucu, ${bot.guilds
+      .reduce((a, b) => a + b.memberCount, 0)
+      .toLocaleString()} kullanıcı!`
   ];
 
   setInterval(async () => {
