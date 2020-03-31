@@ -443,14 +443,34 @@ client.on("roleDelete", async role => {
 client.on("message", async message => {
   let pref = (await db.fetch(`prefix_${message.guild.id}`)) || "c+";
   let dil = await db.fetch(`dil_${message.guild.id}`);
-  if (message.content === "<@!665232633529368576>") {
+  if (message.content === "<@!615075430445088773>") {
+
     if (dil == "TR_tr") {
       message.channel.send(
-        `Prefixim: \`${pref}\`\nEğer yardım istiyorsan; `
+        `Prefixim: \`${pref}\`\nEğer yardım istiyorsan; https://discord.gg/WWhEu2f`
       );
     } else {
       message.channel.send(
-        `My prefix is: \`${pref}\`\nIf you want to get help; https://discord.gg/6Cc3fNM`
+        `My prefix is: \`${pref}\`\nIf you want to get help; https://discord.gg/WWhEu2f`
+      );
+    }
+  } else {
+    return;
+  }
+});
+
+client.on("message", async message => {
+  let pref = (await db.fetch(`prefix_${message.guild.id}`)) || "c+";
+  let dil = await db.fetch(`dil_${message.guild.id}`);
+  if (message.content === "c+") {
+
+    if (dil == "TR_tr") {
+      message.channel.send(
+        "Galiba komut ismini unuttun, `c+yardım`` yazara"
+      );
+    } else {
+      message.channel.send(
+        `My prefix is: \`${pref}\`\nIf you want to get help; https://discord.gg/WWhEu2f`
       );
     }
   } else {
@@ -563,7 +583,7 @@ client.on("guildMemberAdd", async member => {
       const embed = new Discord.RichEmbed()
         .setColor("BLACK")
         .setDescription(
-          `:loudspeaker: **@${member.user.tag}** adlı şahsa tag verildi!`
+          `:loudspeaker: **@${member.user.tag}** adlı şahısa tag verildi!`
         )
         .setFooter(client.user.username, client.user.avatarURL);
       client.channels.get(kanal).send(embed);

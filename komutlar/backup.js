@@ -10,18 +10,18 @@ module.exports.run = async (client, message, args) => {
     let prefix = await db.fetch(`prefix_${message.guild.id}`) || "c+"
   if (kontrol == "TR_tr") {
     try {
-      let info = client.emojis.get("655091815401127966") || "ℹ️"; //https://cdn.discordapp.com/emojis/655091815401127966.png?v=1
-      let waiting = client.emojis.get("655695570769412096") || "⌛"; //https://images-ext-1.discordapp.net/external/lWj3uW4qvfFB9t0QgGsDJ8vLvh5bSObQ-wwUxYFH4wo/https/images-ext-1.discordapp.net/external/AzWR8HxPJ4t4rPA1DagxJkZsOCOMp4OTgwxL3QAjF4U/https/cdn.discordapp.com/emojis/424900448663633920.gif
-      let green = client.emojis.get("655696285286006784") || "✅"; //https://images-ext-2.discordapp.net/external/NU9I3Vhi79KV6srTXLJuHxOgiyzmEwgS5nFAbA13_YQ/https/cdn0.iconfinder.com/data/icons/small-n-flat/24/678134-sign-check-512.png
-      let error = client.emojis.get("655704809483141141") || "❌"; //https://cdn.discordapp.com/emojis/655704809483141141.png?v=1
-      let warning = client.emojis.get("656030540310380574") || "⚠️"; //https://cdn.discordapp.com/emojis/656030540310380574.png?v=1
+      let info = client.emojis.get("655091815401127966") || "??"; //https://cdn.discordapp.com/emojis/655091815401127966.png?v=1
+      let waiting = client.emojis.get("655695570769412096") || "?"; //https://images-ext-1.discordapp.net/external/lWj3uW4qvfFB9t0QgGsDJ8vLvh5bSObQ-wwUxYFH4wo/https/images-ext-1.discordapp.net/external/AzWR8HxPJ4t4rPA1DagxJkZsOCOMp4OTgwxL3QAjF4U/https/cdn.discordapp.com/emojis/424900448663633920.gif
+      let green = client.emojis.get("655696285286006784") || "?"; //https://images-ext-2.discordapp.net/external/NU9I3Vhi79KV6srTXLJuHxOgiyzmEwgS5nFAbA13_YQ/https/cdn0.iconfinder.com/data/icons/small-n-flat/24/678134-sign-check-512.png
+      let error = client.emojis.get("655704809483141141") || "?"; //https://cdn.discordapp.com/emojis/655704809483141141.png?v=1
+      let warning = client.emojis.get("656030540310380574") || "??"; //https://cdn.discordapp.com/emojis/656030540310380574.png?v=1
 
       let guildsonlyEmbed = new RichEmbed()
         .setTitle(`${error} Hata!`)
         .setDescription(
           `Bu komutu özel mesajlarda kullanamazsın.
             
-            [Destek](https://discord.gg/BxKehnS)`
+            [Destek](https://discord.gg/WWhEu2f)`
         )
         .setColor("BLACK");
       if (message.channel.type === "dm")
@@ -85,8 +85,8 @@ module.exports.run = async (client, message, args) => {
             )
             .addField(
               "Kullanım",
-              `\`\`\`g!yedek yükle ${id}\`\`\`
-\`\`\`g!yedek bilgi ${id}\`\`\``
+              `\`\`\`c+yedek yükle ${id}\`\`\`
+\`\`\`c+yedek bilgi ${id}\`\`\``
             )
             .setColor("BLACK");
 
@@ -114,7 +114,7 @@ module.exports.run = async (client, message, args) => {
           .setTitle(`${error} Hata!`)
           .setDescription(
             `Böyle bir id bulunamadı!
-[Destek](https://discord.gg/BxKehnS)`
+[Destek](https://discord.gg/WWhEu2f)`
           )
           .setColor("BLACK");
         if (!code) return message.channel.send(errorEmbed);
@@ -124,7 +124,7 @@ module.exports.run = async (client, message, args) => {
           .setTitle(`Böyle bir ${code} sunucu yedeği yok.`)
           .setDescription(
             `
-[Destek](https://discord.gg/BxKehnS)`
+[Destek](https://discord.gg/WWhEu2f)`
           )
           .setColor("BLACK");
         if (!backups[message.author.id][code])
@@ -141,16 +141,16 @@ module.exports.run = async (client, message, args) => {
       }
 
       if (args[0] === "yükle") {
-        let error = client.emojis.get("655704809483141141") || "❌";
+        let error = client.emojis.get("655704809483141141") || "?";
         let code = args[1];
         let errorEmbed = new RichEmbed().setTitle(`${error} Hata`)
           .setDescription(`Lütfen bir sunucu yedek **id**'si giriniz.
-[Destek](https://discord.gg/BxKehnS)`);
+[Destek](https://discord.gg/WWhEu2f)`);
         if (!code) return message.channel.send(errorEmbed);
         let cantfindbackup = new RichEmbed()
           .setTitle(`${error}  Error`)
           .setTitle(`Böyle bir ${code} id yok!`)
-          .setDescription("[Destek](https://discord.gg/BxKehnS)")
+          .setDescription("[Destek](https://discord.gg/WWhEu2f)")
           .setColor("BLACK");
         if (!backups[message.author.id][code])
           return message.channel.send(cantfindbackup);
@@ -213,7 +213,7 @@ module.exports.run = async (client, message, args) => {
           .setTitle(`${error} Hata`)
           .setDescription(
             `Lütfen bir yedeklenen sunucunun yedek **id**'si giriniz.   
-                    [Destek](https://discord.gg/BxKehnS)`
+                    [Destek](https://discord.gg/WWhEu2f)`
           )
           .setColor("BLACK");
         if (!id) return message.channel.send(MissingbackupinfoEmbed);
@@ -222,7 +222,7 @@ module.exports.run = async (client, message, args) => {
           .setTitle(`${error} Hata!`)
           .setDescription(
             `Bu **id**'ye sahip bir yedeğin yok!'\`${id}\`.
-                "[Destek](https://discord.gg/BxKehnS)`
+                "[Destek](https://discord.gg/WWhEu2f)`
           )
           .setColor("BLACK");
         if (!backups[message.author.id][id])
@@ -304,7 +304,7 @@ module.exports.run = async (client, message, args) => {
           .setTitle(`${error}  Error`)
           .setDescription(
             `Ne yazık ki yedekte hiç sunucun yok.
-[Destek](https://discord.gg/BxKehnS)`
+[Destek](https://discord.gg/WWhEu2f)`
           )
           .setColor("BLACK");
         if (!backups[message.author.id])
@@ -314,12 +314,12 @@ module.exports.run = async (client, message, args) => {
           .setDescription(`Tüm yedeklerini silmeye emin misin?
 ___Bu işlem geri alınamaz!__`);
         message.channel.sendEmbed(warningEmbed).then(msg => {
-          msg.react("✅").then(() => msg.react("❌"));
+          msg.react("?").then(() => msg.react("?"));
 
           let yesFilter = (reaction, user) =>
-            reaction.emoji.name === "✅" && user.id === message.author.id;
+            reaction.emoji.name === "?" && user.id === message.author.id;
           let noFilter = (reaction, user) =>
-            reaction.emoji.name === "❌" && user.id === message.author.id;
+            reaction.emoji.name === "?" && user.id === message.author.id;
 
           let yes = msg.createReactionCollector(yesFilter, { time: 0 });
           let no = msg.createReactionCollector(noFilter, { time: 0 });
@@ -344,7 +344,7 @@ ___Bu işlem geri alınamaz!__`);
       if (!args[0]) {
         const embed = new RichEmbed()
           .setTitle(
-            `**g!yedek**
+            `**c+yedek**
 
 Sunucunun yedeğini al ve yükle
 
@@ -353,11 +353,11 @@ __**Komutlar**__
           )
           .setDescription(
             `
-                ${prefix}yedek al             Sunucunuzu yedek alırsınız.
-                ${prefix}yedek sil            Sunucu yedeğinizi silersiniz.
-                ${prefix}yedek bilgi          Sunucu yedeğiniz hakkında bilgi alırsınız.
-                ${prefix}yedek yükle          Sunucu yedeğinizi yüklersiniz.
-                ${prefix}yedek temizle        Tüm yedeklerinizi silersiniz.
+                ${prefix}yedek al             Sunucunuzu yedek alırsınız.
+                ${prefix}yedek sil            Sunucu yedeğinizi silersiniz.
+                ${prefix}yedek bilgi          Sunucu yedeğiniz hakkında bilgi alırsınız.
+                ${prefix}yedek yükle          Sunucu yedeğinizi yüklersiniz.
+                ${prefix}yedek temizle        Tüm yedeklerinizi silersiniz.
 `
           )
           .addBlankField()
@@ -389,18 +389,18 @@ __**Komutlar**__
     }
   } else {
     try {
-      let info = client.emojis.get("655091815401127966") || "ℹ️"; //https://cdn.discordapp.com/emojis/655091815401127966.png?v=1
-      let waiting = client.emojis.get("655695570769412096") || "⌛"; //https://images-ext-1.discordapp.net/external/lWj3uW4qvfFB9t0QgGsDJ8vLvh5bSObQ-wwUxYFH4wo/https/images-ext-1.discordapp.net/external/AzWR8HxPJ4t4rPA1DagxJkZsOCOMp4OTgwxL3QAjF4U/https/cdn.discordapp.com/emojis/424900448663633920.gif
-      let green = client.emojis.get("655696285286006784") || "✅"; //https://images-ext-2.discordapp.net/external/NU9I3Vhi79KV6srTXLJuHxOgiyzmEwgS5nFAbA13_YQ/https/cdn0.iconfinder.com/data/icons/small-n-flat/24/678134-sign-check-512.png
-      let error = client.emojis.get("655704809483141141") || "❌"; //https://cdn.discordapp.com/emojis/655704809483141141.png?v=1
-      let warning = client.emojis.get("656030540310380574") || "⚠️"; //https://cdn.discordapp.com/emojis/656030540310380574.png?v=1
+      let info = client.emojis.get("655091815401127966") || "??"; //https://cdn.discordapp.com/emojis/655091815401127966.png?v=1
+      let waiting = client.emojis.get("655695570769412096") || "?"; //https://images-ext-1.discordapp.net/external/lWj3uW4qvfFB9t0QgGsDJ8vLvh5bSObQ-wwUxYFH4wo/https/images-ext-1.discordapp.net/external/AzWR8HxPJ4t4rPA1DagxJkZsOCOMp4OTgwxL3QAjF4U/https/cdn.discordapp.com/emojis/424900448663633920.gif
+      let green = client.emojis.get("655696285286006784") || "?"; //https://images-ext-2.discordapp.net/external/NU9I3Vhi79KV6srTXLJuHxOgiyzmEwgS5nFAbA13_YQ/https/cdn0.iconfinder.com/data/icons/small-n-flat/24/678134-sign-check-512.png
+      let error = client.emojis.get("655704809483141141") || "?"; //https://cdn.discordapp.com/emojis/655704809483141141.png?v=1
+      let warning = client.emojis.get("656030540310380574") || "??"; //https://cdn.discordapp.com/emojis/656030540310380574.png?v=1
 
       let guildsonlyEmbed = new RichEmbed()
         .setTitle(`${error} Error`)
         .setDescription(
           `This command **can't be used** in **private** messages
             
-            [Support](https://discord.gg/BxKehnS)`
+            [Support](https://discord.gg/WWhEu2f)`
         )
         .setColor("BLACK");
       if (message.channel.type === "dm")
@@ -464,8 +464,8 @@ __**Komutlar**__
             )
             .addField(
               "Usage",
-              `\`\`\`g!backup load ${id}\`\`\`
-\`\`\`g!backup info ${id}\`\`\``
+              `\`\`\`c+backup load ${id}\`\`\`
+\`\`\`c+backup info ${id}\`\`\``
             )
             .setColor("BLACK");
 
@@ -478,8 +478,8 @@ __**Komutlar**__
             )
             .addField(
               "Usage",
-              `\`\`\`g!backup load ${id}\`\`\`
-\`\`\`g!backup info ${id}\`\`\``
+              `\`\`\`c+backup load ${id}\`\`\`
+\`\`\`c+backup info ${id}\`\`\``
             )
             .setColor("BLACK");
 
@@ -492,8 +492,8 @@ __**Komutlar**__
         let errorEmbed = new RichEmbed()
           .setTitle(`${error}  Error`)
           .setDescription(
-            `You forgot to define the argument backup id. Use g!help backup load for more information.
-[Support](https://discord.gg/BxKehnS)`
+            `You forgot to define the argument backup id. Use c+help backup load for more information.
+[Support](https://discord.gg/WWhEu2f)`
           )
           .setColor("BLACK");
         if (!code) return message.channel.send(errorEmbed);
@@ -503,7 +503,7 @@ __**Komutlar**__
           .setTitle(`You have no backup with the id ${code}.`)
           .setDescription(
             `
-[Support](https://discord.gg/BxKehnS)`
+[Support](https://discord.gg/WWhEu2f)`
           )
           .setColor("BLACK");
         if (!backups[message.author.id][code])
@@ -520,16 +520,16 @@ __**Komutlar**__
       }
 
       if (args[0] === "load") {
-        let error = client.emojis.get("655704809483141141") || "❌";
+        let error = client.emojis.get("655704809483141141") || "?";
         let code = args[1];
         let errorEmbed = new RichEmbed().setTitle(`${error}  Error`)
-          .setDescription(`You forgot to define the argument backup_id. Use g!help backup load for more information.
-[Support](https://discord.gg/BxKehnS)`);
+          .setDescription(`You forgot to define the argument backup_id. Use c+help backup load for more information.
+[Support](https://discord.gg/WWhEu2f)`);
         if (!code) return message.channel.send(errorEmbed);
         let cantfindbackup = new RichEmbed()
           .setTitle(`${error}  Error`)
           .setTitle(`You have no backup with the id ${code}.`)
-          .setDescription("[Support](https://discord.gg/BxKehnS)")
+          .setDescription("[Support](https://discord.gg/WWhEu2f)")
           .setColor("BLACK");
         if (!backups[message.author.id][code])
           return message.channel.send(cantfindbackup);
@@ -591,8 +591,8 @@ __**Komutlar**__
         let MissingbackupinfoEmbed = new RichEmbed()
           .setTitle(`${error}  Error`)
           .setDescription(
-            `You forgot to define the argument **backup_id**. Use \`g!help backup info\` for more information   
-                    [Support](https://discord.gg/BxKehnS)`
+            `You forgot to define the argument **backup_id**. Use \`c+help backup info\` for more information   
+                    [Support](https://discord.gg/WWhEu2f)`
           )
           .setColor("BLACK");
         if (!id) return message.channel.send(MissingbackupinfoEmbed);
@@ -601,7 +601,7 @@ __**Komutlar**__
           .setTitle(`${error}  Error`)
           .setDescription(
             `You have **no backup** with the id \`${id}\`.
-                "[Support](https://discord.gg/BxKehnS)`
+                "[Support](https://discord.gg/WWhEu2f)`
           )
           .setColor("BLACK");
         if (!backups[message.author.id][id])
@@ -676,7 +676,7 @@ __**Komutlar**__
           .setTitle(`${error}  Error`)
           .setDescription(
             `You did'nt backup any server yet
-[Support](https://discord.gg/BxKehnS)`
+[Support](https://discord.gg/WWhEu2f)`
           )
           .setColor("BLACK");
         if (!backups[message.author.id])
@@ -686,12 +686,12 @@ __**Komutlar**__
           .setDescription(`Are you sure that you want to delete all your backups?
 __This cannot be undone!__`);
         message.channel.sendEmbed(warningEmbed).then(msg => {
-          msg.react("✅").then(() => msg.react("❌"));
+          msg.react("?").then(() => msg.react("?"));
 
           let yesFilter = (reaction, user) =>
-            reaction.emoji.name === "✅" && user.id === message.author.id;
+            reaction.emoji.name === "?" && user.id === message.author.id;
           let noFilter = (reaction, user) =>
-            reaction.emoji.name === "❌" && user.id === message.author.id;
+            reaction.emoji.name === "?" && user.id === message.author.id;
 
           let yes = msg.createReactionCollector(yesFilter, { time: 0 });
           let no = msg.createReactionCollector(noFilter, { time: 0 });
@@ -716,7 +716,7 @@ __This cannot be undone!__`);
       if (!args[0]) {
         const embed = new RichEmbed()
           .setTitle(
-            `**g!backup**
+            `**c+backup**
 
 Create & load backups of your servers
 
@@ -725,11 +725,11 @@ __**Commands**__
           )
           .setDescription(
             `
-                ${prefix}backup create        Create a backup
-                ${prefix}backup delete        Delete one of your backups
-                ${prefix}backup info          Get information about a backup
-                ${prefix}backup load          Load a backup
-                ${prefix}backup purge         Delete all your backups`
+                ${prefix}backup create        Create a backup
+                ${prefix}backup delete        Delete one of your backups
+                ${prefix}backup info          Get information about a backup
+                ${prefix}backup load          Load a backup
+                ${prefix}backup purge         Delete all your backups`
           )
           .addBlankField()
           .setColor("BLACK");
