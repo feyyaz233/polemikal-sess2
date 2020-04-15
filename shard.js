@@ -5,7 +5,7 @@ const app = express();
 const http = require("http");
 const coderlab = new Discord.ShardingManager("./bot.js", {
   totalShards: 1,
-  token: "NjE1MDc1NDMwNDQ1MDg4Nzcz.XoM2dA.TXUWHadYCULncOxkRT7O8Gok8wU"
+  token: ""
 });
 
 coderlab.spawn();
