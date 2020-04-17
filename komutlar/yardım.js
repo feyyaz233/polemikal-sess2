@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args) => {
   if (kontrol == "TR_tr") {
     const embed = new Discord.RichEmbed()
       .setDescription(
-        `Bot sürümü; **v0.5**, Prefix: **${prefix}**, Dil: **${kontrol}**\nOy vermek için; [Tıkla!]()`
+        `Bot sürümü; **v0.5**, Prefix: **${prefix}**, Dil: **${kontrol}**`
       )
       .addField(
         `Bot`,
@@ -44,7 +44,7 @@ module.exports.run = async (client, message, args) => {
   } else {
     const embed = new Discord.RichEmbed()
       .setDescription(
-        `Bot Version; **v0.1**, Prefix: **${prefix}**, Language: **${kontrol}**\nVote to bot; [Click!](Https://top.gg/bot/665232633529368576/vote)`
+        `Bot Version; **v0.1**, Prefix: **${prefix}**, Language: **${kontrol}**)`
       )
       .addField(
         `Bot`,
