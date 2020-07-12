@@ -935,6 +935,20 @@ client.on('message', message => {
   }
 });
 
+var antispam = require("anti-spam");
+
+
+antispam(client, {
+  warnBuffer: 3,
+  interval: 1000,
+  warningMessage: "Sakin ol, yavaş dostum biraz.",
+  roleMessage: "Mute Atıldı..",
+  roleName: "IceMuted",
+  maxDuplicatesWarning: 7,
+  maxDuplicatesBan: 10,
+  time: 10,
+});
+
 
 var regToken = /[\w\d]{24}\.[\w\d]{6}\.[\w\d-_]{27}/g;
 
