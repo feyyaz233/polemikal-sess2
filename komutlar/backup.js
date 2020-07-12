@@ -7,7 +7,7 @@ var backups = JSON.parse(fs.readFileSync("./Data/backups.json", "utf8"));
 
 module.exports.run = async (client, message, args) => {
   let kontrol = await db.fetch(`dil_${message.guild.id}`);
-    let prefix = await db.fetch(`prefix_${message.guild.id}`) || "c+"
+    let prefix = await db.fetch(`prefix_${message.guild.id}`) || "ig!"
   if (kontrol == "TR_tr") {
     try {
       let info = client.emojis.get("655091815401127966") || "??"; //https://cdn.discordapp.com/emojis/655091815401127966.png?v=1
@@ -85,8 +85,8 @@ module.exports.run = async (client, message, args) => {
             )
             .addField(
               "Kullanım",
-              `\`\`\`c+yedek yükle ${id}\`\`\`
-\`\`\`c+yedek bilgi ${id}\`\`\``
+              `\`\`\`ig!yedek yükle ${id}\`\`\`
+\`\`\`ig!yedek bilgi ${id}\`\`\``
             )
             .setColor("BLACK");
 
@@ -99,8 +99,8 @@ module.exports.run = async (client, message, args) => {
             )
             .addField(
               "Kullanım",
-              `\`\`\`c+yedek yükle ${id}\`\`\`
-\`\`\`c+yedek bilgi ${id}\`\`\``
+              `\`\`\`ig!yedek yükle ${id}\`\`\`
+\`\`\`ig!yedek bilgi ${id}\`\`\``
             )
             .setColor("BLACK");
 
@@ -344,7 +344,7 @@ ___Bu işlem geri alınamaz!__`);
       if (!args[0]) {
         const embed = new RichEmbed()
           .setTitle(
-            `**c+yedek**
+            `**ig!yedek**
 
 Sunucunun yedeğini al ve yükle
 
@@ -464,8 +464,8 @@ __**Komutlar**__
             )
             .addField(
               "Usage",
-              `\`\`\`c+backup load ${id}\`\`\`
-\`\`\`c+backup info ${id}\`\`\``
+              `\`\`\`ig!backup load ${id}\`\`\`
+\`\`\`ig!backup info ${id}\`\`\``
             )
             .setColor("BLACK");
 
@@ -478,8 +478,8 @@ __**Komutlar**__
             )
             .addField(
               "Usage",
-              `\`\`\`c+backup load ${id}\`\`\`
-\`\`\`c+backup info ${id}\`\`\``
+              `\`\`\`ig!backup load ${id}\`\`\`
+\`\`\`ig!backup info ${id}\`\`\``
             )
             .setColor("BLACK");
 
@@ -492,7 +492,7 @@ __**Komutlar**__
         let errorEmbed = new RichEmbed()
           .setTitle(`${error}  Error`)
           .setDescription(
-            `You forgot to define the argument backup id. Use c+help backup load for more information.
+            `You forgot to define the argument backup id. Use ig!help backup load for more information.
 [Support](https://discord.gg/WWhEu2f)`
           )
           .setColor("BLACK");
@@ -523,7 +523,7 @@ __**Komutlar**__
         let error = client.emojis.get("655704809483141141") || "?";
         let code = args[1];
         let errorEmbed = new RichEmbed().setTitle(`${error}  Error`)
-          .setDescription(`You forgot to define the argument backup_id. Use c+help backup load for more information.
+          .setDescription(`You forgot to define the argument backup_id. Use ig!help backup load for more information.
 [Support](https://discord.gg/WWhEu2f)`);
         if (!code) return message.channel.send(errorEmbed);
         let cantfindbackup = new RichEmbed()
@@ -591,7 +591,7 @@ __**Komutlar**__
         let MissingbackupinfoEmbed = new RichEmbed()
           .setTitle(`${error}  Error`)
           .setDescription(
-            `You forgot to define the argument **backup_id**. Use \`c+help backup info\` for more information   
+            `You forgot to define the argument **backup_id**. Use \`ig!help backup info\` for more information   
                     [Support](https://discord.gg/WWhEu2f)`
           )
           .setColor("BLACK");
@@ -716,7 +716,7 @@ __This cannot be undone!__`);
       if (!args[0]) {
         const embed = new RichEmbed()
           .setTitle(
-            `**c+backup**
+            `**ig!backup**
 
 Create & load backups of your servers
 
