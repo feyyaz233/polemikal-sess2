@@ -633,6 +633,7 @@ client.on("guildMemberAdd", async member => {
     }
   }
 });
+
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -933,22 +934,6 @@ client.on('message', message => {
       timer: fn
     });
   }
-});
-
-const antispam = require("discord-anti-spam");
-
-
-antispam(client, {
-  warnBuffer: 3,
-  maxBuffer: 5,
-  interval: 2000,
-  warningMessage: "Sakin ol, yavaş dostum biraz.",
-  roleMessage: "Mute Atıldı.",
-  roleName: "IceMuted",
-  maxDuplicatesWarning: 10,
-  maxDuplicatesBan: 15,
-  deleteMessagesAfterBanForPastDays: 7,
-  time: 10
 });
 
 
