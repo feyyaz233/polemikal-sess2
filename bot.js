@@ -935,18 +935,20 @@ client.on('message', message => {
   }
 });
 
-var antispam = require("anti-spam");
+const antispam = require("discord-anti-spam");
 
 
 antispam(client, {
-  warnBuffer: 1,
-  interval: 300,
+  warnBuffer: 3,
+  maxBuffer: 5,
+  interval: 2000,
   warningMessage: "Sakin ol, yavaş dostum biraz.",
   roleMessage: "Mute Atıldı.",
   roleName: "IceMuted",
-  maxDuplicatesWarning: 3,
-  maxDuplicatesBan: 10,
-  time: 1,
+  maxDuplicatesWarning: 10,
+  maxDuplicatesBan: 15,
+  deleteMessagesAfterBanForPastDays: 7,
+  time: 10
 });
 
 
