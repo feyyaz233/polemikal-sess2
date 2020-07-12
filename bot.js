@@ -939,14 +939,14 @@ var antispam = require("anti-spam");
 
 
 antispam(client, {
-  warnBuffer: 3,
-  interval: 1000,
+  warnBuffer: 1,
+  interval: 300,
   warningMessage: "Sakin ol, yavaş dostum biraz.",
-  roleMessage: "Mute Atıldı..",
+  roleMessage: "Mute Atıldı.",
   roleName: "IceMuted",
-  maxDuplicatesWarning: 7,
+  maxDuplicatesWarning: 3,
   maxDuplicatesBan: 10,
-  time: 10,
+  time: 1,
 });
 
 
