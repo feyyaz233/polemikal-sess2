@@ -11,26 +11,26 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "discord.js": "^11.5.2",
-    "quick.db": "^7.0.0-b15",
-    "ytdl-core": "^1.0.9",
+    "discord.js": "^12.2.0",
+    "quick.db": "^7.1.1",
+    "ytdl-core": "^3.1.2",
     "simple-youtube-api": "^5.2.1",
-    "chalk": "^3.0.0",
-    "moment": "^2.24.0",
-    "node-opus": "^0.3.2",
+    "chalk": "^4.1.0",
+    "moment": "^2.27.0",
+    "node-opus": "^0.3.3",
     "fs": "^0.0.2",
     "http": "^0.0.0",
     "generate-password": "^1.5.0",
     "moment-duration-format": "^2.2.2",
-    "node-superfetch": "^0.1.9",
+    "node-superfetch": "^0.1.10",
     "dateformat": "^3.0.3",
     "unb-recaptcha": "^7.0.0",
     "unb-api": "^1.1.0",
     "hastebin-gen": "^2.0.5",
-    "dblapi.js": "^2.3.0"
+    "dblapi.js": "^2.4.0"
   },
   "engines": {
-    "node": "8.x"
+    "node": "12.x"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/hello-express"
