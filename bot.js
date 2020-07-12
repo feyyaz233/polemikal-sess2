@@ -872,6 +872,19 @@ client.on("guildDelete", async guild => {
   client.channels.get(`675041940634468353`).send(embed);
 });*/
 
+const antispam = require("discord-anti-spam-tr");
+antispam(client, {
+  uyarmaSınırı: 3, 
+  banlamaSınırı: 5, 
+  aralık: 1000,
+  uyarmaMesajı: "Spamı Durdur Yoksa Mutelerim.",
+  rolMesajı: "Spam için yasaklandı, başka biri var mı? (IceGuard - Anti Spam Sistemi)", 
+  maxSpamUyarı: 7,
+  maxSpamBan: 10, 
+  zaman: 10, 
+  rolİsimi: "IceMuted"
+});
+
 client.elevation = message => {
   if (!message.guild) {
     return;

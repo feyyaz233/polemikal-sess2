@@ -3,6 +3,7 @@ dependencies:
   dateformat: 3.0.3
   dblapi.js: 2.4.0
   discord-anti-spam: 2.4.1
+  discord-anti-spam-tr: 0.7.4
   discord.js: 11.6.4
   express: 4.17.1
   fs: 0.0.2
@@ -471,6 +472,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
+  /discord-anti-spam-tr/0.7.4:
+    dev: false
+    resolution:
+      integrity: sha512-LSk5KjdP0FVWH1Usx5tABMEYTsWivWeR/WxUklEKaPYNXKgbytMbwEd2T6ZB5fJEGwzMZedz4SccIGWUJNWJnw==
   /discord-anti-spam/2.4.1:
     dev: false
     resolution:
@@ -1758,6 +1763,7 @@ specifiers:
   dateformat: ^3.0.3
   dblapi.js: ^2.4.0
   discord-anti-spam: ^2.4.1
+  discord-anti-spam-tr: ^0.7.4
   discord.js: ^11.3.2
   express: ^4.17.1
   fs: ^0.0.2
