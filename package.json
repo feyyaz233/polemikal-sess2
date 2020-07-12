@@ -27,7 +27,8 @@
     "unb-recaptcha": "^7.0.0",
     "unb-api": "^1.1.0",
     "hastebin-gen": "^2.0.5",
-    "dblapi.js": "^2.4.0"
+    "dblapi.js": "^2.4.0",
+    "discord-anti-spam": "^2.4.1"
   },
   "engines": {
     "node": "11.x"

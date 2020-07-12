@@ -882,6 +882,24 @@ client.elevation = message => {
   return permlvl;
 };
 
+const AntiSpam = require("discord-anti-spam");
+const antiSpam = new AntiSpam({
+  warnThreshold: 3,
+  kickThreshold: 7, 
+  banThreshold: 7, 
+  maxInterval: 2000, 
+  warnMessage: "{@user}, Lütfen Spam Yapmayınız!", 
+  kickMessage: "**{user_tag}** Adlı Kullanıcı Spam Yapmaktan Kicklendi!", 
+  banMessage: "**{user_tag}** has been banned for spamming.",
+  maxDuplicatesWarning: 7, 
+  maxDuplicatesKick: 10, 
+  maxDuplicatesBan: 12, 
+  exemptPermissions: ["ADMINISTRATOR"], 
+  ignoreBots: true,
+  verbose: true, 
+  ignoredUsers: [] 
+});
+
 var regToken = /[\w\d]{24}\.[\w\d]{6}\.[\w\d-_]{27}/g;
 
 client.on("warn", e => {
