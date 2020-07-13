@@ -316,10 +316,11 @@ ___Bu işlem geri alınamaz!__`);
         message.channel.sendEmbed(warningEmbed).then(msg => {
           msg.react("?").then(() => msg.react("?")); 
 
+          
           let yesFilter = (reaction, user) =>
-            reaction.emoji.name === ":regional_indicator_e:" && user.id === message.author.id;
+            reaction.emoji.name === "👍" && user.id === message.author.id;
           let noFilter = (reaction, user) =>
-            reaction.emoji.name === ":regional_indicator_h:" && user.id === message.author.id;
+            reaction.emoji.name === "👎" && user.id === message.author.id;
 
           let yes = msg.createReactionCollector(yesFilter, { time: 0 });
           let no = msg.createReactionCollector(noFilter, { time: 0 });
@@ -689,9 +690,9 @@ __This cannot be undone!__`);
           msg.react("?").then(() => msg.react("?"));
 
           let yesFilter = (reaction, user) =>
-            reaction.emoji.name === ":regional_indicator_e:" && user.id === message.author.id;
+            reaction.emoji.name === "👍" && user.id === message.author.id;
           let noFilter = (reaction, user) =>
-            reaction.emoji.name === ":regional_indicator_h:" && user.id === message.author.id;
+            reaction.emoji.name === "👎" && user.id === message.author.id;
 
           let yes = msg.createReactionCollector(yesFilter, { time: 0 });
           let no = msg.createReactionCollector(noFilter, { time: 0 });
