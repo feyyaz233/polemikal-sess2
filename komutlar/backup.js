@@ -314,7 +314,7 @@ module.exports.run = async (client, message, args) => {
           .setDescription(`Tüm yedeklerini silmeye emin misin?
 ___Bu işlem geri alınamaz!__`);
         message.channel.sendEmbed(warningEmbed).then(msg => {
-          msg.react("?").then(() => msg.react("?")); 
+          msg.react("👍").then(() => msg.react("👎"));
 
           
           let yesFilter = (reaction, user) =>
@@ -687,7 +687,7 @@ __**Komutlar**__
           .setDescription(`Are you sure that you want to delete all your backups?
 __This cannot be undone!__`);
         message.channel.sendEmbed(warningEmbed).then(msg => {
-          msg.react("?").then(() => msg.react("?"));
+          msg.react("👍").then(() => msg.react("👎"));
 
           let yesFilter = (reaction, user) =>
             reaction.emoji.name === "👍" && user.id === message.author.id;
@@ -697,18 +697,18 @@ __This cannot be undone!__`);
           let yes = msg.createReactionCollector(yesFilter, { time: 0 });
           let no = msg.createReactionCollector(noFilter, { time: 0 });
 
-          yes.on("collect", r => {
+          yes.on("👍", r => {
             delete backups[message.author.id];
 
             let deletedsuc = new RichEmbed()
-              .setTitle(`${green}  Voila!`)
-              .setDescription(`Deleted all your backups.`)
+              .setTitle(`${green} Başarılı!`)
+              .setDescription(`Tüm yedekler silindi!`)
               .setColor("BLACK");
             message.channel.send(deletedsuc);
             msg.delete();
           });
 
-          no.on("collect", r => {
+          no.on("👎", r => {
             msg.delete();
           });
         });
