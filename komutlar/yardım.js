@@ -14,10 +14,10 @@ module.exports.run = async (client, message, args) => {
      )
       .addField(
         `Yedekleme`,
-        `\`yedek\`, \`yedek al\`, \`yedek sil\`, \`yedek bilgi\`, \`yedek yükle\`, \`yedek temizle\``
+        `\`yedek\`, \`yedek al\`, \`yedek sil\`, \`yedek bilgi\`, \`yedek yükle\`, \`yedek temizle\`Desteksunucum'https://discord.gg/ejnF5uYQFW`
       )
       
-      .setColor("BLACK")
+      .setColor("BLUE")
       .setFooter(client.user.username, client.user.avatarURL);
     message.channel.send(embed);
   } else {
@@ -30,7 +30,7 @@ module.exports.run = async (client, message, args) => {
         `\`backup\`, \`backup create\`, \`backup delete\`, \`backup info\`, \`backup load\`, \`backup purge\``
       )
       
-      .setColor("BLACK")
+      .setColor("BLUE")
       .setFooter(client.user.username, client.user.avatarURL);
     message.channel.send(embed);
     return;
