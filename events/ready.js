@@ -7,7 +7,7 @@ var prefix = ayarlar.prefix;
 
 module.exports = client => {
 var oyun = [
-        "ig!yardim > Komutlar Yakında!",
+        "ig!yardim > Komutlar Yakında!Canımın içi ꑗ İ𝓂𝑜𝓈𝓂#2420",
         "Çoğu Gelişmiş Sistemler, koruma sistemler ve dahası için beklemedekalın!"  
         
     ];
