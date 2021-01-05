@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
      )
       .addField(
         `Yedekleme`,
-        `\`yedek\`, \`yedek al\`, \`yedek sil\`, \`yedek bilgi\`, \`yedek yükle\`, \`yedek temizle\`Desteksunucum'https://discord.gg/ejnF5uYQFW`
+        `\`yedek\`, \`yedek al\`, \`yedek sil\`, \`yedek bilgi\`, \`yedek yükle\`, \`yedek temizle\`Desteksunucum's://discord.gg/Kb`
       )
       
       .setColor("BLUE")
