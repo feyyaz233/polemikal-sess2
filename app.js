@@ -72,7 +72,7 @@ Voice.on("voiceStateUpdate", async(oldState, newState) => {
     }
 });
 
-Voice.login(lozayar.TOKEN).catch(err => {
+Voice.login(process.env.TOKEN).catch(err => {
     Voice.error("Ses istemcisine bağlanırken bir hata oluştu: " + err.message);
     return Voice.destroy();
 });

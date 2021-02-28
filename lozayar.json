@@ -1,10 +1,10 @@
 {
     "DEFAULTS": {
-        "AUTHORS": ["YETKILI ID"],
-        "ACTIVITY_TEXT": "ACIKLAMA",
-        "GUILD_ID": "SUNUCU ID",
-        "VOICE_CHANNEL": "KANAL ID",
-        "MIN_STAFF_ROLE": "YETKILI ROL ID"
+        "AUTHORS": ["792804021614018580"],
+        "ACTIVITY_TEXT": "YMG WELCOME",
+        "GUILD_ID": "815521188062560277",
+        "VOICE_CHANNEL": "815249178094469191",
+        "MIN_STAFF_ROLE": "815532960807649290"
     },
     "FILES": {
         "WELCOME": "ses/hosgeldin.mp3",
