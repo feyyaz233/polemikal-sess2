@@ -21,6 +21,7 @@ Voice.on("ready", async() => {
         }
     });
 
+
     Voice.log(`LozBey | \'${Voice.user.username}\' Bot Başlatıldı.!`);
 
     const Guild = Voice.guilds.cache.get(lozayar.DEFAULTS.GUILD_ID) || Voice.guilds.cache.first();
@@ -128,4 +129,6 @@ GuildMember.prototype.isStaff = function() {
     ) return true;
     return false;
 }
+
+//------------------------------ BOT YAYINDA OYNUYOR ------------------------------------\\
 
