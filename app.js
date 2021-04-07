@@ -40,7 +40,7 @@ Voice.on("ready", async() => {
             
         Voice.voiceConnection = connection;
         Voice.channelID = Channel.id;
-        Voice.log("Ses Dosyası Şu Anda Çalınıyor...")
+        Voice.log("Ses dosyası şu anda çalınıyor...")
         if(!Channel.hasStaff()) playVoice(Voice);
         else Voice.staffJoined = true;
 
@@ -73,8 +73,8 @@ Voice.on("voiceStateUpdate", async(oldState, newState) => {
     }
 });
 
-Voice.login(process.env.token).catch(err => {
-    Voice.error("Ses İstemcisine Bağlanırken Bir Hata Oluştu: " + err.message);
+Voice.login(process.env.TOKEN).catch(err => {
+    Voice.error("Ses istemcisine bağlanırken bir hata oluştu: " + err.message);
     return Voice.destroy();
 });
 
@@ -97,7 +97,7 @@ function playVoice(Voice) {
 
     } catch(err) {
 
-        return Voice.log("Ses Dosyası Oynatılırken Bir Hata Oluştu:" + err.message);
+        return Voice.log("Ses dosyası oynatılırken bir hata oluştu: " + err.message);
         
     }
 };
