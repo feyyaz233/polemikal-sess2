@@ -1,13 +1,13 @@
 {
     "DEFAULTS": {
-        "AUTHORS": ["792804021614018580"],
+        "AUTHORS": ["828511396764844032"],
         "ACTIVITY_TEXT": "Welcome To Floria",
         "GUILD_ID": "817521711766569010",
-        "VOICE_CHANNEL": "817521712258220066",
+        "VOICE_CHANNEL": "828511493808455682",
         "MIN_STAFF_ROLE": "828511397977128972"
     },
     "FILES": {
-        "WELCOME": "ses/hosgeldin.mp3",
+        "WELCOME": "ses/Hoşgeldiniz.mp3",
         "STAFF": "ses/yetkili.mp3"
     },
     "TOKEN": "TOKEN"
