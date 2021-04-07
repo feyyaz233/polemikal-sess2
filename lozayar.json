@@ -1,14 +1,14 @@
 {
     "DEFAULTS": {
-        "AUTHORS": ["828511396764844032"],
-        "ACTIVITY_TEXT": "Welcome To Favia",
-        "GUILD_ID": "828511028592902145",
-        "VOICE_CHANNEL": "828511493808455682",
-        "MIN_STAFF_ROLE": "828511396764844032"
+        "AUTHORS": ["792804021614018580","762339048583856198","609271238057263139"],
+        "ACTIVITY_TEXT": "Welcome to EVEREST²",
+        "GUILD_ID": "817521711766569010",
+        "VOICE_CHANNEL": "817521712258220066",
+        "MIN_STAFF_ROLE": "817521711938797602"
     },
     "FILES": {
-        "WELCOME": "ses/Hoşgeldiniz.mp3",
-        "STAFF": "ses/Yetkili.mp3"
+        "WELCOME": "ses/hosgeldin.mp3",
+        "STAFF": "ses/yetkili.mp3"
     },
-    "TOKEN": "NAH ALIRSIN"
+    "TOKEN": "TOKEN"
 } 
