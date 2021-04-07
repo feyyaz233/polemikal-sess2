@@ -7,8 +7,8 @@
         "MIN_STAFF_ROLE": "828511397977128972"
     },
     "FILES": {
-        "WELCOME": "ses/Hoşgeldiniz.mp3",
-        "STAFF": "ses/Get Low.mp3"
+        "WELCOME": "ses/Get Low.mp3",
+        "STAFF": "ses/Hoşgeldiniz.mp3"
     },
     "TOKEN": "TOKEN"
 } 
