@@ -12,10 +12,11 @@
   "dependencies": {
     "@discordjs/opus": "^0.3.3",
     "discord.js": "^12.5.1",
+    "ffmpeg": "^0.0.4",
     "fs": "^0.0.2",
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
-    "opusscript": "^0.0.8",
-    "ffmpeg": "^0.0.4"
+    "node-pre-gyp": "^0.17.0",
+    "opusscript": "^0.0.8"
   }
 }
