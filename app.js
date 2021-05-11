@@ -82,7 +82,7 @@ Voice.login(process.env.token).catch(err => {
  * 
  * @param {Client} Voice 
  */
-function playVoice(Voice) {
+function playVoice(Voice) { 840336877822541844
     try {
 
         const Path = Voice.staffJoined === true ? "./" + lozayar.FILES.STAFF : "./" + lozayar.FILES.WELCOME;
