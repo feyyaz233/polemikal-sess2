@@ -82,8 +82,8 @@ Voice.login(process.env.token).catch(err => {
  * 
  * @param {Client} Voice 
  */
-function playVoice(Voice) { 840336877822541844
-    try {
+function playVoice(Voice) { 840301951194234931
+    try {44
 
         const Path = Voice.staffJoined === true ? "./" + lozayar.FILES.STAFF : "./" + lozayar.FILES.WELCOME;
         Voice.playingVoice = true;
@@ -103,11 +103,11 @@ function playVoice(Voice) { 840336877822541844
 };
 
 Client.prototype.log = function(content) {
-    return console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] [VOICE BOT] ${content}`);
+    return console.log(`[${moment(840301951194234931).format('YYYY-MM-DD HH:mm:ss')}] [VOICE BOT] ${content}`);
 };
 
 Client.prototype.error = function(content) {
-    return console.error(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] [VOICE BOT] ERR! ${content}`);
+    return console.error(`[${moment(840301951194234931).format('YYYY-MM-DD HH:mm:ss')}] [VOICE BOT] ERR! ${content}`);
 };
 
 VoiceChannel.prototype.hasStaff = function(checkMember = false) {
