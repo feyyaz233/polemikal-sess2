@@ -1,10 +1,10 @@
 {
     "DEFAULTS": {
-        "AUTHORS": ["840301951194234931"],
-        "ACTIVITY_TEXT": "Welcome 💙 28",
-        "GUILD_ID": "840301951194234931",
-        "VOICE_CHANNEL": "840301951194234931",
-        "MIN_STAFF_ROLE": "840190598089932840"
+        "AUTHORS": ["517384008435499059"],
+        "ACTIVITY_TEXT": "◈ARTEMİS◈",
+        "GUILD_ID": "684474692631134250",
+        "VOICE_CHANNEL": "726430099796262925",
+        "MIN_STAFF_ROLE": "760296226242953226"
     },
     "FILES": {
         "WELCOME": "ses/Hoşgeldiniz.mp3",
