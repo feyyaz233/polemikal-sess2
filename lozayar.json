@@ -1,14 +1,14 @@
 {
     "DEFAULTS": {
-        "AUTHORS": ["517384008435499059"],
+        "AUTHORS": ["840301951194234931"],
         "ACTIVITY_TEXT": "Welcome 💙 28",
-        "GUILD_ID": "684474692631134250",
-        "VOICE_CHANNEL": "726430099796262925",
-        "MIN_STAFF_ROLE": "760296226242953226"
+        "GUILD_ID": "840301951194234931",
+        "VOICE_CHANNEL": "840301951194234931",
+        "MIN_STAFF_ROLE": "840190598089932840"
     },
     "FILES": {
-        "WELCOME": "https://cdn.glitch.com/bc0bb97d-8745-4ac6-9778-5ee6db31b314%2Fstaff.mp3?v=1620813743953",
-        "STAFF": "https://cdn.glitch.com/bc0bb97d-8745-4ac6-9778-5ee6db31b314%2Fstaff.mp3?v=1620813743953"
+        "WELCOME": "ses/Hoşgeldiniz.mp3",
+        "STAFF": "ses/Yetkili.mp3"
     },
     "TOKEN": "NAH ALIRSIN"
 } 
